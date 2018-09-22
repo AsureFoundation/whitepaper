@@ -1,0 +1,14 @@
+.idea
+node_modules
+.npmrc
+!/tools/**
+lerna-debug.log
+*.log
+*.lof
+*.pdf
+*.gz
+*.sync*
+*.toc
+*.aux
+*.ipynb
+*.ini

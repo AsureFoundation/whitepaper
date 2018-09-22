@@ -12,3 +12,4 @@ lerna-debug.log
 *.aux
 *.ipynb
 *.ini
+*.lot

@@ -8,10 +8,24 @@
 \usepackage{tabularx}
 \usepackage{url}
 \usepackage{float}
+\usepackage{color} 
+
+%\definecolor{pagecolor}{rgb}{0.8,0.9,0.9}
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{standard}
 
 \begin{document}
 
+%\pagecolor{pagecolor}
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+\clearpage
+
 \input{_head}
+
+\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+\newpage
+
 \input{_abstract}
 
 \tableofcontents
@@ -20,15 +34,20 @@
 % NEW SITE ---------------------------------------------------------------------------------
 \input{_introduction}
 
+%\input{_decentralized_social_security}
+%\newpage
 \input{_network}
 
-\input{_prototypes}
+%\newpage
+\input{_blockchain}
 
-%\input{_challenges}
+\input{_platform}
 
-\newpage
+%\newpage
 
 %\input{_tge}
+
+\input{_past_work}
 
 \input{_future_work}
 

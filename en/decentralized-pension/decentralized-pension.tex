@@ -1,0 +1,58 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{color} 
+
+%\definecolor{pagecolor}{rgb}{0.8,0.9,0.9}
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{standard}
+
+\begin{document}
+
+%\pagecolor{pagecolor}
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+\clearpage
+
+\input{_dp_head}
+
+\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+\newpage
+
+\input{_dp_abstract}
+
+\tableofcontents
+
+\newpage
+% NEW SITE ---------------------------------------------------------------------------------
+\input{_dp_introduction}
+
+\input{_db_conclusion}
+
+\newpage
+
+\listoftables
+
+\listoffigures
+ 
+\newpage
+% Literaturliste endgueltig anzeigen
+\input{_dp_bibliography}
+
+\bibliography{literatur}
+
+
+\vskip 2.2in
+\begin{quote}
+	\centering
+	Made with \ensuremath\heartsuit{ }in Germany 
+\end{quote}
+
+\end{document}

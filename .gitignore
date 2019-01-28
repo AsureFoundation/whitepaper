@@ -13,3 +13,7 @@ lerna-debug.log
 *.ipynb
 *.ini
 *.lot
+*.acn
+*.glo
+*.ist
+*.glsdefs

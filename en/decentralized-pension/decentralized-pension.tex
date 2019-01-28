@@ -9,17 +9,40 @@
 \usepackage{url}
 \usepackage{float}
 \usepackage{color} 
+\usepackage{listings}
+\lstset{
+  basicstyle=\tiny
+}
+\usepackage[
+nonumberlist, %keine Seitenzahlen anzeigen
+acronym,      %ein Abkürzungsverzeichnis erstellen
+toc,          %Einträge im Inhaltsverzeichnis
+section]      %im Inhaltsverzeichnis auf section-Ebene erscheinen
+{glossaries}
+
+
 
 %\definecolor{pagecolor}{rgb}{0.8,0.9,0.9}
 
 \usepackage[tocflat]{tocstyle}
 \usetocstyle{standard}
 
+\makeglossaries
+
+\newglossaryentry{One}
+{name=One, description={First number after zero}}
+\newglossaryentry{Open}
+{name=Open, description={Opposite of closed}}
+
+\input{_dp_glossary}
 \begin{document}
+
 
 %\pagecolor{pagecolor}
 \pagenumbering{gobble}% Remove page numbers (and reset to 1)
 \clearpage
+
+
 
 \input{_dp_head}
 
@@ -35,6 +58,56 @@
 \input{_dp_introduction}
 
 \input{_db_conclusion}
+
+\newpage
+
+\begin{lstlisting}
+#include <stdio.h>
+#define N 10
+/* Block
+ * comment */
+
+int main()
+{
+    int i;
+
+    // Line comment.
+    puts("Hello world!");
+    
+    for (i = 0; i < N; i++)
+    {
+        puts("LaTeX is also great for programmers!");
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+
+\newglossaryentry{computer}
+{
+  name=computer,
+  description={is a programmable machine that receives input,
+               stores and manipulates data, and provides
+               output in a useful format}
+}
+
+\newglossaryentry{DPT}
+{
+  name=DPT,
+  description={decentralized pension token}
+}
+
+\newglossaryentry{CCV}
+{
+  name=CCV,
+  description={Current contribution value}
+}
+
+
+\glsaddall 
+\printglossaries
+
 
 \newpage
 
@@ -54,5 +127,4 @@
 	\centering
 	Made with \ensuremath\heartsuit{ }in Germany 
 \end{quote}
-
 \end{document}

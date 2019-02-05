@@ -1,12 +1,19 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{url}
 
 \begin{document}
 
-\input{_introduction}
-\input{_dp}
-\input{_simulatorexperiments}
-\input{_futurework}
+    \input{_dp_head}
+    
+    %\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+    \newpage
+
+    \input{_introduction}
+    \input{_dp}
+    \input{_simulatorexperiments}
+    \input{_futurework}
 
 \end{document}

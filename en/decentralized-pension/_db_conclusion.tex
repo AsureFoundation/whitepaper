@@ -89,7 +89,7 @@ If $weighted\_dpt\_units\_rate > avg(units)$ then $weighted\_dpt\_units\_rate = 
 
 \begin{equation}
 	pension = 	
-	user\_dpt \cdot weighted\_dpt\_units\_rate
+	weighted\_dpt\_units\_rate \cdot user\_dpt
 \end{equation}
 
 
@@ -114,5 +114,30 @@ Wenn $weighted\_dpt\_units\_rate < avg(units)$ dann
 \end{equation}
 
 \begin{equation}
-	pension = total\_dpt\_units\_rate \cdot user\_dpt
+	pension = savings\_dpt\_units\_rate \cdot user\_dpt
+\end{equation}
+
+
+\subsubsection*{Pension from laggards funds}
+
+Wenn $entitlementMonths >= 1$ dann 
+
+\begin{equation}
+	active\_user\_dpts = 
+	\sum_{n=1}^{count} active\_user\_dpt
+\end{equation}
+
+\begin{equation}
+	total\_units = 	
+	\sum_{p=1}^{periods} \sum_{n=1}^{users} user\_units	
+\end{equation}
+
+\begin{equation}
+	laggards\_dpt\_units\_rate = 	
+	\frac{total\_units} 
+	{active\_user\_dpts \cdot years \cdot 12}		
+\end{equation}
+
+\begin{equation}
+	pension = laggards\_dpt\_units\_rate \cdot user\_dpt
 \end{equation}

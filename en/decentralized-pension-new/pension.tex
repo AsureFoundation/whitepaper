@@ -10,11 +10,14 @@
 
 \begin{document}
 
+	\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+	\clearpage
     \input{_title}
-    
-    %\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+	\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+	
+	\newpage
+	\tableofcontents
     \newpage
-
     \input{_introduction}
     \newpage
     \input{_dp}

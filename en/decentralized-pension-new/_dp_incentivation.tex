@@ -28,7 +28,13 @@ Unserer wichtigsten Ziele.
 We need some fixed and initial settings,
 one of them is 
 
-years = 40.
+\begin{equation*}
+	min = 0.0000000000000001
+\end{equation*}
+
+\begin{equation*}
+	years = 40
+\end{equation*}
 
 \subsubsection*{entitlementMonths}
 
@@ -46,7 +52,21 @@ ccv & _{(other)}
 \end{cases}
 \end{equation*}
 
-\subsubsection*{DPT - Decentralized Pension Token Bonus}
+\subsubsection*{DPT}
+
+\begin{equation*}
+DPT = DPT_{base} \cdot DPT_{bonus}
+\end{equation*}
+
+\begin{equation*}
+DPT_{base} = \begin{cases} 
+1 + \frac{unit-max(units)} {ccv - max(units)} 
+  & _{(unit > ccv)} \\
+\frac{unit - min} {ccv - min} 
+  & _{(unit < ccv)} \\
+1.0 & _{(unit = ccv)}
+\end{cases}
+\end{equation*}
 
 \begin{equation*}
 DPT_{bonus} = \begin{cases} 
@@ -55,24 +75,6 @@ DPT_{bonus} = \begin{cases}
 1.0 & _{(other)} 
 \end{cases}
 \end{equation*}
-
-
-\subsubsection*{DPT}
-
-\begin{equation*}
-DPT = \begin{cases} 
-1 + \frac{unit-max(units)} {ccv - max(units)} 
- \cdot DPT_{bonus} & _{(unit > ccv)} \\
-\frac{unit - min} {ccv - min} 
- \cdot DPT_{bonus} & _{(unit < ccv)} \\
-DPT_{bonus} & _{(unit = ccv)}
-\end{cases}
-\end{equation*}
-
-\begin{eqnarray}
-	min = 0.0000000000000001
-\end{eqnarray}
-
 
 
 \newpage
@@ -84,8 +86,16 @@ as factor for contribution pension rate and
 your points as factor for savings pension rate.
 
 \begin{equation*}
-pension = DPT \cdot CPR + DPT \cdot SPR
+pension = DPT \cdot CPR + DPT \cdot SPR + DPT \cdot LPR
 \end{equation*}
+
+Die Rente baut auf drei verschiedene Töpfe auf, die Monatlichen Beiträge,
+die Gespeicherten Beiträge und die Nachzüglicher Beiträge.
+
+Alle diese Töpfe werden unterschiedlich befüllt.
+Die Monatlichen Beiträge werden nur als Durchschnitts Beitrag an die Berechtigten  per Umlageverfahren umverteilt und der Rest wird im Savings hinterlegt.
+Bei den Nachzüglern ist die Idee, dass die letzte Generation die das System verlassen würde einen Bonus erhalten würde, dieser Topf wird befüllt,
+solange kein Monatsanspruch bei dem Benutzer besteht.
 
 \subsubsection*{Pension from contributions}
 
@@ -162,3 +172,6 @@ Wenn $entitlementMonths >= 1$ dann
 \begin{equation*}
 	pension = laggards\_dpt\_units\_rate \cdot user\_dpt
 \end{equation*}
+
+
+Voraussetzung ist gegeben wenn $pensioners / periods_open$ genau 1 entspricht

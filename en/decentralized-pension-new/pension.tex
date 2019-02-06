@@ -16,6 +16,9 @@
 	\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
 	
 	\newpage
+	\input{_abstract}	
+	\newpage
+	
 	\tableofcontents
     \newpage
     \input{_introduction}
@@ -25,5 +28,13 @@
     \input{_simulatorexperiments}
     \newpage
     \input{_futurework}
+	\newpage
+	\input{_bibliography}
+	\bibliography{literatur} 	% Literaturliste endgueltig anzeigen
 
+\vskip 2.2in
+\begin{quote}
+	\centering
+	Made with \ensuremath\heartsuit{ }decentralized 
+\end{quote}
 \end{document}

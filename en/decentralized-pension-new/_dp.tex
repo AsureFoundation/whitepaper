@@ -1,4 +1,83 @@
 \section{Decentralized Pension}
 
+Die dezentrale Rente basiert im Kern auf dem Umlageverfahren und dem Leistungsprinzip.
+Je länger ein Beitragszahler in das Rentensystem einzahlt, desto länger werden Leistungen 
+im Alter ausgezahlt und desto höhere Beiträge ein Beitragszahler in das Rentensystem
+einzahlt, desto höher fallen die Rentenzahlungen im Alter aus.
+
+\subsubsection*{Rentenanspruchsperioden}
+
+Die Rentenanspruchsperioden ($P_{pension}$) legt die Anzahl der Perioden fest,
+in denen eine Rentenzahlung erfolgt. Je höher die Anzahl der Beitragsperioden, desto höher ist die Anzahl der Rentenanspruchsperioden.
+
+Um eine hohe Anzahl an Beitragsperioden zu icentivieren, wird ein Zielwert 
+für die Anzahl der Beitragsperioden ($P_{contribTarget}$) definiert. 
+
+\begin{equation*}
+	P_{contribTarget} = 40 years \cdot 12 months
+\end{equation*}
+
+Wenn die Anzahl an Beitragsperioden dem Zielwert entspricht, soll die Anzahl der 
+Rentenanspruchsperioden genau dem Zielwert entsprechen. Liegt die  Anzahl an
+Beitragsperioden unter oder über dem Zielwert, soll die Anzahl der 
+Rentenanspruchsperioden entsprechend überproportional kleiner oder größer ausfallen.  
+
+Die Anzahl der Rentenanspruchsperioden ist wie folgt definiert:
+
+\begin{equation*}
+	P_{pension} = \frac{P_{contrib}^2}{P_{contribTarget}}
+\end{equation*}
+
+
+\subsubsection*{CCV - Current contribution value}
+
+Die relative Höhe einer Beitragszahlung im Vergleich zu allen Beitragszahlungen einer 
+Periode wird dabei in Form von "Dezentrale Rentenpunkten (DPT)" festgehalten an den 
+Beitragszahler ausgehändigt. Aus der Gesamtanzahl der DPT pro Rentner wird die 
+Höhe der Rentenzahlung berechnet.
+
+\begin{equation*}
+CCV = \begin{cases} 
+CCV * 110\% & _{(unit+10\% > CCV)} \\
+CCV * 90\% & _{(unit-10\% < CCV)} \\
+CCV & _{(other)}
+\end{cases}
+\end{equation*}
+
+\subsubsection*{DPT}
+
+\begin{equation*}
+DPT = DPT_{base} \cdot DPT_{bonus}
+\end{equation*}
+
+\begin{equation*}
+DPT_{base} = \begin{cases} 
+1 + \frac{unit-max(units)} {CCV - max(units)} 
+  & _{(unit > CCV)} \\
+\frac{unit - min} {CCV - min} 
+  & _{(unit < CCV)} \\
+1.0 & _{(unit = CCV)}
+\end{cases}
+\end{equation*}
+
+\begin{equation*}
+DPT_{bonus} = \begin{cases} 
+1.0 + (\frac{(years - year + 1.0)^2}
+      {years^2} \cdot 0.5) & _{(year < years)} \\
+1.0 & _{(other)} 
+\end{cases}
+\end{equation*}
+
+
+
+%Das Versprechen der dezentralen Rente ist wie folgt: Beitragszahler, welche jeden Monat %einen Beitrag in Höhe der durchschnittlichen Beitragshöhe pro Periode zahlen, bekommen im %Alter eine Rentenzahlung pro in der Höhe der 
+
+
+
+% Beitragszahler zahlen über die gesamte Dauer des Zahlungszeitraum einen Beitrag pro %Zahlungsperiode. Für die gezahlten Beiträge erhält der Beitragszahler "Dezentrale %Rentenpunkte (DPT)". Ein DPT entspricht dem Wert des durchschnittlichen Beitrags einer %Zahlungsperiode. Zahlt ein Beitragszahler mehr als den Durchschnitt, bekommt er 
+
+
+Beitragszahler zahlen in Regelmäßigen Perioden P einen Beitrag X in das Rentensystem und erhalten 
+
 \input{_dp_redistribution}
 \input{_dp_incentivation}

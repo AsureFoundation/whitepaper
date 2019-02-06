@@ -46,9 +46,9 @@ one of them is
 
 \begin{equation*}
 CCV = \begin{cases} 
-ccv * 110\% & _{(unit+10\% > ccv)} \\
-ccv * 90\% & _{(unit-10\% < ccv)} \\
-ccv & _{(other)}
+CCV * 110\% & _{(unit+10\% > CCV)} \\
+CCV * 90\% & _{(unit-10\% < CCV)} \\
+CCV & _{(other)}
 \end{cases}
 \end{equation*}
 
@@ -60,11 +60,11 @@ DPT = DPT_{base} \cdot DPT_{bonus}
 
 \begin{equation*}
 DPT_{base} = \begin{cases} 
-1 + \frac{unit-max(units)} {ccv - max(units)} 
-  & _{(unit > ccv)} \\
-\frac{unit - min} {ccv - min} 
-  & _{(unit < ccv)} \\
-1.0 & _{(unit = ccv)}
+1 + \frac{unit-max(units)} {CCV - max(units)} 
+  & _{(unit > CCV)} \\
+\frac{unit - min} {CCV - min} 
+  & _{(unit < CCV)} \\
+1.0 & _{(other)}
 \end{cases}
 \end{equation*}
 

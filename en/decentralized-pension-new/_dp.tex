@@ -1,14 +1,15 @@
 \section{Dezentrale Rente}
 
-Die dezentrale Rente basiert im Kern auf dem Umlageverfahren und dem Leistungsprinzip.
-Je länger ein Beitragszahler in das Rentensystem einzahlt, desto länger werden Leistungen 
-im Alter ausgezahlt und desto höhere Beiträge ein Beitragszahler in das Rentensystem
-einzahlt, desto höher fallen die Rentenzahlungen im Alter aus.
+Die dezentrale Rente basiert im Kern auf dem Umlageverfahren und dem
+Leistungsprinzip. Je länger ein Beitragszahler in das Rentensystem einzahlt, 
+desto länger werden Leistungen im Alter ausgezahlt und je höher die Beiträge,
+desto höher die Rentenzahlungen im Alter.
 
 \subsubsection*{Rentenanspruchsperioden}
 
 Die Rentenanspruchsperioden ($P_{pension}$) legt die Anzahl der Perioden fest,
-in denen eine Rentenzahlung erfolgt. Je höher die Anzahl der Beitragsperioden, desto höher ist die Anzahl der Rentenanspruchsperioden.
+in denen eine Rentenzahlung erfolgt. Je höher die Anzahl der Beitragsperioden
+($P_{contrib}$), desto höher ist die Anzahl der Rentenanspruchsperioden.
 
 Um eine hohe Anzahl an Beitragsperioden zu icentivieren, wird ein Zielwert 
 für die Anzahl der Beitragsperioden ($P_{contribTarget}$) definiert. 
@@ -41,14 +42,15 @@ DPT = DPT_{base} \cdot DPT_{bonus}
 
 \paragraph*{Aktueller Beitragswert}
 
-Der aktuelle Beitragswert ($CCV$) wird jede Periode $P_{contrib}{n}$ berechnet
-und bildet den Referenzwert für einen $DPT$ der jeweiligen Periode.
+Der aktuelle Beitragswert ($CCV$) wird zu Beginn jeder Periode 
+$P_{contrib}{n}$ berechnet und bildet den Referenzwert für einen $DPT$ der
+entsprechenden Periode.
 
-Der aktuelle Beitragswert ($CCV$) bilded dabei den Durchschnitt aller Beiträge 
-einer Periode $P_{contrib}{n}$ ab und begrenzt die Differenz zu dem $CCV$ der
-vorherigen Periode $P_{contrib}{n-1}$ auf 10\%. Bei stark schwankenden Beiträgen
-zwischen Perioden wird so eine langsame Annährung des $CCV$ and den Durchschnitt
-aller Beiträge einer Zahlungsperiode erreicht.
+Zur Berechnung des $CCV$ der Periode $P_{contrib}{n}$ wird der $CCV$ der vorherigen
+Periode $P_{contrib}{n-1}$ zugrunde gelegt. Ist die Differenz zwischen $CCV$ und dem
+durchschnittlichen Beitrag der Periode $P_{contrib}{n-1}$ größer als 10\%, so wird
+der $CCV$ der der Periode $P_{contrib}{n}$ entsprechend um 10\% erhöht oder gesenkt.
+Bei starken Schwankungen des durchschnittlichen Beitrags, nährt sich der $CCV$ langsam an den neuen Durchschnitt an und große Sprünge werden vermieden.
 
 \begin{equation}
 CCV = \begin{cases} 
@@ -62,7 +64,7 @@ CCV & _{(other)}
 
 \begin{equation}
 DPT_{base} = \begin{cases} 
-1 + \frac{unit-max(units)} {CCV - max(units)} 
+1 + \frac{unit-CCV} {max(units)-CCV} 
   & _{(unit > CCV)} \\
 \frac{unit - min} {CCV - min} 
   & _{(unit < CCV)} \\

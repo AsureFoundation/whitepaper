@@ -1,84 +1,3 @@
-\subsection{Incentivierung}
-
-Da das System nicht von einer Firma oder Regierung zur Verfügung gestellt wird sondern von der Community dezentralisiert betrieben wird ist es wichtig, dass es Anreize das System so fair wie möglich funktionieren.
-
-Uns war bewusst, dass es nicht möglich sein wird ein System zu Schaffen in dem es nur Gewinner gibt.
-
-Unserer wichtigsten Ziele.
-
-- DAO
-- Fair
-
-
-
-\begin{itemize}
-\item Beitragsjahre => Bezugsjahre
-\item Beitragshöhe => Beitragsauszahlung
-\item Early Adopter Bonus
-\item Bonus für letzte Teilnehmer im System
-\end{itemize}
-
-
-\newpage
-
-\subsection{Pension pre calculation}
-
-\subsubsection*{Settings}
-
-We need some fixed and initial settings,
-one of them is 
-
-\begin{equation*}
-	min = 0.0000000000000001
-\end{equation*}
-
-\begin{equation*}
-	years = 40
-\end{equation*}
-
-\subsubsection*{entitlementMonths}
-
-\begin{equation*}
-	entitlementMonths = \frac{payedMonths^2}{12 \cdot years}
-\end{equation*}
-
-\subsubsection*{CCV - Current contribution value}
-
-\begin{equation*}
-CCV = \begin{cases} 
-CCV * 110\% & _{(unit+10\% > CCV)} \\
-CCV * 90\% & _{(unit-10\% < CCV)} \\
-CCV & _{(other)}
-\end{cases}
-\end{equation*}
-
-\subsubsection*{DPT}
-
-\begin{equation*}
-DPT = DPT_{base} \cdot DPT_{bonus}
-\end{equation*}
-
-\begin{equation*}
-DPT_{base} = \begin{cases} 
-1 + \frac{unit-max(units)} {CCV - max(units)} 
-  & _{(unit > CCV)} \\
-\frac{unit - min} {CCV - min} 
-  & _{(unit < CCV)} \\
-1.0 & _{(other)}
-\end{cases}
-\end{equation*}
-
-\begin{equation*}
-DPT_{bonus} = \begin{cases} 
-1.0 + (\frac{(years - year + 1.0)^2}
-      {years^2} \cdot 0.5) & _{(year < years)} \\
-1.0 & _{(other)} 
-\end{cases}
-\end{equation*}
-
-
-\newpage
-
 \subsection{Pension post calculation}
 
 Baisic pension calculation is your points
@@ -164,13 +83,13 @@ Wenn $entitlementMonths >= 1$ dann
 \end{equation*}
 
 \begin{equation*}
-	laggards\_dpt\_units\_rate = 	
+	laggards\_rate = 	
 	\frac{total\_units} 
 	{active\_user\_dpts \cdot years \cdot 12}		
 \end{equation*}
 
 \begin{equation*}
-	pension = laggards\_dpt\_units\_rate \cdot user\_dpt
+	pension = laggards\_rate \cdot user\_dpt
 \end{equation*}
 
 

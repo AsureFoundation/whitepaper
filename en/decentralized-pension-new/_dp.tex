@@ -1,4 +1,4 @@
-\section{Decentralized Pension}
+\section{Dezentrale Rente}
 
 Die dezentrale Rente basiert im Kern auf dem Umlageverfahren und dem Leistungsprinzip.
 Je länger ein Beitragszahler in das Rentensystem einzahlt, desto länger werden Leistungen 
@@ -13,9 +13,9 @@ in denen eine Rentenzahlung erfolgt. Je höher die Anzahl der Beitragsperioden, 
 Um eine hohe Anzahl an Beitragsperioden zu icentivieren, wird ein Zielwert 
 für die Anzahl der Beitragsperioden ($P_{contribTarget}$) definiert. 
 
-\begin{equation*}
+\begin{equation}
 	P_{contribTarget} = 40 years \cdot 12 months
-\end{equation*}
+\end{equation}
 
 Wenn die Anzahl an Beitragsperioden dem Zielwert entspricht, soll die Anzahl der 
 Rentenanspruchsperioden genau dem Zielwert entsprechen. Liegt die  Anzahl an
@@ -24,33 +24,43 @@ Rentenanspruchsperioden entsprechend überproportional kleiner oder größer aus
 
 Die Anzahl der Rentenanspruchsperioden ist wie folgt definiert:
 
-\begin{equation*}
+\begin{equation}
 	P_{pension} = \frac{P_{contrib}^2}{P_{contribTarget}}
-\end{equation*}
+\end{equation}
 
 
-\subsubsection*{CCV - Current contribution value}
+\subsubsection*{Dezentrale Rentenpunkte}
 
-Die relative Höhe einer Beitragszahlung im Vergleich zu allen Beitragszahlungen einer 
-Periode wird dabei in Form von "Dezentrale Rentenpunkten (DPT)" festgehalten an den 
-Beitragszahler ausgehändigt. Aus der Gesamtanzahl der DPT pro Rentner wird die 
-Höhe der Rentenzahlung berechnet.
+Für die gezahlten Beiträge erhält ein Beitragszahler Dezentrale Rentenpunkte
+($DPT$). Aus der Gesamtanzahl der DPT eines Beitragszahlers wird im Rentenalter
+die Höhe der zu zahlenden Rente errechnet.
 
-\begin{equation*}
+\begin{equation}
+DPT = DPT_{base} \cdot DPT_{bonus}
+\end{equation}
+
+\paragraph*{Aktueller Beitragswert}
+
+Der aktuelle Beitragswert ($CCV$) wird jede Periode $P_{contrib}{n}$ berechnet
+und bildet den Referenzwert für einen $DPT$ der jeweiligen Periode.
+
+Der aktuelle Beitragswert ($CCV$) bilded dabei den Durchschnitt aller Beiträge 
+einer Periode $P_{contrib}{n}$ ab und begrenzt die Differenz zu dem $CCV$ der
+vorherigen Periode $P_{contrib}{n-1}$ auf 10\%. Bei stark schwankenden Beiträgen
+zwischen Perioden wird so eine langsame Annährung des $CCV$ and den Durchschnitt
+aller Beiträge einer Zahlungsperiode erreicht.
+
+\begin{equation}
 CCV = \begin{cases} 
 CCV * 110\% & _{(unit+10\% > CCV)} \\
 CCV * 90\% & _{(unit-10\% < CCV)} \\
 CCV & _{(other)}
 \end{cases}
-\end{equation*}
+\end{equation}
 
-\subsubsection*{DPT}
+\paragraph*{Dezentrale Rentenpunkte Basis}
 
-\begin{equation*}
-DPT = DPT_{base} \cdot DPT_{bonus}
-\end{equation*}
-
-\begin{equation*}
+\begin{equation}
 DPT_{base} = \begin{cases} 
 1 + \frac{unit-max(units)} {CCV - max(units)} 
   & _{(unit > CCV)} \\
@@ -58,15 +68,17 @@ DPT_{base} = \begin{cases}
   & _{(unit < CCV)} \\
 1.0 & _{(unit = CCV)}
 \end{cases}
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\paragraph*{Dezentrale Rentenpunkte Bonus}
+
+\begin{equation}
 DPT_{bonus} = \begin{cases} 
 1.0 + (\frac{(years - year + 1.0)^2}
       {years^2} \cdot 0.5) & _{(year < years)} \\
 1.0 & _{(other)} 
 \end{cases}
-\end{equation*}
+\end{equation}
 
 
 

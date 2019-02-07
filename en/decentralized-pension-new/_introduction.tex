@@ -43,9 +43,13 @@ Wir sind davon überzeugt, dass die Umlageverfahren eine gutes Verfahren ist und
 Alle Rentensysteme sind nicht risikofrei, dies liegt in der Natur von Risiko orientierten Systemen, die Lösungsansätze liegen in der Risiko minimierung, durch verschiedene Ansätze wie Risikostreuung, Risikoübernahme durch das Land u.s.w.
 
 
-\subsection{Our Approach: Decentralized Pension}
+\subsection{Unser Ansatz: Decentralized Pension}
 
 Die erste Frage die wir uns gestellt haben ist, kann eine Sozialversicherung ohne Einfluss von Firmen oder Regierungsbehörden funktionieren? Die wir nach einiger Zeit mit Ja beantwortet haben.
+
+Durch unsere \textbf{Vorarbeit} und die Auseinander setzung mit Rentensystemen haben wir die \textbf{Anforderungen} an ein dezentralisiertes Rentenmodell erstellt, die  \textbf{Zielgruppe} definiert und das \textbf{Umlageverfahren} als Basis genommen und um die \textbf{Incentivierung} erweitert und die daraus resultierende \textbf{Vorteile} in diesem Kapitel beschrieben.
+
+\subsection{Vorarbeit}
 
 Als Inspiration haben wir uns an dem deutschen Umlageverfahren orientiert. Nach dem wir das deutsche Rentensystem auf Ethereum in Grundzügen implementiert haben. Haben wir die Herausforderungen gesehen die es zu Lösen galt.
 Neben der Herausforderungen haben wir auch Chancen gesehen das System auch zu verbessern. z.B. bei der Vererbung des Rentenanspruchs.
@@ -55,44 +59,29 @@ Neben der Herausforderungen haben wir auch Chancen gesehen das System auch zu ve
 
 Wir haben uns mit Experten aus dem Versicheurngs- und Rentensystemumfeld unterhalten um ein Model zu entwickeln welches dezentral funktionieren kann.
 
-\begin{itemize}
-\item Wir sind GDPR Konform, wir Verzichten auf externe Datenquellen.
- \begin{itemize}
- \item die Altersangabe 
- \item die Sterbeurkunde
- \item die Durchschnittsgehalt als Referenz
- \end{itemize}
-\item Das System ist auf 100 Jahre Lebensdauer ausgelegt, beim 20 Jahre Start im System und 40 jähriger Zahlungsdauer. \footnote{ Es können unterschiedliche Produkte mit unterschiedlicher Laufdauer erstellt werden.}
-\item Rentenpunkte werden in der Basis auf 2.0 limitiert, dies hat den Hintergrund, dass keiner bei der Späteren Umverteilung einen unkalkulierbaren Anspruch haben darf.
-\item Die Rente ist in Voller Höhe weiter Vererbbar
-\end{itemize}
-
-
 Da wir aus geopolitischen gründen nicht möglich auf diese Voraussetzungen wert zu legen, deswegen haben wir alternativen erarbeitet.
 Wir schaffen Anreize um bei der Beitragspflicht nachhelfen zu können und bei dem Beitragswert führen wir einen von Mitgliedern repräsentativen Referenzbeitragssatz der von den Mitgliedern dynamisch sich an das Verhalten anpasst.
-
 
 Dezentrale Rente mittels Umlageverfahren und Incentivierung als SmartContract.
 Global Verfügbar. Keine Verwaltungskosten (außer Tx Kosten) oder Provision
 
-\subsection{Umlageverfahren}
 
-Umlage verfahren sind gut 
-\begin{itemize}
-\item Beitragszahlung und Berechnung DPT
-\item Rentenzahlung und Umverteilung der monatichen Beiträge
-\item Rentenzahlung und Umverteilung der Rücklagen
-\end{itemize}
+\subsubsection*{GDPR Konform}
+Wir Verzichten auf alle externe Datenquellen wie die Altersangabe, Sterbeurkunde
+ und das Durchschnittsgehalt als Referenzwert.
+
+\subsubsection*{100 Jahre Lebenszyklus}
+Das System ist auf 100 Jahre Lebensdauer ausgelegt, beim 20 Jahre Start im System und 40 jähriger Zahlungsdauer. \footnote{ Es können unterschiedliche Produkte mit unterschiedlicher Laufdauer erstellt werden.}
+
+\subsubsection*{Basispunkte Limitierung auf 2.0 Punkte}
+
+Rentenpunkte werden in der Basis auf 2.0 limitiert, dies hat den Hintergrund, dass keiner bei der Späteren Umverteilung einen unkalkulierbaren Anspruch haben darf.
+
+\subsubsection*{Vererbbar}
+
+Die Rente ist in Voller Höhe weiter Vererbbar
 
 
-
-\subsection{Incentivierung}
-
-\begin{itemize}
-\item Beitragsjahre = Bezugsjahre
-\item Early Adopter Bonus
-\item Bonus für letzte Teilnehmer im System
-\end{itemize}
 
 
 \subsection{Zielgruppe}
@@ -119,16 +108,46 @@ Die Zielgruppe für ein dezentralisiertes Rentensystem sind Menschen
  \end{itemize}
 \end{itemize}
 
+\subsection{Umlageverfahren}
+
+%\begin{itemize}
+%\item Beitragszahlung und Berechnung DPT
+%\item Rentenzahlung und Umverteilung der monatichen Beiträge
+%\item Rentenzahlung und Umverteilung der Rücklagen
+%\end{itemize}
+
+Umlageverfahren haben große Vorteile, dass diese Schnell eingeführt werden können und kein Kapital aufgebaut werden muss.
+
+Das Ziel von Umlageverfahren ist es die Kaufkraft über das System im ökonomischem Sinne zu speichern, dazu werden die Renten Punkte je Einzahlung als Repräsentation des Beitrags gespeichert und nicht der Beitragswert.
+Beim Renteneintritt wird anhand dieser Punkte zum Referenzwert der Rentenbeitrag berechnet. 
+
+\textbf{Beispiel:} Wird ein fester Prozentsatz von 8,6\% vom Durchschnittsgehalt in ein Rentensystem eingezahlt bekommt der Einzahler genau 1.0 Rentenpunkte.
+
+
+\subsection{Incentivierung}
+
+%\begin{itemize}
+%\item Beitragsjahre = Bezugsjahre
+%\item Early Adopter Bonus
+%\item Bonus für letzte Teilnehmer im System
+%\end{itemize}
+
+Dezentralisierte Lösungen wie die Dezentralisierte Renten können nur dank einer gut durchdachten Anreizstruktur über die Jahre hinweg organisch wachsen. Da die Nutzung einem Benutzer selbst überlassen ist, ist es vergleichbar mit Bitcoin\cite{bitcoin}, dass sich dieses System nur durch Vertrauen und die Anreize.
+
+
+
+
+
 \subsection{Vorteile}
 
-Die Vorteile eines dezentralisierten Rentensystems sind:
+Es gibt vielfältige Vorteile die ein dezentralisiertes Rentensystem bieten kann, auf die wesentlichen wollen wir hier eingehen.
 
 \subsubsection*{Decentralized}
-Mit hilfe der Blockchain technologie ist das System dezantralisiert verfügbar.
+Mit hilfe der Blockchain technologie ist das System dezantralisiert verfügbar und dies ermöglicht einen 24//7 Zugang weltweit.
 \subsubsection*{Autonomous}
-Es sind keine Mitarbeiter Notwendig um das system betreiben zu müssen.
+Es sind keine Mitarbeiter Notwendig um das system betreiben zu müssen und dies reduziert enorm die Verwaltungskosten.
 \subsubsection*{Permissionless}
-Der Zugang zu diesem System ist für jeden gleich zugänglich.
+Der Zugang zu diesem System ist für jeden mit Internetzugang zugänglich.
 \subsubsection*{Transparent}
 Es ist Open-Source und jeder kann die Transaktionen einsehen und das System auf seine Verarbeitung prüfen.
 \subsubsection*{Without any intermediary}

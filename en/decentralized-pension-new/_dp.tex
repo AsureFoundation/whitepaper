@@ -74,14 +74,18 @@ DPT_{base} = \begin{cases}
 
 \paragraph*{Dezentrale Rentenpunkte Bonus}
 
+Bis zur Periode $P_{bonus} = 480$ werden zusätzliche Bonus DPT 
+($DPT_{bonus}$) an
+Beitragszahler ausgegeben. Diese Bonuspunkte sollen einen Anreiz für
+die ersten Nutzer schaffen und so die belohnen, welche früh an das System geglaubt und investiert haben.
+
 \begin{equation}
 DPT_{bonus} = \begin{cases} 
-1.0 + (\frac{(years - year + 1.0)^2}
-      {years^2} \cdot 0.5) & _{(year < years)} \\
-1.0 & _{(other)} 
+1 + (\frac{(P_{bonus} - P_{n} + 1)^2}
+      {P_{bonus}^2} \cdot .5) & _{(P_{n} < P_{bonus})} \\
+1 & _{(other)} 
 \end{cases}
 \end{equation}
-
 
 
 %Das Versprechen der dezentralen Rente ist wie folgt: Beitragszahler, welche jeden Monat %einen Beitrag in Höhe der durchschnittlichen Beitragshöhe pro Periode zahlen, bekommen im %Alter eine Rentenzahlung pro in der Höhe der 

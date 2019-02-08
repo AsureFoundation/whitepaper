@@ -1,7 +1,46 @@
 \section{Simulator and Experiments}
 
-Simulator in Rust
+Im Rahmen unserer Untersuchungen wurden verschiedene Simulationen am dezentralisierten Rentenmodell durchgeführt um unterschiedliches Benutzerverhalten zu Simulieren und die Anreize und das Model noch weiter zu optimieren.
 
-\subsection{Simulation 1}
+\subsection{Simulation 1: Zero-Win}
+
+Die ersten Simulationen versucht festzustellen, dass es zu keinen Verlusten im System kommt, falls sich alle Nutzer gleich fair und konstant verhalten.
+
+\subsubsection*{Beispiele:}
+
+\textbf{A:} 10 Nutzer Zahlen $1.0 Unit$ in das Rentensystem ein und gehen gleichzeitig in die Rente.\\
+\textbf{B:} 9 Nutzer Zahlen $1.0 Units$ und 1 Nutzer Zahlt $2.0 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.\\
+\textbf{C:} 9 Nutzer alle Zahlen $1.0 Unit$ und 1 Nutzer Zahlt $0.1 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
+
+\subsubsection*{Ergebnis:}
+
+Alle Nutzer bekommen das Geld was in das Rentensystem eingezahlt wurde zurück. Dieses Verhalten ist erwünscht, das system sollte keine Rücklagen bilden falls Alle das System verlassen, sollte das gesamte Geld ausgezahlt worden sein.
+
+\begin{table}[h!]
+\centering
+\resizebox{\columnwidth}{!}{%
+ \begin{tabular}{||c|c c c|c c c|c c c||} 
+    
+ \hline
+ User & Pay & Dur & Res & Pay & Dur & Res & Pay & Dur & Res \\ [0.5ex] 
+ \hline\hline
+
+1 & 1.0 & 480 & 480 & 2.0 & 480 & 960 & 0.1 & 480 & 48 \\ 
+
+2 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
+3 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
+4 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
+5 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
+6 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
+7 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
+8 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
+9 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
+10 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\ [1ex] 
+ \hline
+ \end{tabular}%
+}
+\end{table}
+
+
 \subsection{Simulation 2}
 \subsection{Simulation 3}

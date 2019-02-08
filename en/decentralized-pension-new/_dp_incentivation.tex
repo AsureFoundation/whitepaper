@@ -1,71 +1,74 @@
-\subsection{Pension post calculation}
+\subsection{Rentenzahlung}
+Die Berechnung der zu zahlenden Rente wird anhand der $DPT$ eines Rentners bestimmt.
+Hat ein
+Rentner in seinen Beitragsperioden immer den durchschnittlichen Beitrag in das
+Rentensystem eingezahlt, soll seine
+Rente auch dem durchschnittlichen Beitrag der aktuellen
+Periode entsprechen und so die in $DPT$ gespeicherte Kaufkraft wieder hergestellt werden.
 
-Baisic pension calculation is your points
-as factor for contribution pension rate and 
-your points as factor for savings pension rate.
-
-\begin{equation*}
+\begin{equation}
 pension = DPT \cdot (CPR + SPR + LPR)
-\end{equation*}
+\end{equation}
 
-Die Rente baut auf drei verschiedene Töpfe auf, die Monatlichen Beiträge,
-die Gespeicherten Beiträge und die Nachzüglicher Beiträge.
+Die Dezentrale Rente verfügt über drei Geldtöpfe aus denen die Rente zusammengesetzt und 
+ausgezahlt wird. Für jeden Geldtopf wird eine Umrechnungsrate berechnet. Diese
+Umrechnungsraten legen pro Periode fest, wie viel ein $DPT$ aus dem entsprechenden
+Geldtopf Wert ist.
 
-Alle diese Töpfe werden unterschiedlich befüllt.
-Die Monatlichen Beiträge werden nur als Durchschnitts Beitrag an die Berechtigten  per Umlageverfahren umverteilt und der Rest wird im Savings hinterlegt.
-Bei den Nachzüglern ist die Idee, dass die letzte Generation die das System verlassen würde einen Bonus erhalten würde, dieser Topf wird befüllt,
-solange kein Monatsanspruch bei dem Benutzer besteht.
+\subsubsection*{Rentenrate}
+Alle Beiträge einer Beitragsperiode werden als gesammelt und anteilig an die jeweils aktiven Rentner ausgezahlt.
+Die zu zahlenden Renten sind nach oben hin gedeckelt und eventuelle Überschüsse werden
+anteilig als Rücklage oder als Bonuszahlung für die letzten Nutzer im Rentensystem
+zurückgelegt. 
 
-\subsubsection*{Pension from contributions}
-
-\begin{equation*}
+\begin{equation}
 	total\_units\_month = 
 	\sum_{n=1}^{count} units
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
 	total\_weighted\_dpt = 
 	\sum_{n=1}^{count} pension\_user\_dpt
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
 	weighted\_dpt\_units\_rate = 	
 	\frac{total\_units\_month  \cdot avg(units)} 
 	{total\_weighted\_dpt}		
-\end{equation*}
+\end{equation}
 
 If $weighted\_dpt\_units\_rate > avg(units)$ then $weighted\_dpt\_units\_rate = avg(units)$
         
 
-\begin{equation*}
+\begin{equation}
 	pension = 	
 	weighted\_dpt\_units\_rate \cdot user\_dpt
-\end{equation*}
+\end{equation}
 
 
 \subsubsection*{Pension from saving}
 
 Wenn $weighted\_dpt\_units\_rate < avg(units)$ dann 
 
-\begin{equation*}
+\begin{equation}
 	active\_user\_dpts = 
 	\sum_{n=1}^{count} active\_user\_dpt
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
 	total\_units = 	
 	\sum_{p=1}^{periods} \sum_{n=1}^{users} user\_units	
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
 	savings\_dpt\_units\_rate = 	
 	\frac{total\_units} 
 	{active\_user\_dpts \cdot years \cdot 12}		
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
 	pension = savings\_dpt\_units\_rate \cdot user\_dpt
-\end{equation*}
+\end{equation}
 
 
 \subsubsection*{Pension from laggards funds}

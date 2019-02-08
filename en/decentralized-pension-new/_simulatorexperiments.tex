@@ -2,45 +2,45 @@
 
 Im Rahmen unserer Untersuchungen wurden verschiedene Simulationen am dezentralisierten Rentenmodell durchgeführt um unterschiedliches Benutzerverhalten zu Simulieren und die Anreize und das Model noch weiter zu optimieren.
 
+Alle Simulationen wurden in Rust auf Github unter der MIT Lizenz veröffentlicht.\\
+\url{http://github.com/AsureNetwork/asure-pension-core}
+
 \subsection{Simulation 1: Zero-Win}
 
 Die ersten Simulationen versucht festzustellen, dass es zu keinen Verlusten im System kommt, falls sich alle Nutzer gleich fair und konstant verhalten.
 
-\subsubsection*{Beispiele:}
-
-\textbf{A:} 10 Nutzer Zahlen $1.0 Unit$ in das Rentensystem ein und gehen gleichzeitig in die Rente.\\
-\textbf{B:} 9 Nutzer Zahlen $1.0 Units$ und 1 Nutzer Zahlt $2.0 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.\\
-\textbf{C:} 9 Nutzer alle Zahlen $1.0 Unit$ und 1 Nutzer Zahlt $0.1 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
-
-\subsubsection*{Ergebnis:}
-
-Alle Nutzer bekommen das Geld was in das Rentensystem eingezahlt wurde zurück. Dieses Verhalten ist erwünscht, das system sollte keine Rücklagen bilden falls Alle das System verlassen, sollte das gesamte Geld ausgezahlt worden sein.
+\textbf{Sim01:} 100 Nutzer Zahlen $1.0 Unit$ in das Rentensystem ein und gehen gleichzeitig in die Rente.\\
+\textbf{Sim02:} 90 Nutzer Zahlen $1.0 Unit$ und 10 Nutzer Zahlen $2.0 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.\\
+\textbf{Sim03:} 90 Nutzer Zahlen $1.0 Unit$ und 10 Nutzer Zahlen $0.1 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
+\newline \newline 
+\textbf{Ergebnisse:} Alle Nutzer bekommen die Anzahl an Units was in das Rentensystem eingezahlt wurde zurück. Dieses Verhalten ist erwünscht, das System sollte keine Rücklagen bilden falls Alle das System verlassen, sollten die gesamten Units fair umverteilt werden.
 
 \begin{table}[h!]
 \centering
 \resizebox{\columnwidth}{!}{%
- \begin{tabular}{||c|c c c|c c c|c c c||} 
-    
+ \begin{tabular}{|c|c c c|c c c|c c c|} 
+ 
+\hline
+\multicolumn{1}{|c}{{}} &
+\multicolumn{3}{|c}{Sim01} &
+\multicolumn{3}{|c}{Sim02} &
+\multicolumn{3}{|c|}{Sim03} \\ [0.5ex] 
  \hline
+
  User & Pay & Dur & Res & Pay & Dur & Res & Pay & Dur & Res \\ [0.5ex] 
- \hline\hline
-
-1 & 1.0 & 480 & 480 & 2.0 & 480 & 960 & 0.1 & 480 & 48 \\ 
-
-2 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
-3 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
-4 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
-5 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
-6 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
-7 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
-8 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
-9 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\
-10 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\ [1ex] 
+ \hline
+1..10 & 1.0 & 480 & 480 & 2.0 & 480 & 960 & 0.1 & 480 & 48 \\ 
+20..100 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\ [1ex] 
  \hline
  \end{tabular}%
 }
 \end{table}
 
 
-\subsection{Simulation 2}
-\subsection{Simulation 3}
+\subsection{Simulation 2: Purchasing Power}
+
+Durch Simulationen mit mehreren Generationen können wir die ökonomischen Mechanismen als auch das Aufbewahren der Kaufkraft simulieren.
+
+
+
+\subsection{Simulation 3: Wild-Wild-West}

@@ -66,7 +66,7 @@ CCV & _{(other)}
 
 \begin{equation}
 DPT_{base} = \begin{cases} 
-1 + \frac{unit-CCV} {max(units)-CCV} 
+min(\frac{unit} {CCV}, 2) 
   & _{(unit > CCV)} \\
 \frac{unit - min} {CCV - min} 
   & _{(unit < CCV)} \\

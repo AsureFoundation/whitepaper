@@ -31,21 +31,25 @@ Die zu zahlenden Renten sind durch die durchschnittlichen Beitragszahlungen der
 jeweiligen Periode gedeckelt. Eventuelle Überschüsse werden als Rücklage verwendet.
 
 \begin{equation}
-	total\_units\_month = 
+	units\_month = 
 	\sum_{n=1}^{count} units
 \end{equation}
 
 \begin{equation}
-	total\_weighted\_dpt = 
+	dpt\_month = 
 	\sum_{n=1}^{count} pension\_user\_dpt
+\end{equation}
+
+\begin{equation}
+CPR = min(\frac{avg(units)}{P_{target}},\frac{units\_month} {dpt\_month \cdot avg(units)})
 \end{equation}
 
 
 \begin{equation}
 CPR = \begin{cases} 
-	\frac{avg(units)}{P_{contribTarget}} & _{(CPR > avg(units))} \\
+	\frac{avg(units)}{P_{target}} & _{(CPR > avg(units))} \\
 	\frac{total\_units\_month  \cdot avg(units)} 
-		{total\_weighted\_dpt} & _{(other)}
+		{total\_dpt\_month} & _{(other)}
 \end{cases}
 \end{equation}
 

@@ -43,7 +43,7 @@ jeweiligen Periode gedeckelt. Eventuelle Überschüsse werden als Rücklage verw
 
 \begin{equation}
 CPR = \begin{cases} 
-	avg(units) & _{(CPR > avg(units))} \\
+	\frac{avg(units)}{P_{contribTarget}} & _{(CPR > avg(units))} \\
 	\frac{total\_units\_month  \cdot avg(units)} 
 		{total\_weighted\_dpt} & _{(other)}
 \end{cases}

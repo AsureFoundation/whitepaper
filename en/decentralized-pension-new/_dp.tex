@@ -86,8 +86,8 @@ ist an die aus dem Bitcoin Protokoll bekannte Reduzierung der Mining Rewards ang
 
 \begin{equation}
 DPT_{bonus} = \begin{cases} 
-1 + (\frac{(P_{bonus} - P_{n} + 1)^2}
-      {P_{bonus}^2} \cdot .5) & _{(P_{n} < P_{bonus})} \\
+1 + \frac{(P_{bonus} - P_{n} + 1)^2}
+      {2 \cdot P_{bonus}^2} & _{(P_{n} < P_{bonus})} \\
 1 & _{(other)} 
 \end{cases}
 \end{equation}

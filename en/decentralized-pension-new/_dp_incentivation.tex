@@ -10,13 +10,15 @@ Periode entsprechen und so die in $DPT$ gespeicherte Kaufkraft wieder hergestell
 pension = DPT \cdot (CPR + SPR + LPR)
 \end{equation}
 
-Die Dezentrale Rente verfügt über drei Geldtöpfe aus denen die Rente zusammengesetzt und 
-ausgezahlt wird. Für jeden Geldtopf wird eine Umrechnungsrate berechnet. Diese
+Die Dezentrale Rente verfügt über drei Geldtöpfe (Beiträge, Rücklagen und Bonus) 
+aus denen die Rente zusammengesetzt und 
+ausgezahlt wird. Für jeden Geldtopf wird eine Umrechnungsrate berechnet. Die
 Umrechnungsraten legen pro Periode fest, wie viel ein $DPT$ aus dem entsprechenden
 Geldtopf Wert ist.
 
-\subsubsection*{Rentenrate}
-Alle Beiträge einer Beitragsperiode werden als gesammelt und anteilig an die jeweils aktiven Rentner ausgezahlt.
+\subsubsection*{Beitragsrentenrate ($CPR$)}
+Alle Beiträge einer Beitragsperiode werden gesammelt und anteilig an die jeweils
+aktiven Rentner ausgezahlt.
 Die zu zahlenden Renten sind nach oben hin gedeckelt und eventuelle Überschüsse werden
 anteilig als Rücklage oder als Bonuszahlung für die letzten Nutzer im Rentensystem
 zurückgelegt. 
@@ -31,22 +33,24 @@ zurückgelegt.
 	\sum_{n=1}^{count} pension\_user\_dpt
 \end{equation}
 
+
 \begin{equation}
-	weighted\_dpt\_units\_rate = 	
+CPR = \begin{cases} 
+	avg(units) & _{(CPR > avg(units))} \\
 	\frac{total\_units\_month  \cdot avg(units)} 
-	{total\_weighted\_dpt}		
-\end{equation}
-
-If $weighted\_dpt\_units\_rate > avg(units)$ then $weighted\_dpt\_units\_rate = avg(units)$
-        
-
-\begin{equation}
-	pension = 	
-	weighted\_dpt\_units\_rate \cdot user\_dpt
+		{total\_weighted\_dpt} & _{(other)}
+\end{cases}
 \end{equation}
 
 
-\subsubsection*{Pension from saving}
+
+%\begin{equation}
+%	pension = 	
+%	weighted\_dpt\_units\_rate \cdot user\_dpt
+%\end{equation}
+
+
+\subsubsection*{Rücklagenrentenrate ($SPR$)}
 
 Wenn $weighted\_dpt\_units\_rate < avg(units)$ dann 
 
@@ -71,7 +75,7 @@ Wenn $weighted\_dpt\_units\_rate < avg(units)$ dann
 \end{equation}
 
 
-\subsubsection*{Pension from laggards funds}
+\subsubsection*{Bonusrentenrate ($LPR$)}
 
 Wenn $entitlementMonths >= 1$ dann 
 

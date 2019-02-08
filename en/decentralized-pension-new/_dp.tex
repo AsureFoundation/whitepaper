@@ -1,14 +1,17 @@
 \section{Dezentrale Rente}
-
 Die dezentrale Rente basiert im Kern auf dem Umlageverfahren und dem
 Leistungsprinzip. Je länger ein Beitragszahler in das Rentensystem einzahlt, 
 desto länger werden Leistungen im Alter ausgezahlt und je höher die Beiträge,
 desto höher die Rentenzahlungen im Alter.
 
+\paragraph{Generische Währungseinheit} Das Design der Rente ist nicht auf eine bestimmte 
+Währungseinheit wie z.B. ETH oder BTC festgelegt. Stattdessen verwendet das Design des
+Rentensystems die generische Währungseinheit "\textbf{unit}". Diese muss bei der konkreten
+Implementierung durch ein konkrete Währung ersetzt wird.
+
 \subsection{Beitragszahlung}
 
 \subsubsection*{Rentenanspruchsperioden}
-
 Die Rentenanspruchsperioden ($P_{pension}$) legt die Anzahl der Perioden fest,
 in denen eine Rentenzahlung erfolgt. Je höher die Anzahl der Beitragsperioden
 ($P_{contrib}$), desto höher ist die Anzahl der Rentenanspruchsperioden.

@@ -11,9 +11,9 @@ Die ersten Simulationen versucht festzustellen, dass es zu keinen Verlusten im S
 
 \textbf{Sim01:} 100 Nutzer Zahlen $1.0 Unit$ in das Rentensystem ein und gehen gleichzeitig in die Rente.\\
 \textbf{Sim02:} 90 Nutzer Zahlen $1.0 Unit$ und 10 Nutzer Zahlen $2.0 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.\\
-\textbf{Sim03:} 90 Nutzer Zahlen $1.0 Unit$ und 10 Nutzer Zahlen $0.1 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
-\newline \newline 
-\textbf{Ergebnisse:} Alle Nutzer bekommen die Anzahl an Units was in das Rentensystem eingezahlt wurde zurück. Dieses Verhalten ist erwünscht, das System sollte keine Rücklagen bilden falls Alle das System verlassen, sollten die gesamten Units fair umverteilt werden.
+\textbf{Sim03:} 90 Nutzer Zahlen $1.0 Unit$ und 10 Nutzer Zahlen $0.1 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.\\
+
+\textbf{Ergebnisse:}
 
 \begin{table}[h!]
 \centering
@@ -36,12 +36,15 @@ Die ersten Simulationen versucht festzustellen, dass es zu keinen Verlusten im S
 }
 \end{table}
 
+Alle Nutzer bekommen die Anzahl an Units was in das Rentensystem eingezahlt wurde zurück. Dieses Verhalten ist erwünscht, das System sollte keine Rücklagen bilden falls Alle das System verlassen, sollten die gesamten Units fair umverteilt werden.
 
 \subsection{Simulation 2: Inflation und Deflation}
 
 In dieser Simulationsreihe haben wir das Verhalten von Inflation entwertung der Units und Deflation eine Wertsteigerung der Units simuliert und das Renten ein- und auszahlung verhalten dementsprechend angepasst. \\
 
 \textbf{Sim14:} Bei einer Inflation von 5\% fehlt der Wert der Units und dementsprechend Zahlen die Benutzer mehr Units. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Inflation in das System zahlen so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $21.725 Units$. Für die zweite Generation gibt es keine Inflation, damit wir beim Ergebnis sehen, dass durch die höheren Beiträge bei der ersten Generation die Rente mit einem höheren Units ausbezahlt wird und die Inflation damit berücksichtigt wurde. \\
+
+\textbf{Ergebnis:}
 
 \begin{table}[h!]
 \centering
@@ -62,8 +65,11 @@ In dieser Simulationsreihe haben wir das Verhalten von Inflation entwertung der 
 }
 \end{table}
 
+Bei diesem Ergebnis sehen wir, dass bei einer Inflation die Units entwertet werden und in beim bestehen des Inflationnevous erhält der Nutzer aus dem System zur Kaufkraft passende Anzahl an Units.
+
 \textbf{Sim15:} Bei einer Deflation wo der Wert der Units steigt wird der Benutzer dem Entsprechend weniger in ein System zahlen. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Deflation in das System zahlen so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $0.046 Units$. Für die zweite Generation gibt es keine Deflation, damit wir beim Ergebnis sehen, dass durch die kleineren Beiträge bei der ersten Generation die Rente mit einem kleineren Units ausbezahlt wird und die Deflation damit berücksichtigt wurde. \\
 
+\textbf{Ergebnis:}
 
 \begin{table}[h!]
 \centering
@@ -83,6 +89,8 @@ In dieser Simulationsreihe haben wir das Verhalten von Inflation entwertung der 
  \end{tabular}%
 }
 \end{table}
+
+Bei diesem Ergebnis sehen wir, dass bei einer Deflation die Units einen höheren Wert bekommen und beim bestehen der Deflationsnevouse erhält der Nutzer aus dem System zur Kaufkraft passende Anzahl an Units.
 
 %\subsection{Simulation 3: Purchasing Power}
 

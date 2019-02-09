@@ -57,9 +57,9 @@ Bei starken Schwankungen des durchschnittlichen Beitrags, nährt sich der $CCV$ 
 
 \begin{equation}
 CCV = \begin{cases} 
-CCV * 110\% & _{(unit+10\% > CCV)} \\
-CCV * 90\% & _{(unit-10\% < CCV)} \\
-CCV & _{(other)}
+CCV \cdot 110\% & _{avg(units) \cdot 110\% > CCV} \\
+CCV \cdot 90\% & _{avg(units) \cdot 90\% < CCV} \\
+CCV & _{other}
 \end{cases}
 \end{equation}
 

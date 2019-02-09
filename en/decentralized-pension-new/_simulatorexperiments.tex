@@ -27,20 +27,43 @@ Die ersten Simulationen versucht festzustellen, dass es zu keinen Verlusten im S
 \multicolumn{3}{|c|}{Sim03} \\ [0.5ex] 
  \hline
 
- User & Pay & Dur & Res & Pay & Dur & Res & Pay & Dur & Res \\ [0.5ex] 
+ User & Period & Contrib & Res & Period & Contrib & Res & Period & Contrib & Res \\ [0.5ex] 
  \hline
-1..10 & 1.0 & 480 & 480 & 2.0 & 480 & 960 & 0.1 & 480 & 48 \\ 
-20..100 & 1.0 & 480 & 480 & 1.0 & 480 & 480 & 1.0 & 480 & 480 \\ [1ex] 
+1..10 & 1..480 & 1.0 & 480 & 1..480 & 2.0 & 960 & 1..480 & 0.1 & 48 \\ 
+20..100 & 1..480 & 1.0 & 480 & 1..480 & 1.0 & 480 & 1..480 & 1.0 & 480 \\ [1ex] 
  \hline
  \end{tabular}%
 }
 \end{table}
 
 
-\subsection{Simulation 2: Purchasing Power}
+\subsection{Simulation 2: Inflation und Deflation}
+
+In dieser Simulationsreihe haben wir das Verhalten von Inflation entwertung der Units und Deflation eine Wertsteigerung der Units simuliert und das Renten ein- und auszahlung verhalten dementsprechend angepasst.
+
+\textbf{Sim14:} Bei einer Inflation von 5\% fehlt der Wert der Units und dementsprechend Zahlen die Benutzer mehr Units. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Inflation in das System Zahlen so Zahlt die erste generation am Anfang $1 Unit$  und am Ende $21 Units$. Für die zweite Generation gibt es keine Inflation, damit wir beim Ergebnis sehen, dass durch die höheren Beiträge bei der ersten Generation die Rente mit einem höheren Units ausbezahlt wird aber die Inflation damit berücksichtigt wurde. \\
+\textbf{Sim15:} Bei einer Deflation wo der Wert der Units steigt wird der Benutzer dem Entsprechend weniger in ein System Zahlen.
+
+\begin{table}[h!]
+\centering
+\resizebox{\columnwidth}{!}{%
+ \begin{tabular}{|c|c c c|c c c|c c c|} 
+ 
+\hline
+\multicolumn{1}{|c}{{}} &
+\multicolumn{3}{|c|}{Sim14}\\ [0.5ex] 
+ \hline
+
+ User & Period & Contrib & Res \\ [0.5ex] 
+ \hline
+1..100 & 1..480 & $sum(1.0 \cdot \frac{1}{1.05^{n}}) = 1456$ & 2320 \\ 
+100..200 & 480..960 & $sum(1.0 \cdot \frac{1}{1.05^{40}}) = 3380$ & 2514 \\ [1ex] 
+ \hline
+ \end{tabular}%
+}
+\end{table}
+
+
+\subsection{Simulation 3: Purchasing Power}
 
 Durch Simulationen mit mehreren Generationen können wir die ökonomischen Mechanismen als auch das Aufbewahren der Kaufkraft simulieren.
-
-
-
-\subsection{Simulation 3: Wild-Wild-West}

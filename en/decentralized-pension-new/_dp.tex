@@ -12,7 +12,9 @@ Implementierung durch ein konkrete Währung ersetzt wird.
 \paragraph{Perioden} Das Rentensytem ist in Perioden unterteilt, welche definiert werden als $P$. Jede Aktion innerhalb des Rentensystems erfolgt
 in einer Periode $P[p]$. Die Dauer einer Periode ($P_{duration}$) ist frei wählbar. Innerhalb der folgenden Betrachtung gilt $P_{duration} = 1 month$.
 
-\paragraph{Benutzer} Alle Benutzer des Rentensystems (Beitraszahler und Rentner) werden als $U$ und individuelle Benutzer als $U[u]$ definiert.
+\paragraph{Benutzer} Alle Benutzer des Rentensystems werden als $U$ und individuelle Benutzer als $U[u]$ definiert. Jeder Nutzer hat einen Zustand $U[u]_{state}$ welcher die Zustände \textbf{UC} (Contributor),
+\textbf{UP} (Pensioner) und \textbf{UD} (Done) annehmen kann.
+Der den Anfangszustand aller Nutzer ist $U[u]_{state} = UC$ 
 
 \subsection{Beitragszahlung}
 
@@ -68,7 +70,7 @@ Bei starken Schwankungen des durchschnittlichen Beitrags, nährt sich der CCV la
 
 
 \begin{equation}
-P[p]_{units} = avg(\sum_{u}^{U} U[u]_{units[p]})
+P[p]_{units} = avg(\sum_{u=0}^{|U|} U[u]_{units[p]})
 \end{equation}
 
 \begin{equation}

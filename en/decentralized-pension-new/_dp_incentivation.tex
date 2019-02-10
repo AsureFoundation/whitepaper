@@ -1,17 +1,16 @@
 \subsection{Rentenzahlung}
 
-Beitragszahler können frei wählen, wann Sie in Rente gehen. Geht ein Beitragszahler in Rente, können keine Beitragszahlungen mehr getätigt werden und je nach gezahlten Beiträgen, können stattdessen Rentenauszahlungen erfolgen.
-Nutzer, welche sich in Rente befinden, werden ensprechend makiert ($U[u].is\_pensioner = true$).
+Beitragszahler können frei wählen, wann Sie in Rente gehen. Geht ein Beitragszahler in Rente, können keine Beitragszahlungen mehr getätigt werden und je nach gezahlten Beiträgen, können stattdessen Rentenauszahlungen erfolgen. Der Übergang von Beitragszahler zu Renter wird durch die Änderung des Zustandes $U[u]_{state} = UP$ makiert.
 
 Die Berechnung der zu zahlenden Rente erfolgt anhand der Gesamtanzahl der DPT eines Rentners ($U[u]_{dpt\_total}$).
 
 \begin{equation}
-U[u]_{dpt\_total} = \sum_{p}^{P} U[u]_{dpt[p]}
+U[u]_{dpt\_total} = \sum_{p=0}^{|P|} U[u]_{dpt[p]}
 \end{equation}
 
 Die Rentenanspruchsperioden $U[u]_{pensionperiods}$ legen fest, in wie vielen Perioden eine Rente ausgezahlt wird. In
 welchen Perioden ein Rentner seine Rentenzahlungen in Anspruch nimmt, bleibt diesem selbst überlassen und kann frei
-gewählt werden.
+gewählt werden. Wurden alle Rentenzahlungen in Anspruch genommen, wird der Zustand ensprechend durch $U[u]_{state} = UD$ ersetzt.
 
 Hat ein
 Rentner in seinen Beitragsperioden immer den durchschnittlichen Beitrag in das
@@ -40,50 +39,76 @@ U[u]_{pension[p]} = U[u]_{dpt\_total} \cdot (CPR(p) + SPR + LPR)
 \end{equation}
 
 \subsubsection*{Beitragsrentenrate ($CPR$)}
-Alle Beiträge einer Beitragsperiode werden gesammelt und anteilig an die jeweils
-aktiven Rentner ausgezahlt.
-Die zu zahlenden Renten sind durch die durchschnittlichen Beitragszahlungen der 
-jeweiligen Periode gedeckelt. Eventuelle Überschüsse werden als Rücklage verwendet.
+Alle Beiträge einer Beitragsperiode ($P[p]units$) werden gesammelt und anteilig an Rentner ausgezahlt. Die Beitragsrentenrate $CPR(p)$ definiert die Umrechnungsrate von DPT zu Beiträgen.
 
 \begin{equation}
-P[p]_{units} = \sum_{u}^{U} U[u]_{units[p]}
+P[p]_{units} = \sum_{u=0}^{|U|} U[u]_{units[p]}
 \end{equation}
+
+Die zu zahlenden Renten sind durch die durchschnittliche Beitragszahlung der 
+jeweiligen Periode ($avg(P[p]units)$) gedeckelt. Gibt es mehr Beitragszahler als Rentner im System, werden so eventuelle Überschüsse als Rücklage verwendet und nicht direkt ausgezahlt. Reichen die Beitragszahlungen nicht, um die durchschnittliche Beitragszahlung der 
+jeweiligen Periode zu zahlen, werden die Beiträge proportional anhand der DPT auf alle Rentner und Rentenzahlungen  aufgeteilt.
 
 \begin{equation}
 P[p]_{dpt\_pensioner} = 
-\sum_{u}^{U} \begin{cases} 
-U[u]_{dpt\_total[p]} & _{if U[u]_{is\_pensioner = true}}\\
+\sum_{u=0}^{|U|} \begin{cases} 
+U[u]_{dpt\_total[p]} & _{if U[u]_{state} = UP}\\
 0 & _{otherwise}
 \end{cases}
 \end{equation}
 
+\begin{equation*}
+CPR_{a}(p) = \frac{avg(P[p]_{units})}{P_{target}}
+\end{equation*}
+
+\begin{equation*}
+CPR_{b}(p) = \frac{P[p]_{units}} {P[p]_{dpt\_pensioner} \cdot avg(P[p]_{units}))}
+\end{equation*}
+
 \begin{equation}
-CPR(p) = min(\frac{avg(P[p]_{units})}{P_{target}},\frac{P[p]_{units}} {P[p]_{dpt\_pensioner} \cdot avg(P[p]_{units}))})
+CPR(p) = min(CPR_{a}(p), CPR_{b}(p))
 \end{equation}
 
 
 \subsubsection*{Rücklagenrentenrate ($SPR$)}
 
-Wenn $weighted\_dpt\_units\_rate < avg(units)$ dann 
+% auc = active user count
 
 \begin{equation}
-	active\_user\_dpts = 
-	\sum_{n=1}^{count} active\_user\_dpt
+P[p]_{auc} = \sum_{u=0}^{|U|} \begin{cases} 
+0 & _{if U[u]_{state} = DP}\\
+1 & _{otherwise}
+\end{cases}
 \end{equation}
 
 \begin{equation}
-	total\_units = 	
-	\sum_{p=1}^{periods} \sum_{n=1}^{users} user\_units	
+P[p]_{active\_dpt} = \sum_{u=0}^{|U|} \begin{cases} 
+0 & _{if U[u]_{state} = DP}\\
+U[u]_{dpt\_total} & _{otherwise}
+\end{cases}
+\end{equation}
+
+\begin{equation*}
+TOPP(u) = \sum_{p=0}^{|P|} \begin{cases}
+1 & _{if U[u]_{pension[p]} > 0}\\
+0 & _{otherwise}\\
+\end{cases}
+\end{equation*}
+
+
+% top = total open periods
+
+\begin{equation}
+P[p]_{top} = \sum_{u=0}^{|U|} \begin{cases} 
+P_{target} - TOPP(u)  & _{if U[u]_{state} = DP}\\
+P_{target} & _{if U[u]_{state} = DC}\\
+0 & _{otherwise}
+\end{cases}
 \end{equation}
 
 \begin{equation}
-	savings\_dpt\_units\_rate = 	
-	\frac{total\_units} 
-	{active\_user\_dpts \cdot years \cdot 12}		
-\end{equation}
-
-\begin{equation}
-	pension = savings\_dpt\_units\_rate \cdot user\_dpt
+SPR(p) = \frac{total\_savings - laggarts\_savings} {P[p]_{active\_dpt} \dot {\frac{P[p]_{top}} {P[p]_{auc}}}
+}
 \end{equation}
 
 

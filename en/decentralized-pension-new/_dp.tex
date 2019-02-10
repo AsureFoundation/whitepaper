@@ -9,18 +9,22 @@ Währungseinheit wie z.B. ETH oder BTC festgelegt. Stattdessen verwendet das Des
 Rentensystems die generische Währungseinheit "\textbf{unit}". Diese muss bei der konkreten
 Implementierung durch ein konkrete Währung ersetzt wird.
 
-\paragraph{Perioden} Jede Aktion innerhalb des Rentensystems erfolgt
-in einer Periode $P_{n}$. Die Dauer einer Periode ist frei wählbar. Innerhalb der folgenden Betrachtung gilt $P_{n} = 1 month$.
+\paragraph{Perioden} Das Rentensytem ist in Perioden unterteilt, welche definiert werden als $P$. Jede Aktion innerhalb des Rentensystems erfolgt
+in einer Periode $P[p]$. Die Dauer einer Periode ($P_{duration}$) ist frei wählbar. Innerhalb der folgenden Betrachtung gilt $P_{duration} = 1 month$.
+
+\paragraph{Benutzer} Alle Benutzer des Rentensystems (Beitraszahler und Rentner) werden als $U$ und individuelle Benutzer als $U[u]$ definiert.
 
 \subsection{Beitragszahlung}
 
-\subsubsection*{Rentenanspruchsperioden}
-Die Rentenanspruchsperioden ($P_{pension}$) legt die Anzahl der Perioden fest,
-in denen eine Rentenzahlung erfolgt. Je höher die Anzahl der Beitragsperioden
-($P_{contrib}$), desto höher ist die Anzahl der Rentenanspruchsperioden.
+Beitragszahler können pro Periode $P[p]$ Beiträge zahlen. Der Gesamtbetrag pro Periode und Nutzer wird als $U[u]_{units[p]}$ definiert. Die Gesamtanzahl an Perioden, in denen ein Beitragszahler gezahlt hat, wird als $U[u]_{contrib}$ definiert.
 
-Um eine hohe Anzahl an Beitragsperioden zu icentivieren, wird ein Zielwert 
-für die Anzahl der Beitragsperioden ($P_{target}$) definiert. 
+\subsubsection*{Rentenanspruchsperioden}
+Die Rentenanspruchsperioden ($U[u]_{pension}$) eines Rentners legt die Anzahl der Perioden fest,
+in denen eine Rentenzahlung erfolgt. Je höher die Anzahl der Beitragsperioden
+$U[u]_{contrib}$, desto höher ist die Anzahl der Rentenanspruchsperioden.
+
+Um eine hohe Anzahl an Beitragsperioden zu icentivieren, wird ein Zielwert ($P_{target}$)
+für die Anzahl der Beitragsperioden definiert. 
 
 \begin{equation}
 	P_{target} = 40 years \cdot 12 months
@@ -34,35 +38,44 @@ Rentenanspruchsperioden entsprechend überproportional kleiner oder größer aus
 Die Anzahl der Rentenanspruchsperioden ist wie folgt definiert:
 
 \begin{equation}
-	P_{pension} = \frac{P_{contrib}^2}{P_{target}}
+	U[u]_{pension} = \frac{U[u]_{contrib}^2}{P_{target}}
 \end{equation}
 
 
 \subsubsection*{Dezentrale Rentenpunkte}
-Für die gezahlten Beiträge erhält ein Beitragszahler Dezentrale Rentenpunkte
+Für die gezahlten Beiträge einer Periode ($U[u]_{units[p]}$) erhält ein Beitragszahler Dezentrale Rentenpunkte
 ($DPT$). Aus der Gesamtanzahl der DPT eines Beitragszahlers wird im Rentenalter
 die Höhe der zu zahlenden Rente errechnet.
 
 \begin{equation}
-DPT = DPT_{base} \cdot DPT_{bonus}
+U[u]_{dpt[p]} = DPT(u, p)
+\end{equation}
+
+\begin{equation}
+DPT(u, p) = DPT_{base}(u, p) \cdot DPT_{bonus}(p)
 \end{equation}
 
 \paragraph*{Aktueller Beitragswert}
-Der aktuelle Beitragswert ($CCV$) wird zu Beginn jeder Periode 
-$P_{contrib}{n}$ berechnet und bildet den Referenzwert für einen $DPT$ der
+Der aktuelle Beitragswert (CCV) wird zu Beginn jeder Periode 
+$P[n]$ berechnet und als $P[p]_{ccv}$ definiert. Der CCV bildet den Referenzwert für einen $DPT$ der
 entsprechenden Periode.
 
-Zur Berechnung des $CCV$ der Periode $P_{contrib}{n}$ wird der $CCV$ der vorherigen
-Periode $P_{contrib}{n-1}$ zugrunde gelegt. Ist die Differenz zwischen $CCV$ und dem
-durchschnittlichen Beitrag der Periode $P_{contrib}{n-1}$ größer als 10\%, so wird
-der $CCV$ der der Periode $P_{contrib}{n}$ entsprechend um 10\% erhöht oder gesenkt.
-Bei starken Schwankungen des durchschnittlichen Beitrags, nährt sich der $CCV$ langsam an den neuen Durchschnitt an und große Sprünge werden vermieden.
+Zur Berechnung des CCV der Periode $P[p]$ wird der CCV der vorherigen
+Periode $P[n-1]$ zugrunde gelegt. Ist die Differenz zwischen CCV und dem
+durchschnittlichen Beitrag der Periode $P[n-1]$ größer als 10\%, so wird
+der CCV der der Periode $P[n]$ entsprechend um 10\% erhöht oder gesenkt.\\
+Bei starken Schwankungen des durchschnittlichen Beitrags, nährt sich der CCV langsam an den neuen Durchschnitt an und große Sprünge werden vermieden.
+
 
 \begin{equation}
-CCV = \begin{cases} 
-CCV \cdot 110\% & _{avg(units) \cdot 110\% > CCV} \\
-CCV \cdot 90\% & _{avg(units) \cdot 90\% < CCV} \\
-CCV & _{other}
+P[p]_{units} = avg(\sum_{u}^{U} U[u]_{units[p]})
+\end{equation}
+
+\begin{equation}
+P[p]_{ccv} = \begin{cases} 
+P[p]_{ccv} \cdot 1.1 & _{if P[p]_{units} \cdot 1.1 > P[p-1]_{ccv}} \\
+P[p]_{ccv} \cdot 0.9 & _{if P[p]_{units} \cdot 0.9 < P[p-1]_{ccv}} \\
+P[p]_{ccv} & _{otherwise}
 \end{cases}
 \end{equation}
 
@@ -70,12 +83,12 @@ CCV & _{other}
 Die Rentenpunkte ist die ERC20 Tokensierung der Kaufkraft in Blockchain-Systemen und ist eine Abstraktion zur Kaufkraft wo der $CCV$-Wert die Referenz abbildet wie die Bereitschaft zur Zahlung in den Vergangenen Perioden vorhanden war. Bei einer Einzahlung die gleich dem CCV-Wert entspricht werden 1.0 DPT Punkte dem Sender gutgeschrieben. Alles über dem CCV Wert werden Maximal 2.0 DPT gutgeschrieben werden, wobei es möglich ist mehr als das doppelte dem CCV-Wert zu bezahlen. Bei einem kleineren Beitrag als dem CCV-Wert wird dem entsprechend Proportional zum min weniger DPT gutgeschrieben werden.
 
 \begin{equation}
-DPT_{base} = \begin{cases} 
-min(\frac{unit} {CCV}, 2) 
-  & _{(unit > CCV)} \\
-\frac{unit - min} {CCV - min} 
-  & _{(unit < CCV)} \\
-1.0 & _{(unit = CCV)}
+DPT_{base}(u, p) = \begin{cases} 
+min(\frac{U[u]_{units[p]}} {P[p]_{ccv}}, 2) 
+  & _{if U[u]_{units[p]} > P[p]_{ccv}} \\
+\frac{U[u]_{units[p]} - min} {P[p]_{ccv} - min} 
+  & _{if U[u]_{units[p]} < P[p]_{ccv}} \\
+1.0 & _{otherwise}
 \end{cases}
 \end{equation}
 
@@ -88,10 +101,10 @@ welche früh an das System geglaubt und investiert haben. Das Konzept der Bonus 
 ist an die aus dem Bitcoin Protokoll bekannte Reduzierung der Mining Rewards angelehnt.
 
 \begin{equation}
-DPT_{bonus} = \begin{cases} 
-1 + \frac{(P_{bonus} - P_{n} + 1)^2}
-      {2 \cdot P_{bonus}^2} & _{(P_{n} < P_{bonus})} \\
-1 & _{(other)} 
+DPT_{bonus}(p) = \begin{cases} 
+1 + \frac{(P_{bonus} - P[p] + 1)^2}
+      {2 \cdot P_{bonus}^2} & _{if P[p] < P_{bonus}} \\
+1 & _{otherwise} 
 \end{cases}
 \end{equation}
 

@@ -1,9 +1,22 @@
 \subsection{Rentenzahlung}
-Die Berechnung der zu zahlenden Rente wird anhand der $DPT$ eines Rentners bestimmt.
+
+Beitragszahler können frei wählen, wann Sie in Rente gehen. Geht ein Beitragszahler in Rente, können keine Beitragszahlungen mehr getätigt werden und je nach gezahlten Beiträgen, können stattdessen Rentenauszahlungen erfolgen.
+Nutzer, welche sich in Rente befinden, werden ensprechend makiert ($U[u].is\_pensioner = true$).
+
+Die Berechnung der zu zahlenden Rente erfolgt anhand der Gesamtanzahl der DPT eines Rentners ($U[u]_{dpt\_total}$).
+
+\begin{equation}
+U[u]_{dpt\_total} = \sum_{p}^{P} U[u]_{dpt[p]}
+\end{equation}
+
+Die Rentenanspruchsperioden $U[u]_{pensionperiods}$ legen fest, in wie vielen Perioden eine Rente ausgezahlt wird. In
+welchen Perioden ein Rentner seine Rentenzahlungen in Anspruch nimmt, bleibt diesem selbst überlassen und kann frei
+gewählt werden.
+
 Hat ein
 Rentner in seinen Beitragsperioden immer den durchschnittlichen Beitrag in das
 Rentensystem eingezahlt, soll seine
-Rente auch dem durchschnittlichen Beitrag der aktuellen
+Rentezahlung auch den durchschnittlichen Beitragszahlungen der aktuellen
 Periode entsprechen und so die in $DPT$ gespeicherte Kaufkraft wieder hergestellt werden.
 
 
@@ -11,8 +24,8 @@ Die Dezentrale Rente verfügt über drei Geldtöpfe (Beiträge, Rücklagen und B
 aus denen die Rente zusammengesetzt und ausgezahlt wird. Die Beiträge werden wie folgt auf 
 die drei Geldtöpfe verteilt:
 \begin{compactenum}
-\item Beiträge von Beitragszahlern, welche noch über keine Rentenanspruchsperioden ($P_{pension = 0}$) verfügen, werden in den Bonustopf abgelegt.
-\item Beiträge von Beitragszahlern, welche über Rentenanspruchsperioden ($P_{pension > 0}$) verfügen, werden in dem Beitragstopf abgelegt.
+\item Beiträge von Beitragszahlern, welche noch über keine Rentenanspruchsperioden ($U[u]_{pensionperiods} = 0$) verfügen, werden in den Bonustopf abgelegt.
+\item Beiträge von Beitragszahlern, welche über Rentenanspruchsperioden ($U[u]_{pensionperiods} > 0$) verfügen, werden in dem Beitragstopf abgelegt.
 \item Der Restwert des Beitragstopf wird nach Auszahlung der Renten einer Periode in den als Rücklage verwendet.
 \end{compactenum}
 
@@ -20,8 +33,10 @@ Für jeden Geldtopf wird eine Umrechnungsrate berechnet, welche pro
 Periode festlegt, wie viel ein $DPT$ aus dem entsprechenden
 Geldtopf Wert ist.
 
+Die Rentenzahlung wird somit wie foglt definiert:
+
 \begin{equation}
-pension = DPT \cdot (CPR + SPR + LPR)
+U[u]_{pension[p]} = U[u]_{dpt\_total} \cdot (CPR(p) + SPR + LPR)
 \end{equation}
 
 \subsubsection*{Beitragsrentenrate ($CPR$)}
@@ -31,34 +46,20 @@ Die zu zahlenden Renten sind durch die durchschnittlichen Beitragszahlungen der
 jeweiligen Periode gedeckelt. Eventuelle Überschüsse werden als Rücklage verwendet.
 
 \begin{equation}
-	units\_month = 
-	\sum_{n=1}^{count} units
+P[p]_{units} = \sum_{u}^{U} U[u]_{units[p]}
 \end{equation}
 
 \begin{equation}
-	dpt\_month = 
-	\sum_{n=1}^{count} pension\_user\_dpt
-\end{equation}
-
-\begin{equation}
-CPR = min(\frac{avg(units)}{P_{target}},\frac{units\_month} {dpt\_month \cdot avg(units)})
-\end{equation}
-
-
-\begin{equation}
-CPR = \begin{cases} 
-	\frac{avg(units)}{P_{target}} & _{(CPR > avg(units))} \\
-	\frac{total\_units\_month  \cdot avg(units)} 
-		{total\_dpt\_month} & _{(other)}
+P[p]_{dpt\_pensioner} = 
+\sum_{u}^{U} \begin{cases} 
+U[u]_{dpt\_total[p]} & _{if U[u]_{is\_pensioner = true}}\\
+0 & _{otherwise}
 \end{cases}
 \end{equation}
 
-
-
-%\begin{equation}
-%	pension = 	
-%	weighted\_dpt\_units\_rate \cdot user\_dpt
-%\end{equation}
+\begin{equation}
+CPR(p) = min(\frac{avg(P[p]_{units})}{P_{target}},\frac{P[p]_{units}} {P[p]_{dpt\_pensioner} \cdot avg(P[p]_{units}))})
+\end{equation}
 
 
 \subsubsection*{Rücklagenrentenrate ($SPR$)}

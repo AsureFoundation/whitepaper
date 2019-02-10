@@ -19,7 +19,7 @@ in einer Periode $P[p]$. Die Dauer einer Periode ($P_{duration}$) ist frei wähl
 Beitragszahler können pro Periode $P[p]$ Beiträge zahlen. Der Gesamtbetrag pro Periode und Nutzer wird als $U[u]_{units[p]}$ definiert. Die Gesamtanzahl an Perioden, in denen ein Beitragszahler gezahlt hat, wird als $U[u]_{contrib}$ definiert.
 
 \subsubsection*{Rentenanspruchsperioden}
-Die Rentenanspruchsperioden ($U[u]_{pension}$) eines Rentners legt die Anzahl der Perioden fest,
+Die Rentenanspruchsperioden ($U[u]_{pensionperiods}$) eines Rentners legt die Anzahl der Perioden fest,
 in denen eine Rentenzahlung erfolgt. Je höher die Anzahl der Beitragsperioden
 $U[u]_{contrib}$, desto höher ist die Anzahl der Rentenanspruchsperioden.
 
@@ -38,7 +38,7 @@ Rentenanspruchsperioden entsprechend überproportional kleiner oder größer aus
 Die Anzahl der Rentenanspruchsperioden ist wie folgt definiert:
 
 \begin{equation}
-	U[u]_{pension} = \frac{U[u]_{contrib}^2}{P_{target}}
+U[u]_{pensionperiods} = \frac{U[u]_{contrib}^2}{P_{target}}
 \end{equation}
 
 

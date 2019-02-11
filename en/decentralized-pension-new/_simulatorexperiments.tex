@@ -18,19 +18,53 @@ Die ersten Simulationen versucht festzustellen, dass es zu keinen Verlusten im S
 \begin{table}[hbt!]
 \centering
 \resizebox{\columnwidth}{!}{%
- \begin{tabular}{|c|c c c|c c c|c c c|} 
+ \begin{tabular}{|c|c c c|} 
  
 \hline
 \multicolumn{1}{|c}{{}} &
-\multicolumn{3}{|c}{Sim01} &
-\multicolumn{3}{|c}{Sim02} &
-\multicolumn{3}{|c|}{Sim03} \\ [0.5ex] 
+\multicolumn{3}{|c|}{Sim01} \\ [0.5ex] 
+\hline
+User & Periods & Contributions & Result \\ [0.5ex] 
+\hline
+1..10 & 1..480 & $1.0 \cdot 480 = 480$ & 480\\ 
+20..100 & 1..480 & $1.0 \cdot 480 = 480$ & 480\\ [1ex] 
  \hline
+ \end{tabular}%
+}
+\end{table}
 
- User & Period & Contrib & Res & Period & Contrib & Res & Period & Contrib & Res \\ [0.5ex] 
+\begin{table}[hbt!]
+\centering
+\resizebox{\columnwidth}{!}{%
+ \begin{tabular}{|c|c c c|} 
+ 
+\hline
+\multicolumn{1}{|c}{{}} &
+\multicolumn{3}{|c|}{Sim02}\\ [0.5ex] 
+\hline
+User & Periods & Contributions & Result \\ [0.5ex] 
+\hline
+1..10 & 1..480 & $2.0 \cdot 480 = 960$ & 960\\ 
+20..100 & 1..480 & $1.0 \cdot 480 = 480$ & 480 \\ [1ex] 
  \hline
-1..10 & 1..480 & 1.0 & 480 & 1..480 & 2.0 & 960 & 1..480 & 0.1 & 48 \\ 
-20..100 & 1..480 & 1.0 & 480 & 1..480 & 1.0 & 480 & 1..480 & 1.0 & 480 \\ [1ex] 
+ \end{tabular}%
+}
+\end{table}
+
+\begin{table}[hbt!]
+\centering
+\resizebox{\columnwidth}{!}{%
+ \begin{tabular}{|c|c c c|} 
+ 
+\hline
+\multicolumn{1}{|c}{{}} &
+\multicolumn{3}{|c|}{Sim03} \\ [0.5ex] 
+\hline
+
+ User & Periods & Contributions & Result \\ [0.5ex] 
+ \hline
+1..10 & 1..480 & $0.1 \cdot 480 = 48$ & 48 \\ 
+20..100 & 1..480 & $1.0 \cdot 480 = 480$ & 480 \\ [1ex] 
  \hline
  \end{tabular}%
 }
@@ -54,10 +88,9 @@ In dieser Simulationsreihe wird das Verhalten von Inflation und Deflation der Un
 \hline
 \multicolumn{1}{|c}{{}} &
 \multicolumn{3}{|c|}{Sim14}\\ [0.5ex] 
- \hline
-
- User & Period & Contrib & Res \\ [0.5ex] 
- \hline
+\hline
+User & Periods & Contributions & Result \\ [0.5ex] 
+\hline
 1..100 & 1..480 & $sum(1.0 \cdot \frac{1}{1.05^{n}}) = 1456$ & 2320 \\ 
 100..200 & 480..960 & $sum(1.0 \cdot \frac{1}{1.05^{40}}) = 3380$ & 2514 \\ [1ex] 
  \hline
@@ -79,10 +112,9 @@ Bei diesem Ergebnis sehen wir, dass bei einer Inflation die Units entwertet werd
 \hline
 \multicolumn{1}{|c}{{}} &
 \multicolumn{3}{|c|}{Sim15}\\ [0.5ex] 
- \hline
-
- User & Period & Contrib & Res \\ [0.5ex] 
- \hline
+\hline
+User & Periods & Contributions & Result \\ [0.5ex] 
+\hline
 1..100 & 1..480 & $sum(1.0 \cdot 1.05^{n}) = 215$ & 189 \\ 
 100..200 & 480..960 & $sum(1.0 \cdot 1.05^{40}) = 68$ & 94 \\ [1ex] 
  \hline
@@ -108,9 +140,9 @@ Langzeit Simulation versucht über mehrere Generationen das Verhalten des System
 \hline
 \multicolumn{1}{|c}{{}} &
 \multicolumn{3}{|c|}{Sim20}\\ [0.5ex] 
- \hline
- User & Period & Contrib & Result \\ [0.5ex] 
- \hline
+\hline
+User & Periods & Contributions & Result \\ [0.5ex] 
+\hline
 1..10 & 1..480 & $1.0 \cdot 480 = 480$ & 952 \\ 
 10..20 & 12..492 & $1.0 \cdot 480 = 480$ & 937 \\
 $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\

@@ -34,9 +34,9 @@ Geldtopf Wert ist.
 
 Die Rentenzahlung wird somit wie foglt definiert:
 
-\begin{equation}
-U[u]_{pension[p]} = U[u]_{dpt\_total} \cdot (CPR(p) + SPR + LPR)
-\end{equation}
+\begin{dmath}
+U[u]_{pension[p]} = U[u]_{dpt\_total} \cdot (CPR(p) + SPR(p, W_{savings} - W_{laggarts}) + LPR(p, W_{laggarts}))
+\end{dmath}
 
 \subsubsection*{Beitragsrentenrate ($CPR$)}
 Alle Beiträge einer Beitragsperiode ($P[p]units$) werden gesammelt und anteilig an Rentner ausgezahlt. Die Beitragsrentenrate $CPR(p)$ definiert die Umrechnungsrate von DPT zu Beiträgen.
@@ -107,34 +107,25 @@ P_{target} & _{if U[u]_{state} = DC}\\
 \end{equation}
 
 \begin{equation}
-SPR(p) = \frac{total\_savings - laggarts\_savings} {P[p]_{active\_dpt} \dot {\frac{P[p]_{top}} {P[p]_{auc}}}
+SPR(p, units) = \frac{units} {P[p]_{active\_dpt} \dot {\frac{P[p]_{top}} {P[p]_{auc}}}
 }
 \end{equation}
 
 
 \subsubsection*{Bonusrentenrate ($LPR$)}
 
-Wenn $entitlementMonths >= 1$ dann 
+% self.pensioners_total / self.periods_open
 
-\begin{equation*}
-	active\_user\_dpts = 
-	\sum_{n=1}^{count} active\_user\_dpt
-\end{equation*}
+\begin{equation}
+total\_pensioners =  \sum_{u=0}^{|U|} \begin{cases} 
+1  & _{if U[u]_{state} = DP}\\
+0 & _{otherwise}
+\end{cases}
+\end{equation}
 
-\begin{equation*}
-	total\_units = 	
-	\sum_{p=1}^{periods} \sum_{n=1}^{users} user\_units	
-\end{equation*}
-
-\begin{equation*}
-	laggards\_rate = 	
-	\frac{total\_units} 
-	{active\_user\_dpts \cdot years \cdot 12}		
-\end{equation*}
-
-\begin{equation*}
-	pension = laggards\_rate \cdot user\_dpt
-\end{equation*}
-
-
-Voraussetzung ist gegeben wenn $pensioners / periods_open$ genau 1 entspricht
+\begin{equation}
+LPR(p, units) =  \begin{cases} 
+SPR(p, units)  & _{if \frac{total_pensioners} {P[p]_{top}} = 1}\\
+0 & _{otherwise}
+\end{cases}
+\end{equation}$  $

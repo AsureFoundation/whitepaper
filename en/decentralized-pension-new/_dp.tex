@@ -16,9 +16,35 @@ in einer Periode $P[p]$. Die Dauer einer Periode ($P_{duration}$) ist frei wähl
 \textbf{UP} (Pensioner) und \textbf{UD} (Done) annehmen kann.
 Der den Anfangszustand aller Nutzer ist $U[u]_{state} = UC$ 
 
+\paragraph{Konten} Die Dezentrale Rente verfügt über zwei Konten: Rücklagen ($W_{savings}$) und Nachzügler ($W_{laggarts}$). Beitragszahlungen und Rentenzahlungen werden mithilfe dieser verrechnet. Das Rücklagenkonto enthält den Gesamtbetrag der verwalteten Beiträge und dient der monatlichen Abwicklung der Ein-, und Auszahlungen. Das Nachzüglerkonto  
+verwaltet eine Rücklage, welche an die letzte Generation des Rentensystems ausgezahlt wird.
+
 \subsection{Beitragszahlung}
 
-Beitragszahler können pro Periode $P[p]$ Beiträge zahlen. Der Gesamtbetrag pro Periode und Nutzer wird als $U[u]_{units[p]}$ definiert. Die Gesamtanzahl an Perioden, in denen ein Beitragszahler gezahlt hat, wird als $U[u]_{contrib}$ definiert.
+Beitragszahler können in einer Periode $P[p]$ Beiträge zahlen. Der Gesamtbetrag pro Periode und Nutzer wird als $U[u]_{units[p]}$ definiert. Die Gesamtanzahl an Perioden, in denen ein Beitragszahler gezahlt hat, wird als $U[u]_{contrib}$ definiert.
+
+\begin{equation}
+U[u]_{contrib} = \sum_{p=0}^{|P|} \begin{cases} 
+1 & _{if U[u]_{units[p]} > 0} \\
+0 & _{otherwise}
+\end{cases}
+\end{equation}
+
+
+Alle Beitragszahlungen einer Periode $P[p]$ werden dem Rücklagenkonto  $W_{savings}$ gutgeschrieben.
+Beiträge von Beitragszahlern, welche noch über keine Rentenanspruchsperioden ($U[u]_{pensionperiods} = 0$) verfügen, werden zusätzlich auf dem Nachzüglerkonto $W_{laggarts}$ verbucht.
+
+\begin{equation}
+W_{savings} = W_{savings} + \sum_{u=0}^{|U|} U[u]_{units[p]}
+\end{equation}
+
+
+\begin{equation}
+W_{laggarts} = W_{laggarts} + \sum_{u=0}^{|U|} \begin{cases} 
+U[u]_{units[p]} & _{if U[u]_{pensionperiods} = 0} \\
+0 & _{otherwise}
+\end{cases}
+\end{equation}
 
 \subsubsection*{Rentenanspruchsperioden}
 Die Rentenanspruchsperioden ($U[u]_{pensionperiods}$) eines Rentners legt die Anzahl der Perioden fest,

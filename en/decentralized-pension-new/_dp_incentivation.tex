@@ -10,29 +10,19 @@ U[u]_{dpt\_total} = \sum_{p=0}^{|P|} U[u]_{dpt[p]}
 
 Die Rentenanspruchsperioden $U[u]_{pensionperiods}$ legen fest, in wie vielen Perioden eine Rente ausgezahlt wird. In
 welchen Perioden ein Rentner seine Rentenzahlungen in Anspruch nimmt, bleibt diesem selbst überlassen und kann frei
-gewählt werden. Wurden alle Rentenzahlungen in Anspruch genommen, wird der Zustand ensprechend durch $U[u]_{state} = UD$ ersetzt.
+gewählt werden. Wurden alle Rentenzahlungen in Anspruch genommen, wird der Zustand entsprechend durch $U[u]_{state} = UD$ ersetzt.
 
 Hat ein
 Rentner in seinen Beitragsperioden immer den durchschnittlichen Beitrag in das
 Rentensystem eingezahlt, soll seine
-Rentezahlung auch den durchschnittlichen Beitragszahlungen der aktuellen
+Rentenzahlung auch den durchschnittlichen Beitragszahlungen der aktuellen
 Periode entsprechen und so die in $DPT$ gespeicherte Kaufkraft wieder hergestellt werden.
 
+Die Höhe einer Rentenzahlung ergibt sich aus den folgenden drei Komponenten: Beitragsrente, Rücklagenrente und Nachzüglerrente. Für jede Komponente wird eine Umrechnungsrate berechnet, welche pro 
+Periode $P[p]$ festlegt, wie viel ein $DPT$ aus der entsprechenden
+Komponente Wert ist.
 
-Die Dezentrale Rente verfügt über drei Geldtöpfe (Beiträge, Rücklagen und Bonus) 
-aus denen die Rente zusammengesetzt und ausgezahlt wird. Die Beiträge werden wie folgt auf 
-die drei Geldtöpfe verteilt:
-\begin{compactenum}
-\item Beiträge von Beitragszahlern, welche noch über keine Rentenanspruchsperioden ($U[u]_{pensionperiods} = 0$) verfügen, werden in den Bonustopf abgelegt.
-\item Beiträge von Beitragszahlern, welche über Rentenanspruchsperioden ($U[u]_{pensionperiods} > 0$) verfügen, werden in dem Beitragstopf abgelegt.
-\item Der Restwert des Beitragstopf wird nach Auszahlung der Renten einer Periode in den als Rücklage verwendet.
-\end{compactenum}
-
-Für jeden Geldtopf wird eine Umrechnungsrate berechnet, welche pro 
-Periode festlegt, wie viel ein $DPT$ aus dem entsprechenden
-Geldtopf Wert ist.
-
-Die Rentenzahlung wird somit wie foglt definiert:
+Die Rentenzahlung wird somit wie folgt definiert:
 
 \begin{dmath}
 U[u]_{pension[p]} = U[u]_{dpt\_total} \cdot (CPR(p) + SPR(p, W_{savings} - W_{laggarts}) + LPR(p, W_{laggarts}))
@@ -49,13 +39,13 @@ Die zu zahlenden Renten sind durch die durchschnittliche Beitragszahlung der
 jeweiligen Periode ($avg(P[p]units)$) gedeckelt. Gibt es mehr Beitragszahler als Rentner im System, werden so eventuelle Überschüsse als Rücklage verwendet und nicht direkt ausgezahlt. Reichen die Beitragszahlungen nicht, um die durchschnittliche Beitragszahlung der 
 jeweiligen Periode zu zahlen, werden die Beiträge proportional anhand der DPT auf alle Rentner und Rentenzahlungen  aufgeteilt.
 
-\begin{equation}
+\begin{dmath}
 P[p]_{dpt\_pensioner} = 
 \sum_{u=0}^{|U|} \begin{cases} 
 U[u]_{dpt\_total[p]} & _{if U[u]_{state} = UP}\\
 0 & _{otherwise}
 \end{cases}
-\end{equation}
+\end{dmath}
 
 \begin{equation*}
 CPR_{a}(p) = \frac{avg(P[p]_{units})}{P_{target}}
@@ -71,6 +61,8 @@ CPR(p) = min(CPR_{a}(p), CPR_{b}(p))
 
 
 \subsubsection*{Rücklagenrentenrate ($SPR$)}
+
+Überschüssige Beiträge werden als Rücklage zurückgelegt und in jeder Periode $P[p]$ anteilig ausgezahlt. Die Auszahlung der Rücklage wird dabei so vorgenommen, dass diese gleichmäßig über alle aktiven Nutzer  ($P[p]_{auc}$), deren DPT und allen aktiven Rentenanspruchsperioden des Rentensystems $(P[p]_{top})$ aufgeteilt wird. Die Rücklagenrentenrate $SPR(p, units)$ definiert somit die Umrechnungsrate von DPT zu Rücklagen.
 
 % auc = active user count
 
@@ -112,9 +104,12 @@ SPR(p, units) = \frac{units} {P[p]_{active\_dpt} \dot {\frac{P[p]_{top}} {P[p]_{
 \end{equation}
 
 
-\subsubsection*{Bonusrentenrate ($LPR$)}
+\subsubsection*{Nachzüglerrentenrate ($LPR$)}
 
-% self.pensioners_total / self.periods_open
+Die Nachzüglerrente wird nur an die letzte Generation des 
+Rentensystem ausgezahlt. Diese Komponente stellt sicher, dass die letzte
+Generation des Rentensystems auch eine Rente erhält und soll eine zusätzliche Incentivierung für das Beitreten in das Rentensystem schaffen. Die Idee ist, das die Nachzüglerrente so groß ist, dass jeder Nutzer Teil der letzten Generation sein will. 
+Die Nachzüglerrentenrate $LPR(p, units)$ definiert die Umrechnungsrate von DPT zu Rücklagen. Für den Fall, dass es sich um die letzte Generation handelt, erfolgt die Berechnung der Nachzüglerrentenrate $LPR(p, units)$ analog der Berechnung der Rücklagenrentenrate $SPR(p, units)$.
 
 \begin{equation}
 total\_pensioners =  \sum_{u=0}^{|U|} \begin{cases} 

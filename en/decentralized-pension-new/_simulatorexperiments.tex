@@ -1,6 +1,6 @@
 \section{Simulator and Experiments}
 
-Im Rahmen unserer Untersuchungen wurden verschiedene Simulationen am dezentralisierten Rentenmodell durchgeführt um unterschiedliches Benutzerverhalten zu Simulieren und die Anreize und das Model noch weiter zu optimieren.
+Im Rahmen unserer Untersuchungen wurden verschiedene Simulationen am dezentralisierten Rentenmodell durchgeführt um unterschiedliches Benutzerverhalten zu simulieren und die Anreize und das Model noch weiter zu optimieren.
 
 Alle Simulationen wurden in Rust auf Github unter der MIT Lizenz veröffentlicht.\\
 \url{http://github.com/AsureNetwork/asure-pension-core}
@@ -72,15 +72,15 @@ User & Periods & Contributions & Result \\ [0.5ex]
 }
 \end{table}
 
-Alle Nutzer bekommen die Anzahl an Units was in das Rentensystem eingezahlt wurde zurück. Dieses Verhalten ist erwünscht, das System sollte keine Rücklagen bilden falls Alle das System verlassen, sollten die gesamten Units fair umverteilt werden.
+In diesem Fall wurde aufgezeigt, dass bei einem gleichen und fairem Verhalten und keinem Einfluss von Inflation und Deflation es keine Gewinner und keine Verlierer gibt, jeder bekommt seine Einzahlungen einfach zurück.
 
 \subsection{Simulation 2: Inflation/Deflation}
 
-In dieser Simulationsreihe wird das Verhalten von Inflation und Deflation der Units simuliert. Es ist die Entwertung und Aufwertung der Units welches einen Einfluss auf den Benutzer hat. Bei einer Abwertung würden die Nutzer mehr Bezahlen und bei einer Aufwertung dementsprechend weniger wobei die Kaufkraft gleich bleiben würde. Durch $CCV$ wird dies automatisch aufgefangen und die Renten Ein- und Auszahlungsverhalten dementsprechend angepasst. \\
+In dieser Simulationsreihe wird das Verhalten von Inflation und Deflation der Units simuliert. Es ist die Entwertung und Aufwertung der Units, welches einen Einfluss auf den Benutzer hat. Bei einer Abwertung würden die Nutzer mehr Bezahlen und bei einer Aufwertung dementsprechend weniger wobei die Kaufkraft gleich bleiben würde. Durch $CCV$ wird dies automatisch aufgefangen und die Renten Ein- und Auszahlungsverhalten dementsprechend angepasst. 
 
-\paragraph{Sim14.} Bei einer Inflation von 5\% fehlt der Wert der Units und dementsprechend Zahlen die Benutzer mehr Units. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Inflation in das System zahlen so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $21.725 Units$. Für die zweite Generation gibt es keine Inflation, damit wir beim Ergebnis sehen, dass durch die höheren Beiträge bei der ersten Generation die Rente mit einem höheren Units ausbezahlt wird und die Inflation damit berücksichtigt wurde. \\
+\paragraph{Sim14.} Bei einer Inflation von 5\% fehlt der Wert der Units und dementsprechend Zahlen die Benutzer mehr Units. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Inflation in das System zahlen, so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $21.725 Units$. Die nächste Generation beinhaltet keine Inflation, damit das Ergebnis weniger verfälscht wird und einfacher zu Interpretieren ist. 
 
-\textbf{Ergebnis:}
+\paragraph{Ergebnis:}
 
 \begin{table}[hbt!]
 \centering
@@ -102,7 +102,7 @@ User & Periods & Contributions & Result \\ [0.5ex]
 
 Bei diesem Ergebnis sehen wir, dass bei einer Inflation die Units entwertet werden und in beim bestehen des Inflationnevous erhält der Nutzer aus dem System zur Kaufkraft passende Anzahl an Units.
 
-\paragraph{Sim15.} Bei einer Deflation wo der Wert der Units steigt wird der Benutzer dem Entsprechend weniger in ein System zahlen. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Deflation in das System zahlen so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $0.046 Units$. Für die zweite Generation gibt es keine Deflation, damit wir beim Ergebnis sehen, dass durch die kleineren Beiträge bei der ersten Generation die Rente mit einem kleineren Units ausbezahlt wird und die Deflation damit berücksichtigt wurde. \\
+\paragraph{Sim15.} Bei einer Deflation, wo der Wert der Units steigt wird der Benutzer dementsprechend weniger in ein System zahlen. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Deflation in das System zahlen, so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $0.046 Units$. Die nächste Generation beinhaltet keine Deflation, damit das Ergebnis weniger verfälscht wird und einfacher zu Interpretieren ist. 
 
 \paragraph{Ergebnis:}
 
@@ -124,12 +124,12 @@ User & Periods & Contributions & Result \\ [0.5ex]
 }
 \end{table}
 
-Bei diesem Ergebnis sehen wir, dass bei einer Deflation die Units einen höheren Wert bekommen und beim bestehen der Deflationsnevouse erhält der Nutzer aus dem System zur Kaufkraft passende Anzahl an Units.
+Bei diesem Ergebnis sehen wir, dass bei einer Deflation die Units einen höheren Wert und Kaufkraft besitzen und beim Bestehen der Deflationsnevouse erhält der Nutzer aus dem System zur Kaufkraft passende Anzahl an Units.
 
 
 \subsection{Simulation 3: Langzeit}
 
-Langzeit Simulation versucht über mehrere Generationen das Verhalten des Systems wieder zu geben. Dies soll aufzeigen wer ist der Verlierer wer ist der Gewinner im System. \\
+Langzeit Simulation versucht über mehrere Generationen das Verhalten des Systems wiederzugeben. Dies soll aufzeigen wie sich das System über mehrere Generationen, beim Anstieg verhält und Abstieg der Nutzerzahlen verhält.
 
 \paragraph{Sim20.} Wir simulieren, dass jedes Jahr 10 Nutzer dazu kommt und Konstanz $1 Unit$ Zahlen, nach 40 Jahren geht jede Generation in die Rente und wir simulieren 190 Jahre und 1120 Nutzern. 
 
@@ -158,5 +158,5 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
 }
 \end{table}
 
-Bei diesem Ergebnis ist es gut zu sehen, dass wenn sich die Anzahl der Zahler kleiner ist als Rentner, in dem Moment fangen die Rentner an weniger aus dem System zu bekommen. Die vorletzten Generationen verlieren in diesem System. In der letzten Generation die wir als Nachzügler bezeichnen ist wie geplant eine Belohnung ausgezahlt worden. Hier gebe es Verbesserungspotenzial für die Vorletzten Generationen um das System noch fairer zu definieren.
+Bei diesem Ergebnis ist es gut zu sehen, dass wenn sich die Anzahl der Zahler kleiner ist als Rentner, in dem Moment fangen die Rentner an weniger aus dem System zu bekommen. Die vorletzten Generationen, verlieren in diesem System. In der letzten Generation die wir als Nachzügler bezeichnen, ist wie geplant eine Belohnung ausgezahlt worden. Hier gibt es Verbesserungspotenzial für die vorletzten Generationen um das System noch fairer zu definieren.
 

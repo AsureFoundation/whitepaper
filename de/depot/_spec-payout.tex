@@ -12,8 +12,7 @@ Die Rentenanspruchsperioden $U[u]_{pensionperiods}$ legen fest, in wie vielen Pe
 welchen Perioden ein Rentner seine Rentenzahlungen in Anspruch nimmt, bleibt diesem selbst überlassen und kann frei
 gewählt werden. Wurden alle Rentenzahlungen in Anspruch genommen, wird der Zustand entsprechend durch $U[u]_{state} = UD$ ersetzt.
 
-Hat ein
-Rentner in seinen Beitragsperioden immer den durchschnittlichen Beitrag in das
+Hat ein Rentner in seinen Beitragsperioden immer den durchschnittlichen Beitrag in das
 Rentensystem eingezahlt, soll seine
 Rentenzahlung auch den durchschnittlichen Beitragszahlungen der aktuellen
 Periode entsprechen und so die in $DPT$ gespeicherte Kaufkraft wieder hergestellt werden.
@@ -28,7 +27,7 @@ Die Rentenzahlung wird somit wie folgt definiert:
 U[u]_{pension[p]} = U[u]_{dpt\_total} \cdot (CPR(p) + SPR(p, W_{savings} - W_{laggarts}) + LPR(p, W_{laggarts}))
 \end{dmath}
 
-\subsubsection*{Beitragsrentenrate ($CPR$)}
+\subsubsection{Beitragsrentenrate ($CPR$)}
 Alle Beiträge einer Beitragsperiode ($P[p]units$) werden gesammelt und anteilig an Rentner ausgezahlt. Die Beitragsrentenrate $CPR(p)$ definiert die Umrechnungsrate von DPT zu Beiträgen.
 
 \begin{equation}
@@ -60,7 +59,7 @@ CPR(p) = min(CPR_{a}(p), CPR_{b}(p))
 \end{equation}
 
 
-\subsubsection*{Rücklagenrentenrate ($SPR$)}
+\subsubsection{Rücklagenrentenrate ($SPR$)}
 
 Überschüssige Beiträge werden als Rücklage zurückgelegt und in jeder Periode $P[p]$ anteilig ausgezahlt. Die Auszahlung der Rücklage wird dabei so vorgenommen, dass diese gleichmäßig über alle aktiven Nutzer  ($P[p]_{auc}$), deren DPT und allen aktiven Rentenanspruchsperioden des Rentensystems $(P[p]_{top})$ aufgeteilt wird. Die Rücklagenrentenrate $SPR(p, units)$ definiert somit die Umrechnungsrate von DPT zu Rücklagen.
 
@@ -104,7 +103,7 @@ SPR(p, units) = \frac{units} {P[p]_{active\_dpt} \dot {\frac{P[p]_{top}} {P[p]_{
 \end{equation}
 
 
-\subsubsection*{Nachzüglerrentenrate ($LPR$)}
+\subsubsection{Nachzüglerrentenrate ($LPR$)}
 
 Die Nachzüglerrente wird nur an die letzte Generation des 
 Rentensystems ausgezahlt. Diese Komponente stellt sicher, dass die letzte

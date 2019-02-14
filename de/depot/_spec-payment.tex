@@ -46,7 +46,7 @@ U[u]_{units[p]} & _{if U[u]_{pensionperiods} = 0} \\
 \end{cases}
 \end{dmath}
 
-\subsubsection*{Rentenanspruchsperioden}
+\subsubsection{Rentenanspruchsperioden}
 Die Rentenanspruchsperioden ($U[u]_{pensionperiods}$) eines Rentners legt die Anzahl der Perioden fest,
 in denen eine Rentenzahlung erfolgt. Je höher die Anzahl der Beitragsperioden
 $U[u]_{contrib}$, desto höher ist die Anzahl der Rentenanspruchsperioden.
@@ -70,7 +70,7 @@ U[u]_{pensionperiods} = \frac{U[u]_{contrib}^2}{P_{target}}
 \end{equation}
 
 
-\subsubsection*{Dezentrale Rentenpunkte}
+\subsubsection{Dezentrale Rentenpunkte}
 Für die gezahlten Beiträge einer Periode ($U[u]_{units[p]}$) erhält ein Beitragszahler Dezentrale Rentenpunkte
 ($DPT$). Aus der Gesamtanzahl der DPT eines Beitragszahlers wird im Rentenalter
 die Höhe der zu zahlenden Rente errechnet.
@@ -107,7 +107,7 @@ P[p]_{ccv} & _{otherwise}
 \end{cases}
 \end{equation}
 
-\paragraph*{Dezentrale Rentenpunkte Basis}
+\paragraph{Dezentrale Rentenpunkte Basis}
 Die Rentenpunkte ist die ERC20 Tokensierung der Kaufkraft in Blockchain-Systemen und ist eine Abstraktion zur Kaufkraft, wo der $CCV$-Wert die Referenz abbildet, wie die Bereitschaft zur Zahlung in den vergangenen Perioden vorhanden war. Bei einer Einzahlung, die gleich dem CCV-Wert entspricht, werden 1.0 DPT Punkte dem Sender gutgeschrieben. Alles über dem CCV Wert werden Maximal 2.0 DPT gutgeschrieben, es ist möglich mehr als das doppelte dem CCV-Wert zu bezahlen. Bei einem kleineren Beitrag als dem CCV-Wert wird dementsprechend Proportional zum min weniger DPT gutgeschrieben werden.
 
 \begin{dmath}
@@ -120,7 +120,7 @@ min(\frac{U[u]_{units[p]}} {P[p]_{ccv}}, 2)
 \end{cases}
 \end{dmath}
 
-\paragraph*{Dezentrale Rentenpunkte Bonus}
+\paragraph{Dezentrale Rentenpunkte Bonus}
 Bis zur Periode $P_{bonus} = 480$ werden zusätzliche Bonus DPT 
 ($DPT_{bonus}$) an
 Beitragszahler ausgegeben. Bonus DPT sollen einen Anreiz für

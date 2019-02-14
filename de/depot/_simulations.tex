@@ -1,21 +1,21 @@
 \section{Simulations}
 
-Im Rahmen unserer Untersuchungen wurden verschiedene Simulationen am dezentralisierten Rentenmodell durchgeführt um unterschiedliches Benutzerverhalten zu simulieren und die Anreize und das Model noch weiter zu optimieren.
+Im Rahmen unserer Untersuchungen, haben wir verschiedene Simulationen des dezentralisierten Rentenmodell durchgeführt. Das Ziel ist, unterschiedliches Nutzerverhalten zu simulieren und die Anreize und das Model noch weiter zu optimieren und auf seine Tragfähigkeit hin zu überprüfen. Ein weiteres Ziel der Simulationen ist das Aufzeigen von Nutzergruppen die von dem Rentensystem profitieren oder Verluste erleiden.
 
-Alle Simulationen wurden in Rust auf Github unter der MIT Lizenz veröffentlicht.\\
+Alle Simulationen wurden in der Programmiersprache Rust entwickelt und auf Github unter der MIT Lizenz veröffentlicht.\\
 \url{http://github.com/AsureNetwork/asure-pension-core}
 
 \subsection{Simulation 1: Zero-Win}
 
 Die ersten Simulationen versucht festzustellen, dass es zu keinen Verlusten im System kommt, falls sich alle Nutzer gleich fair und konstant verhalten.
 
-\paragraph{Sim01.} 100 Nutzer Zahlen $1.0 Unit$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
+\paragraph{Sim01.} 100 Nutzer zahlen $1.0 unit$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
 
-\paragraph{Sim02.} 90 Nutzer Zahlen $1.0 Unit$ und 10 Nutzer Zahlen $2.0 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
+\paragraph{Sim02.} 90 Nutzer zahlen $1.0 unit$ und 10 Nutzer Zahlen $2.0 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
 
-\paragraph{Sim03.} 90 Nutzer Zahlen $1.0 Unit$ und 10 Nutzer Zahlen $0.1 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
+\paragraph{Sim03.} 90 Nutzer zahlen $1.0 unit$ und 10 Nutzer Zahlen $0.1 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
 
-\paragraph{Ergebnisse:}
+\paragraph{Ergebnis:}
 
 \begin{table}[hbt!]
 \centering
@@ -72,7 +72,7 @@ User & Periods & Contributions & Result \\ [0.5ex]
 }
 \end{table}
 
-In diesem Fall wurde aufgezeigt, dass bei einem gleichen und fairem Verhalten und keinem Einfluss von Inflation und Deflation es keine Gewinner und keine Verlierer gibt, jeder bekommt seine Einzahlungen einfach zurück.
+Die Simulation zeigt, dass bei einem gleichen und fairem Verhalten und keinem Einfluss von Inflation und Deflation es keine Gewinner und keine Verlierer gibt, jeder bekommt seine Einzahlungen einfach zurück.
 
 \subsection{Simulation 2: Inflation/Deflation}
 
@@ -93,8 +93,8 @@ In dieser Simulationsreihe wird das Verhalten von Inflation und Deflation der Un
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..100 & 1..480 & $sum(1.0 \cdot \frac{1}{1.05^{n}}) = 1456$ & 2320 \\ 
-100..200 & 480..960 & $sum(1.0 \cdot \frac{1}{1.05^{40}}) = 3380$ & 2514 \\ [1ex] 
+1..100 & 1..480 & $\sum_{j=0}^{39} 12 \cdot 1.05^j = 1456$ & 2320 \\ 
+100..200 & 480..960 & $\sum_{j=40}^{79} 12 \cdot 1.05^{j} = 3380$ & 2514 \\ [1ex] 
  \hline
  \end{tabular}%
 }

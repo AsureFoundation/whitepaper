@@ -17,3 +17,5 @@ lerna-debug.log
 *.glo
 *.ist
 *.glsdefs
+*.bbl
+*.blg

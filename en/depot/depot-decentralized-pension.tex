@@ -1,0 +1,41 @@
+\documentclass[10pt,twocolumn]{article}
+%\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{breqn}
+\usepackage{cite}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1.0em}
+
+\begin{document}  
+    \input{_title}
+	\newpage
+	\input{_abstract}	
+%	\tableofcontents
+    \input{_introduction}
+    \input{_spec-payment}
+	\input{_spec-payout}
+    \input{_simulations}   
+    \input{_conclusion}
+    \input{_futurework}
+
+	%\input{_bibliography}
+	\bibliography{_bibliography}{} 	% Literaturliste endgueltig anzeigen
+	\bibliographystyle{plain}
+%\onecolumn
+
+%\vskip 2.2in
+\begin{quote}
+	%\centering
+	\quad\quad\quad\quad Made with decentralized \ensuremath\heartsuit{ }
+\end{quote}
+
+
+\end{document}

@@ -1,21 +1,21 @@
 \section{Simulations}
 
-Im Rahmen unserer Untersuchungen, haben wir verschiedene Simulationen des dezentralisierten Rentenmodell durchgeführt. Das Ziel ist, unterschiedliches Nutzerverhalten zu simulieren und die Anreize und das Model noch weiter zu optimieren und auf seine Tragfähigkeit hin zu überprüfen. Ein weiteres Ziel der Simulationen ist das Aufzeigen von Nutzergruppen die von dem Rentensystem profitieren oder Verluste erleiden.
+As part of our research, we performed several simulations of the decentralized pension model. The goal is to simulate different user behavior and to further optimize the incentives and the model and to check its carrying capacity. Another aim of the simulations is to identify user groups who benefit from the pension system, as well as the ones who suffer losses.
 
-Alle Simulationen wurden in der Programmiersprache Rust entwickelt und auf Github unter der MIT Lizenz veröffentlicht.\\
+All simulations were developed in the programming language Rust and published on Github under the MIT license.\\
 \url{http://github.com/AsureNetwork/asure-pension-core}
 
 \subsection{Simulation 1: Zero-Win}
 
-Die ersten Simulationen versucht festzustellen, dass es zu keinen Verlusten im System kommt, falls sich alle Nutzer gleich fair und konstant verhalten.
+The first simulations try to determine that there will be no losses in the system, if all users behave equally fair and constant.
 
-\paragraph{Sim01.} 100 Nutzer zahlen $1.0 unit$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
+\paragraph{Sim01.} 100 users pay $1.0 unit$ into the pension system and retire at the same time.
 
-\paragraph{Sim02.} 90 Nutzer zahlen $1.0 unit$ und 10 Nutzer Zahlen $2.0 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
+\paragraph{Sim02.} 90 users pay $1.0 unit$ and 10 users pay $2.0 units$ into the pension system and retire at the same time.
 
-\paragraph{Sim03.} 90 Nutzer zahlen $1.0 unit$ und 10 Nutzer Zahlen $0.1 Units$ in das Rentensystem ein und gehen gleichzeitig in die Rente.
+\paragraph{Sim03.} 90 users pay $1.0 unit$ and 10 users pay $0.1 units$ into the pension system and retire at the same time.
 
-\paragraph{Ergebnis:}
+\paragraph{Outcome:}
 
 \begin{table}[hbt!]
 \centering
@@ -72,15 +72,19 @@ User & Periods & Contributions & Result \\ [0.5ex]
 }
 \end{table}
 
-Die Simulation zeigt, dass bei einem gleichen und fairem Verhalten und keinem Einfluss von Inflation und Deflation es keine Gewinner und keine Verlierer gibt, jeder bekommt seine Einzahlungen einfach zurück.
+The simulation shows that with equal and fair behavior and no influence of inflation and deflation there are no winners and no losers, everyone just gets their deposits back.
 
 \subsection{Simulation 2: Inflation/Deflation}
 
+TODO: revalued vs upvalued?
 In dieser Simulationsreihe wird das Verhalten von Inflation und Deflation der Units simuliert. Es ist die Entwertung und Aufwertung der Units, welches einen Einfluss auf den Benutzer hat. Bei einer Abwertung würden die Nutzer mehr Bezahlen und bei einer Aufwertung dementsprechend weniger wobei die Kaufkraft gleich bleiben würde. Durch $CCV$ wird dies automatisch aufgefangen und die Renten Ein- und Auszahlungsverhalten dementsprechend angepasst. 
+This simulation series simulates the behavior of inflation and deflation of the units. It is the devaluation and revaluation of the units that has an influence on the user. If the units were devalued, the users would pay more and if the units were revalued, the purchasing power would remain the same. By $CCV$ this is automatically absorbed and the pension payment and payout behavior is adjusted accordingly. 
 
-\paragraph{Sim14.} Bei einer Inflation von 5\% fehlt der Wert der Units und dementsprechend Zahlen die Benutzer mehr Units. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Inflation in das System zahlen, so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $21.725 Units$. Die nächste Generation beinhaltet keine Inflation, damit das Ergebnis weniger verfälscht wird und einfacher zu Interpretieren ist. 
+\paragraph{Sim14.} Todo: fehlt? oder sinkt
+Bei einer Inflation von 5\% fehlt der Wert der Units und dementsprechend Zahlen die Benutzer mehr Units. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Inflation in das System zahlen, so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $21.725 Units$. Die nächste Generation beinhaltet keine Inflation, damit das Ergebnis weniger verfälscht wird und einfacher zu Interpretieren ist. 
+With an inflation of 5\% the value of the units is missing and accordingly the user numbers more units. If we take 2 generations with 100 users each and let them pay into the system at 5\% annual inflation, the first generation pays $1 Unit$ at the beginning and $21,725 Units$ at the end. The next generation does not include inflation, so the result is less distorted and easier to interpret. 
 
-\paragraph{Ergebnis:}
+\paragraph{Outcome:}
 
 \begin{table}[hbt!]
 \centering
@@ -100,11 +104,11 @@ User & Periods & Contributions & Result \\ [0.5ex]
 }
 \end{table}
 
-Bei diesem Ergebnis sehen wir, dass bei einer Inflation die Units entwertet werden und in beim bestehen des Inflationnevous erhält der Nutzer aus dem System zur Kaufkraft passende Anzahl an Units.
+With this result we see that in the case of inflation the units are devalued and in the case of existing inflation the user receives from the system the number of units matching the purchasing power.
 
-\paragraph{Sim15.} Bei einer Deflation, wo der Wert der Units steigt wird der Benutzer dementsprechend weniger in ein System zahlen. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Deflation in das System zahlen, so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $0.046 Units$. Die nächste Generation beinhaltet keine Deflation, damit das Ergebnis weniger verfälscht wird und einfacher zu Interpretieren ist. 
+\paragraph{Sim15.} In a deflation, where the value of units increases, the user will pay correspondingly less into a system. If we take 2 generations with 100 users each and let them pay into the system at 5\% annual deflation, the first generation pays $1 Unit$ at the beginning and $0.046 Units$ at the end. The next generation does not include deflation, so the result is less distorted and easier to interpret. 
 
-\paragraph{Ergebnis:}
+\paragraph{Outcome:}
 
 \begin{table}[hbt!]
 \centering
@@ -124,16 +128,18 @@ User & Periods & Contributions & Result \\ [0.5ex]
 }
 \end{table}
 
+Todo: Deflationsnevouse
 Bei diesem Ergebnis sehen wir, dass bei einer Deflation die Units einen höheren Wert und Kaufkraft besitzen und beim Bestehen der Deflationsnevouse erhält der Nutzer aus dem System zur Kaufkraft passende Anzahl an Units.
+With this result, we see that in the case of deflation the units have a higher value and purchasing power, and when the deflations exist, the user receives from the system the purchasing power appropriate number of units.
 
 
-\subsection{Simulation 3: Langzeit}
+\subsection{Simulation 3: Long-term}
 
-Langzeit Simulation versucht über mehrere Generationen das Verhalten des Systems wiederzugeben. Dies soll aufzeigen wie sich das System über mehrere Generationen, beim Anstieg verhält und Abstieg der Nutzerzahlen verhält.
+Long-term simulation tries to reproduce the behavior of the system over several generations. It should show how the system behaves over several generations, during the increase and behold decline in user numbers.
 
-\paragraph{Sim20.} Wir simulieren, dass jedes Jahr 10 Nutzer dazu kommt und Konstanz $1 Unit$ Zahlen, nach 40 Jahren geht jede Generation in die Rente und wir simulieren 190 Jahre und 1120 Nutzern. 
+\paragraph{Sim20.} We simulate that every year 10 users come in and constantly pay $1 unit$, after 40 years every generation retires and we simulate 190 years and 1120 users.
 
-\paragraph{Ergebnis:}
+\paragraph{Outcome:}
 
 \begin{table}[hbt!]
 \centering
@@ -158,5 +164,5 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
 }
 \end{table}
 
-Bei diesem Ergebnis ist es gut zu sehen, dass wenn sich die Anzahl der Zahler kleiner ist als Rentner, in dem Moment fangen die Rentner an weniger aus dem System zu bekommen. Die vorletzten Generationen, verlieren in diesem System. In der letzten Generation die wir als Nachzügler bezeichnen, ist wie geplant eine Belohnung ausgezahlt worden. Hier gibt es Verbesserungspotenzial für die vorletzten Generationen um das System noch fairer zu definieren.
+With this result, it is easy to see that if the number of payers is smaller than retirees, at that moment pensioners start to get less out of the system. The penultimate generations lose in this system. In the last generation, which we call latecomers, a reward has been paid as planned. There is room for improvement for the last but one generations to make the system even fairer.
 

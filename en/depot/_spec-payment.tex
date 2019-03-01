@@ -12,7 +12,7 @@ the higher the pension payments in old age.
 \textbf{UP} (Pensioner), or \textbf{UD} (Done).
 The initial state of all users is $U[u]_{state} = UC$ 
 
-\paragraph{Accounts.} The decentralized pension has two accounts: Savings ($W_{savings}$) and laggards  ($W_{laggarts}$). Contributions and pension payments will be charged using these. The savings account contains the total amount of the managed contributions and is used for the monthly processing of deposits and withdrawals. The laggards account manages a reserve, which is paid to the last generation of the pension system.
+\paragraph{Accounts.} The decentralized pension has two accounts: Savings ($W_{savings}$) and Laggards  ($W_{laggarts}$). Contributions and pension payments will be charged using these. The savings account contains the total amount of the managed contributions and is used for the monthly processing of deposits and withdrawals. The laggards account manages a reserve, which is paid to the last generation of the pension system.
 
 \subsection{Payment of contributions}
 
@@ -64,8 +64,7 @@ U[u]_{pensionperiods} = \frac{U[u]_{contrib}^2}{P_{target}}
 
 
 \subsubsection{Decentralized pension points}
-For the contributions paid for a period ($U[u]_{units[p]}$), a contributor receives decentralized pension points.
-($DPT$). The total number of DPT of a contributor at retirement age is used to calculate the amount of the pension payable.
+For the contributions paid for a period ($U[u]_{units[p]}$), a contributor receives decentralized pension points in the form of decentralized pension tokens ($DPT$). The total number of DPT of a contributor at retirement age is used to calculate the amount of the pension payable.
 
 \begin{equation}
 U[u]_{dpt[p]} = DPT(u, p)

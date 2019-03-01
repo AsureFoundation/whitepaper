@@ -4,19 +4,19 @@ Performance principle. The longer a contributor pays into the pension system,
 the longer benefits are paid out in old age and the higher the contributions,
 the higher the pension payments in old age.
 
-\paragraph{Generic currency unit.} The design of the pension is not fixed to a specific currency unit such as ETH or BTC. Instead, the design of the pension system the generic currency unit "\textbf{unit}". The unit must be replaced by a specific currency for the concrete implementation.
+\paragraph{Generic currency unit.} The design of the pension is not fixed to a specific currency unit such as ETH or BTC. Instead, the design of the pension system uses the generic currency unit "\textbf{unit}". The unit must be replaced by a specific currency for the concrete implementation.
 
-\paragraph{Periods.} The pension system is divided into periods, which are defined as $P$. Each action within the pension system takes place in a $P[p]$ period. The duration of a period ($P_{duration}$) is freely selectable. Within the following consideration $P_{duration} = 1 month$ applies.
+\paragraph{Periods.} The pension system is divided into periods, which are defined as $P$. Each action within the pension system takes place in a period $P[p]$. The duration of a period ($P_{duration}$) is freely selectable. Within the following consideration $P_{duration} = 1 month$ applies.
 
-\paragraph{Users.} All users of the pension system are defined as $U$ and individual users are defined as $U[u]$. Each user has a state $U[u]_{state}$ which contains the states \textbf{UC} (Contributor),
-\textbf{UP} (Pensioner) and \textbf{UD} (Done).
+\paragraph{Users.} All users of the pension system are defined as $U$ and individual users are defined as $U[u]$. Each user has a state $U[u]_{state}$ which can be either \textbf{UC} (Contributor),
+\textbf{UP} (Pensioner), or \textbf{UD} (Done).
 The initial state of all users is $U[u]_{state} = UC$ 
 
-\paragraph{Accounts.} The decentralized pension has two accounts: Reserves ($W_{savings}$) and latecomers  ($W_{laggarts}$). Contributions and pension payments will be charged using these. The reserve account contains the total amount of the managed contributions and is used for the monthly processing of deposits and withdrawals. The latecomers account manages a reserve, which is paid to the last generation of the pension system.
+\paragraph{Accounts.} The decentralized pension has two accounts: Savings ($W_{savings}$) and laggards  ($W_{laggarts}$). Contributions and pension payments will be charged using these. The savings account contains the total amount of the managed contributions and is used for the monthly processing of deposits and withdrawals. The laggards account manages a reserve, which is paid to the last generation of the pension system.
 
 \subsection{Payment of contributions}
 
-Contributors can pay $P[p]$ in a period. The total amount per period and user is defined as $U[u]_{units[p]}$. The total number of periods in which a contributor has paid is defined as $U[u]_{contrib}$.
+Contributors can contribute in a period $P[p]$. The total amount per period and user is defined as $U[u]_{units[p]}$. The total number of periods in which a contributor has paid is defined as $U[u]_{contrib}$.
 
 \begin{equation}
 U[u]_{contrib} = \sum_{p=0}^{|P|} \begin{cases} 
@@ -26,7 +26,7 @@ U[u]_{contrib} = \sum_{p=0}^{|P|} \begin{cases}
 \end{equation}
 
 
-All contribution payments of a period $P[p]$ are credited to the reserve account $W_{savings}$.
+All contribution payments of a period $P[p]$ are credited to the savings account $W_{savings}$.
 Entries from contributors who do not have any pension entitlement periods ($U[u]_{pensionperiods} = 0$) will also be credited to the $W_{laggarts}$ account.
 
 
@@ -56,7 +56,7 @@ for the number of contribution periods.
 
 If the number of contribution periods corresponds to the target value, the number of pension entitlement periods should correspond exactly to the target value. If the number of contribution periods below or above the target value, the number of pension entitlement periods are correspondingly disproportionately smaller or larger.  
 
-The number of pension claim periods is defined as follows:
+The number of pension entitlement periods is defined as follows:
 
 \begin{equation}
 U[u]_{pensionperiods} = \frac{U[u]_{contrib}^2}{P_{target}}

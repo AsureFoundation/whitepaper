@@ -74,7 +74,7 @@ U[u]_{dpt[p]} = DPT(u, p)
 DPT(u, p) = DPT_{base}(u, p) \cdot DPT_{bonus}(p)
 \end{equation}
 
-\paragraph*{Current contribution value}
+\paragraph*{Current contribution value:}
 The current contribution value (CCV) is calculated at the beginning of each period $P[n]$ and defined as $P[p]_{ccv}$. The CCV is the reference value for a $DPT$ of the corresponding period.
 
 To calculate the CCV of the $P[p]$ period, the CCV of the previous period $P[n-1]$ is used.
@@ -94,8 +94,8 @@ P[p]_{ccv} & _{otherwise}
 \end{cases}
 \end{equation}
 
-\paragraph{Decentralized pension points basis}
-The pension points is the ERC20 tokenization of purchasing power in blockchain systems and is an abstraction to purchasing power where the $CCV$ value represents the reference as to how the willingness to pay was present in past periods. For a deposit equal to CCV, 1.0 DPT points are credited to the sender. Anything above the CCV value will be credited with a maximum of 2.0 DPT, it is possible to pay more than twice the CCV value. If the CCV value is lower than the CCV value, less DPT will be credited proportionally to the lower CCV value.
+\paragraph*{Decentralized pension points basis:}
+The pension points is the ERC20 tokenization of purchasing power in blockchain systems and is an abstraction to purchasing power where the $CCV$ value represents the reference as to how the willingness to pay was present in past periods. For a deposit equal to CCV, 1.0 DPT points are credited to the sender. Anything above the CCV value will be credited with a maximum of 2.0 DPT, it is possible to pay more than twice the CCV value. If the CCV value is lower than the CCV value, less DPT will be credited proportionally to the $min$ value.
 
 \begin{dmath}
 DPT_{base}(u, p) = \begin{cases} 
@@ -107,7 +107,7 @@ min(\frac{U[u]_{units[p]}} {P[p]_{ccv}}, 2)
 \end{cases}
 \end{dmath}
 
-\paragraph{Decentralized pension points bonus}
+\paragraph*{Decentralized pension points bonus:}
 Up to the period $P_{bonus} = 480$ additional bonus DPT ($DPT_{bonus}$) will be issued to contributors. Bonus DPT are intended to create an incentive for the first users of the pension system and thus reward the users who believed in and invested in the system at an early stage. The concept of Bonus DPT is based on the reduction of mining rewards known from the Bitcoin protocol.
 
 \begin{equation}

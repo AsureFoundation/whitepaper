@@ -99,8 +99,8 @@ With an inflation of 5\% the value of the units is missing and accordingly the u
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..100 & 1..480 & $\sum_{j=0}^{39} 12 \cdot 1.05^j = 1456$ & 2320 \\ 
-100..200 & 480..960 & $\sum_{j=40}^{79} 12 \cdot 1.05^{j} = 3380$ & 2514 \\ [1ex] 
+1..100 & 1..480 & $\sum_{j=0}^{39} 12 \cdot CCV \cdot 1.05^j = 1450$ & 3831 \\ 
+100..200 & 480..960 & $\sum_{j=40}^{79} 12 \cdot CCV \cdot 1.05^{j} = 10165$ & 7783 \\ [1ex] 
  \hline
  \end{tabular}%
 }
@@ -123,8 +123,8 @@ With this result we see that in the case of inflation the units are devalued and
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..100 & 1..480 & $sum(1.0 \cdot 1.05^{n}) = 215$ & 189 \\ 
-100..200 & 480..960 & $sum(1.0 \cdot 1.05^{40}) = 68$ & 94 \\ [1ex] 
+1..100 & 1..480 & $sum(CCV \cdot 1.05^{n}) = 217$ & 150 \\ 
+100..200 & 480..960 & $sum(CCV \cdot 1.05^{40}) = 31$ & 98 \\ [1ex] 
  \hline
  \end{tabular}%
 }

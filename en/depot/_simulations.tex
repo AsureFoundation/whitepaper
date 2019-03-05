@@ -29,8 +29,8 @@ The first simulations try to determine that there will be no losses in the syste
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..10 & 1..480 & $1.0 \cdot 480 = 480$ & 480\\ 
-20..100 & 1..480 & $1.0 \cdot 480 = 480$ & 480\\ [1ex] 
+1..10 & 1..480 & $1.0 \cdot 480 = 480_{Units}$ & $480_{Units}$\\ 
+20..100 & 1..480 & $1.0 \cdot 480 = 480_{Units}$ & $480_{Units}$\\ [1ex] 
  \hline
  \end{tabular}%
 }
@@ -47,8 +47,8 @@ User & Periods & Contributions & Result \\ [0.5ex]
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..10 & 1..480 & $2.0 \cdot 480 = 960$ & 960\\ 
-20..100 & 1..480 & $1.0 \cdot 480 = 480$ & 480 \\ [1ex] 
+1..10 & 1..480 & $2.0 \cdot 480 = 960_{Units}$ & $960_{Units}$\\ 
+20..100 & 1..480 & $1.0 \cdot 480 = 480_{Units}$ & $480_{Units}$ \\ [1ex] 
  \hline
  \end{tabular}%
 }
@@ -66,8 +66,8 @@ User & Periods & Contributions & Result \\ [0.5ex]
 
  User & Periods & Contributions & Result \\ [0.5ex] 
  \hline
-1..10 & 1..480 & $0.1 \cdot 480 = 48$ & 48 \\ 
-20..100 & 1..480 & $1.0 \cdot 480 = 480$ & 480 \\ [1ex] 
+1..10 & 1..480 & $0.1 \cdot 480 = 48_{Units}$ & $48_{Units}$ \\ 
+20..100 & 1..480 & $1.0 \cdot 480 = 480_{Units}$ & $480_{Units}$ \\ [1ex] 
  \hline
  \end{tabular}%
 }
@@ -99,8 +99,8 @@ With an inflation of 5\% the value of the units is missing and accordingly the u
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..100 & 1..480 & $\sum_{j=0}^{39} 12 \cdot CCV \cdot 1.05^j = 1450$ & 3831 \\ 
-100..200 & 480..960 & $\sum_{j=40}^{79} 12 \cdot CCV \cdot 1.05^{j} = 10165$ & 7783 \\ [1ex] 
+1..100 & 1..480 & $\sum_{j=0}^{39} 12 \cdot CCV \cdot 1.05^j = 1450_{Units}$ & $3831_{Units}$ \\ 
+100..200 & 480..960 & $\sum_{j=40}^{79} 12 \cdot CCV \cdot 1.05^{j} = 10165_{Units}$ & $7783_{Units}$ \\ [1ex] 
  \hline
  \end{tabular}%
 }
@@ -123,14 +123,14 @@ With this result we see that in the case of inflation the units are devalued and
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..100 & 1..480 & $sum(CCV \cdot 1.05^{n}) = 217$ & 150 \\ 
-100..200 & 480..960 & $sum(CCV \cdot 1.05^{40}) = 31$ & 98 \\ [1ex] 
+1..100 & 1..480 & $sum(CCV \cdot 1.05^{n}) = 217_{Units}$ & $150_{Units}$ \\ 
+100..200 & 480..960 & $sum(CCV \cdot 1.05^{40}) = 31_{Units}$ & $98_{Units}$ \\ [1ex] 
  \hline
  \end{tabular}%
 }
 \end{table}
 
-Todo: Deflationsnevouse
+%Todo: Deflationsnevouse
 %Bei diesem Ergebnis sehen wir, dass bei einer Deflation die Units einen höheren Wert und Kaufkraft besitzen und beim Bestehen der Deflationsnevouse erhält der Nutzer aus dem System zur Kaufkraft passende Anzahl an Units.
 With this result, we see that in the case of deflation the units have a higher value and purchasing power, and when the deflations exist, the user receives from the system the purchasing power appropriate number of units.
 
@@ -153,14 +153,14 @@ Long-term simulation tries to reproduce the behavior of the system over several 
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..10 & 1..480 & $1.0 \cdot 480 = 480$ & 952 \\ 
-10..20 & 12..492 & $1.0 \cdot 480 = 480$ & 937 \\
+1..10 & 1..480 & $1.0 \cdot 480 = 480_{Units}$ & $952_{Units}$ \\ 
+10..20 & 12..492 & $1.0 \cdot 480 = 480_{Units}$ & $937_{Units}$ \\
 $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
-420..430 & 12..984 & $1.0 \cdot 480 = 480$ & 484 \\
-430..440 & 12..996 & $1.0 \cdot 480 = 480$ & 477 \\
+420..430 & 12..984 & $1.0 \cdot 480 = 480_{Units}$ & $484_{Units}$ \\
+430..440 & 12..996 & $1.0 \cdot 480 = 480_{Units}$ & $477_{Units}$ \\
 $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
-1100..1110 & 1320..1800 & $1.0 \cdot 480 = 480$ & 233 \\
-1110..1120 & 1332..1812 & $1.0 \cdot 480 = 480$ & 2585 \\ [1ex] 
+1100..1110 & 1320..1800 & $1.0 \cdot 480 = 480_{Units}$ & $233_{Units}$ \\
+1110..1120 & 1332..1812 & $1.0 \cdot 480 = 480_{Units}$ & $2585_{Units}$ \\ [1ex] 
  \hline
  \end{tabular}%
 }

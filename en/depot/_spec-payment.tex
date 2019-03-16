@@ -74,35 +74,34 @@ U[u]_{dpt[p]} = DPT(u, p)
 DPT(u, p) = DPT_{base}(u, p) \cdot DPT_{bonus}(p)
 \end{equation}
 
-\paragraph*{Current contribution value:}
-The current contribution value (CCV) is calculated at the beginning of each period $P[n]$ and defined as $P[p]_{ccv}$. The CCV is the reference value for a $DPT$ of the corresponding period.
+\paragraph*{Purchasing Power Index:}
+The purchasing power index ($PPI$) is calculated at the beginning of each period $P[n]$ and defined as $P[p]_{ppi}$. The $PPI$ is the reference value for a $DPT$ of the corresponding period.
 
-To calculate the CCV of the $P[p]$ period, the CCV of the previous period $P[n-1]$ is used.
-If the difference between CCV and the average contribution for the period $P[n-1]$ is greater than 10\%, the CCV of the period $P[n]$ is increased or decreased by 10\% accordingly.
-If the average contribution fluctuates sharply, the CCV slowly feeds on the new average and large jumps are avoided.
-
+To calculate the $PPI$ of the $P[p]$ period, the $PPI$ of the previous period $P[n-1]$ is used.
+If the difference between $PPI$ and the average contribution for the period $P[n-1]$ is greater than 10\%, the $PPI$ of the period $P[n]$ is increased or decreased by 10\% accordingly.
+If the average contribution fluctuates sharply, the $PPI$ slowly feeds on the new average and large jumps are avoided.
 
 \begin{equation}
 P[p]_{units} = avg(\sum_{u=0}^{|U|} U[u]_{units[p]})
 \end{equation}
 
 \begin{equation}
-P[p]_{ccv} = \begin{cases} 
-P[p]_{ccv} \cdot 1.1 & _{if P[p]_{units} \cdot 1.1 > P[p-1]_{ccv}} \\
-P[p]_{ccv} \cdot 0.9 & _{if P[p]_{units} \cdot 0.9 < P[p-1]_{ccv}} \\
-P[p]_{ccv} & _{otherwise}
+P[p]_{ppi} = \begin{cases} 
+P[p]_{ppi} \cdot 1.1 & _{if P[p]_{units} \cdot 1.1 > P[p-1]_{ppi}} \\
+P[p]_{ppi} \cdot 0.9 & _{if P[p]_{units} \cdot 0.9 < P[p-1]_{ppi}} \\
+P[p]_{ppi} & _{otherwise}
 \end{cases}
 \end{equation}
 
 \paragraph*{Decentralized pension points basis:}
-The pension points is the ERC20 tokenization of purchasing power in blockchain systems and is an abstraction to purchasing power where the $CCV$ value represents the reference as to how the willingness to pay was present in past periods. For a deposit equal to CCV, 1.0 DPT points are credited to the sender. Anything above the CCV value will be credited with a maximum of 2.0 DPT, it is possible to pay more than twice the CCV value. If the CCV value is lower than the CCV value, less DPT will be credited proportionally to the $min$ value.
+The pension points is the ERC20 tokenization of purchasing power in blockchain systems and is an abstraction to purchasing power where the $PPI$ value represents the reference as to how the willingness to pay was present in past periods. For a deposit equal to $PPI$, 1.0 DPT points are credited to the sender. Anything above the $PPI$ value will be credited with a maximum of 2.0 DPT, it is possible to pay more than twice the $PPI$ value. If the $PPI$ value is lower than the $PPI$ value, less DPT will be credited proportionally to the $min$ value.
 
 \begin{dmath}
 DPT_{base}(u, p) = \begin{cases} 
-min(\frac{U[u]_{units[p]}} {P[p]_{ccv}}, 2) 
-  & _{if U[u]_{units[p]} > P[p]_{ccv}} \\
-\frac{U[u]_{units[p]} - min} {P[p]_{ccv} - min} 
-  & _{if U[u]_{units[p]} < P[p]_{ccv}} \\
+min(\frac{U[u]_{units[p]}} {P[p]_{ppi}}, 2) 
+  & _{if U[u]_{units[p]} > P[p]_{ppi}} \\
+\frac{U[u]_{units[p]} - min} {P[p]_{ppi} - min} 
+  & _{if U[u]_{units[p]} < P[p]_{ppi}} \\
 1.0 & _{otherwise}
 \end{cases}
 \end{dmath}

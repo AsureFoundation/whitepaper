@@ -79,7 +79,7 @@ The simulation shows that with the constant and fair behavior and no influence o
 %TODO: revalued vs upvalued?
 %In dieser Simulationsreihe wird das Verhalten von Inflation und Deflation der Units simuliert. Es ist die Entwertung und Aufwertung der Units, welches einen Einfluss auf den Benutzer hat. Bei einer Abwertung würden die Nutzer mehr Bezahlen und bei einer Aufwertung dementsprechend weniger wobei die Kaufkraft gleich bleiben würde. Durch $CCV$ wird dies automatisch aufgefangen und die Renten Ein- und Auszahlungsverhalten dementsprechend angepasst. 
 
-This simulation series simulates the behavior of inflation and deflation of the units. It is the devaluation and revaluation of the units that has an influence on the user. If the units were devalued, the users would pay more and if the units were revalued, the purchasing power would remain the same. By $CCV$ this is automatically absorbed and the pension payment and payout behavior is adjusted accordingly. 
+This simulation series simulates the behavior of inflation and deflation of the units. It is the devaluation and revaluation of the units that has an influence on the user. If the units were devalued, the users would pay more and if the units were revalued, the purchasing power would remain the same. By $PPI$ this is automatically absorbed and the pension payment and payout behavior is adjusted accordingly. 
 
 \paragraph{Sim14:} 
 %Todo: fehlt? oder sinkt
@@ -99,8 +99,8 @@ With an inflation of 5\% the value of the units is missing and accordingly the u
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..100 & 1..480 & $\sum_{j=0}^{39} 12 \cdot CCV \cdot 1.05^j = 1450_{Units}$ & $3831_{Units}$ \\ 
-100..200 & 480..960 & $\sum_{j=40}^{79} 12 \cdot CCV \cdot 1.05^{j} = 10165_{Units}$ & $7783_{Units}$ \\ [1ex] 
+1..100 & 1..480 & $\sum_{j=0}^{39} 12 \cdot PPI \cdot 1.05^j = 1450_{Units}$ & $3831_{Units}$ \\ 
+100..200 & 480..960 & $\sum_{j=40}^{79} 12 \cdot PPI \cdot 1.05^{j} = 10165_{Units}$ & $7783_{Units}$ \\ [1ex] 
  \hline
  \end{tabular}%
 }
@@ -123,8 +123,8 @@ With this result we see that in the case of inflation the units are devalued and
 \hline
 User & Periods & Contributions & Result \\ [0.5ex] 
 \hline
-1..100 & 1..480 & $sum(CCV \cdot 1.05^{n}) = 217_{Units}$ & $150_{Units}$ \\ 
-100..200 & 480..960 & $sum(CCV \cdot 1.05^{40}) = 31_{Units}$ & $98_{Units}$ \\ [1ex] 
+1..100 & 1..480 & $sum(PPI \cdot 1.05^{n}) = 217_{Units}$ & $150_{Units}$ \\ 
+100..200 & 480..960 & $sum(PPI \cdot 1.05^{40}) = 31_{Units}$ & $98_{Units}$ \\ [1ex] 
  \hline
  \end{tabular}%
 }

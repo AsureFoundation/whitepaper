@@ -1,12 +1,12 @@
 \section{Decentralized pension}
 The decentralized pension is essentially based on the pay-as-you-go system and the
-Performance principle. The longer a contributor pays into the pension system, 
+performance principle. The longer a contributor pays into the pension system, 
 the longer benefits are paid out in old age and the higher the contributions,
 the higher the pension payments in old age.
 
-\paragraph{Generic currency unit.} The design of the pension is not fixed to a specific currency unit such as ETH or BTC. Instead, the design of the pension system uses the generic currency unit "\textbf{unit}". The unit must be replaced by a specific currency for the concrete implementation.
+\paragraph{Generic currency unit.} The design of the pension system is not tied to a specific currency unit such as ETH or BTC; instead, it uses the generic currency unit "\textbf{unit}". The unit must be replaced by a specific currency for the concrete implementation.
 
-\paragraph{Periods.} The pension system is divided into periods, which are defined as $P$. Each action within the pension system takes place in a period $P[p]$. The duration of a period ($P_{duration}$) is freely selectable. Within the following consideration $P_{duration} = 1 month$ applies.
+\paragraph{Periods.} The pension system is divided into periods, which are defined as $P$. Each action within the pension system takes place in a period $P[p]$. The duration of a period ($P_{duration}$) is freely selectable. Within the following calculations we consider $P_{duration} = 1 month$.
 
 \paragraph{Users.} All users of the pension system are defined as $U$ and individual users are defined as $U[u]$. Each user has a state $U[u]_{state}$ which can be either \textbf{UC} (Contributor),
 \textbf{UP} (Pensioner), or \textbf{UD} (Done).
@@ -43,8 +43,7 @@ U[u]_{units[p]} & _{if U[u]_{pensionperiods} = 0} \\
 \end{dmath}
 
 \subsubsection{Pension entitlement periods}
-The pension entitlement periods ($U[u]_{pensionperiods}$) of a pensioner determines the number of periods,
-in which a pension payment is made. The higher the number of contribution periods
+The pension entitlement periods ($U[u]_{pensionperiods}$) determines the number of periods, in which a pension payment is made. The higher the number of contribution periods
 $U[u]_{contrib}$, the higher the number of pension entitlement periods.
 
 To incentivize a large number of contribution periods, a target value ($P_{target}$) is used

@@ -6,7 +6,7 @@ All simulations were developed in the programming language $Rust$ and published 
 \url{https://github.com/AsureNetwork/asure-pension-core}} under the MIT license.\\
 
 
-\subsection{Simulation 1: Zero-Win}
+\subsection{Simulation: Zero-Win}
 
 The first simulations try to determine that there will be no losses in the system, if all users behave in a constantly fair manner.
 
@@ -73,17 +73,12 @@ User & Periods & Contributions & Result \\ [0.5ex]
 }
 \end{table}
 
-The simulation shows that with the constant and fair behavior and no influence of inflation and deflation there are no winners and no losers, everyone just gets their deposits back without any influence of inflation or deflation in economics.
+The simulation shows that with the constant and fair behavior and no influence of inflation and deflation there are no winners and no losers, everyone just gets their deposits back without any influence of inflation or deflation in economics. As the first generation also participates in the last payout, the laggards assets are also redistributed and the system is in its original state.
 
-\subsection{Simulation 2: Inflation/Deflation}
-%TODO: revalued vs upvalued?
-%In dieser Simulationsreihe wird das Verhalten von Inflation und Deflation der Units simuliert. Es ist die Entwertung und Aufwertung der Units, welches einen Einfluss auf den Benutzer hat. Bei einer Abwertung würden die Nutzer mehr Bezahlen und bei einer Aufwertung dementsprechend weniger wobei die Kaufkraft gleich bleiben würde. Durch $CCV$ wird dies automatisch aufgefangen und die Renten Ein- und Auszahlungsverhalten dementsprechend angepasst. 
-
+\subsection{Simulation: Inflation/Deflation}
 This simulation series simulates the behavior of inflation and deflation of the units. It is the devaluation and revaluation of the units that has an influence on the user. If the units were devalued, the users would pay more and if the units were revalued, the purchasing power would remain the same. By $PPI$ this is automatically absorbed and the pension payment and payout behavior is adjusted accordingly. 
 
 \paragraph{Sim14:} 
-%Todo: fehlt? oder sinkt
-%Bei einer Inflation von 5\% fehlt der Wert der Units und dementsprechend Zahlen die Benutzer mehr Units. Nehmen wir 2 Generationen mit je 100 Nutzern und lassen diese bei 5\% jährlicher Inflation in das System zahlen, so zahlt die erste Generation am Anfang $1 Unit$  und am Ende $21.725 Units$. Die nächste Generation beinhaltet keine Inflation, damit das Ergebnis weniger verfälscht wird und einfacher zu Interpretieren ist. 
 With an inflation of 5\% the value of the units is missing and accordingly the user numbers more units. If we take 2 generations with 100 users each and let them pay into the system at 5\% annual inflation, the first generation pays $1 Unit$ at the beginning and $21,725 Units$ at the end. 
 
 \paragraph{Outcome:}
@@ -130,12 +125,11 @@ User & Periods & Contributions & Result \\ [0.5ex]
 }
 \end{table}
 
-%Todo: Deflationsnevouse
-%Bei diesem Ergebnis sehen wir, dass bei einer Deflation die Units einen höheren Wert und Kaufkraft besitzen und beim Bestehen der Deflationsnevouse erhält der Nutzer aus dem System zur Kaufkraft passende Anzahl an Units.
+
 With this result, we see that in the case of deflation the units have a higher value and purchasing power, and when the deflations exist, the user receives from the system the purchasing power appropriate number of units.
 
 
-\subsection{Simulation 3: Long-term}
+\subsection{Simulation: Long-term}
 
 Long-term simulation tries to reproduce the behavior of the system over several generations. It should show how the system behaves over several generations, during the increase and behold decline in user numbers.
 

@@ -10,6 +10,7 @@
 \usepackage{paralist}
 \usepackage{breqn}
 \usepackage{cite}
+\usepackage[sort=none]{glossaries-extra}
 
 \usepackage{titlesec}
 \usepackage{lipsum}% provides filler text
@@ -22,7 +23,6 @@
 \setlength{\parskip}{1.0em}
 
 \begin{document}  
-
 	%\renewcommand{\baselinestretch}{0.4}\normalsize
 	
     \input{_title}
@@ -43,13 +43,14 @@
 	%\input{_bibliography}
 	\bibliography{_bibliography}{} 	% Literaturliste endgueltig anzeigen
 	\bibliographystyle{plain}
-%\onecolumn
+	%\onecolumn
+	
+ 	% list all entries
+	\printunsrtglossaries
 
-%\vskip 2.2in
-\begin{quote}
+	%\vskip 2.2in
+	\begin{quote}
 	%\centering
-	\quad\quad\quad\quad Made with decentralized \ensuremath\heartsuit{ }
-\end{quote}
-
-
+		\quad\quad\quad\quad Made with decentralized 		 \ensuremath\heartsuit{ }
+	\end{quote}
 \end{document}

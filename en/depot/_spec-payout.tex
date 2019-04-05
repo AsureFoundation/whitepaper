@@ -53,7 +53,7 @@ CPR(p) = min(CPR_{a}(p), CPR_{b}(p))
 
 \subsubsection{Reserve pension rate ($SPR$)}
 
-Surplus contributions are reserved as a reserve and $P[p]$ is paid out proportionately in each period. The reserve is paid out in such a way that it is distributed evenly over all active users ($P[p]_{auc}$), their DPT and all active pension entitlement periods of the pension system $(P[p]_{top})$. The reserve pension rate $SPR(p, units)$ thus defines the conversion rate from DPT to reserves.
+Surplus contributions are reserved as a reserve and $P[p]$ is paid out proportionately in each period. The reserve is paid out in such a way that it is distributed evenly over all active users ($P[p]_{auc}$), their DPT and all active pension entitlement periods of the pension system $(P[p]_{tpep})$. The reserve pension rate $SPR(p, units)$ thus defines the conversion rate from DPT to reserves.
 
 % auc = active user count
 
@@ -71,26 +71,28 @@ U[u]_{dpt\_total} & _{otherwise}
 \end{cases}
 \end{equation}
 
-\begin{equation*}
-TOPP(u) = \sum_{p=0}^{|P|} \begin{cases}
+To calculate the total number of a pension entitlement periods of a given user $U[u]$, $TPEP(u)$ is defined as follows:
+
+\begin{equation}
+TPEP(u) = \sum_{p=0}^{|P|} \begin{cases}
 1 & _{if U[u]_{pension[p]} > 0}\\
 0 & _{otherwise}\\
 \end{cases}
-\end{equation*}
+\end{equation}
 
 
-% top = total open periods
+% tpep = total pension entitlement periods
 
 \begin{equation}
-P[p]_{top} = \sum_{u=0}^{|U|} \begin{cases} 
-P_{target} - TOPP(u)  & _{if U[u]_{state} = DP}\\
+P[p]_{tpep} = \sum_{u=0}^{|U|} \begin{cases}
+P_{target} - TPEP(u)  & _{if U[u]_{state} = DP}\\
 P_{target} & _{if U[u]_{state} = DC}\\
 0 & _{otherwise}
 \end{cases}
 \end{equation}
 
 \begin{equation}
-SPR(p, units) = \frac{units} {P[p]_{active\_dpt} \dot {\frac{P[p]_{top}} {P[p]_{auc}}}
+SPR(p, units) = \frac{units} {P[p]_{active\_dpt} \dot {\frac{P[p]_{tpep}} {P[p]_{auc}}}
 }
 \end{equation}
 
@@ -110,7 +112,7 @@ total\_pensioners =  \sum_{u=0}^{|U|} \begin{cases}
 
 \begin{equation}
 LPR(p, units) =  \begin{cases} 
-SPR(p, units)  & _{if \frac{total_pensioners} {P[p]_{top}} = 1}\\
+SPR(p, units)  & _{if \frac{total_pensioners} {P[p]_{tpep}} = 1}\\
 0 & _{otherwise}
 \end{cases}
 \end{equation}$  $

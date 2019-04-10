@@ -10,7 +10,7 @@
 \usepackage{paralist}
 \usepackage{breqn}
 \usepackage{cite}
-\usepackage[sort=none]{glossaries-extra}
+\usepackage[sort=use]{glossaries-extra}
 
 \usepackage{titlesec}
 \usepackage{lipsum}% provides filler text
@@ -21,6 +21,31 @@
   0.1em}%space after (horizontal)
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1.0em}
+
+\newglossaryentry{blockchain}{name={Blockchain},plural={Blockchains},
+description={A system in which a record of transactions are maintained across several computers that are linked in a peer-to-peer network.}}
+\newglossaryentry{ethereum}{name={Ethereum},plural={Ethereum},
+description={A decentralized software platform that enables SmartContracts and Distributed Applications (ĐApps).}}
+\newglossaryentry{eth}{name={ETH},plural={eth},
+description={Native token of the Ethereum blockchain.}}
+\newglossaryentry{btc}{name={BTC},plural={BTC},
+description={Native token of the Bitcoin blockchain.}}
+\newglossaryentry{erc20}{name={ERC20},plural={ERC20},
+description={A technical standard used for smart contracts on the Ethereum blockchain for implementing tokens.}}
+\newglossaryentry{smartcontract}{name={SmartContract},plural={SmartContract},
+description={A smart contract is a computer protocol intended to digitally facilitate, verify, or enforce the negotiation or performance of a contract. Smart contracts allow the performance of credible transactions without third parties. These transactions are trackable and irreversible.}}
+\newglossaryentry{account}{name={account},plural={accounts},
+description={A hash of a public key which can hold values. Hold values can only be accessed by knowing the corresponding private key.}}
+\newglossaryentry{gdpr}{name={GDPR},plural={GDPR},
+description={The General Data Protection Regulation (EU) 2016/679 ("GDPR") is a regulation in EU law on data protection and privacy for all individuals within the European Union (EU).}}
+\newglossaryentry{payg}{name={PAYG},plural={PAYG},
+description={a method of financing social insurance, especially old-age provision, but also health insurance and unemployment insurance. The paid-in contributions are used directly to finance the beneficiaries, ie they are paid back to them.}}
+\newglossaryentry{cpr}{name={CPR},plural={CPR},
+description={The contribution pension rate  defines the conversion rate from DPT to contributions.}}
+\newglossaryentry{dpt}{name={DPT},plural={DPT},
+description={Decentralized pension tokens represent the contributed amounts relative to all other contributions of a given period.}}
+\newglossaryentry{ppi}{name={PPI},plural={PPI},
+description={The purchasing power index represents the reference value for a \gls{dpt}¸ of the corresponding period.}}
 
 \begin{document}  
 	%\renewcommand{\baselinestretch}{0.4}\normalsize

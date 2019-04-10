@@ -9,11 +9,32 @@
 \usepackage{url}
 \usepackage{float}
 \usepackage{color} 
+\usepackage[sort=use]{glossaries-extra}
 
 %\definecolor{pagecolor}{rgb}{0.8,0.9,0.9}
 
 \usepackage[tocflat]{tocstyle}
 \usetocstyle{standard}
+
+\newglossaryentry{blockchain}{name={Blockchain},plural={Blockchains},
+description={A system in which a record of transactions are maintained across several computers that are linked in a peer-to-peer network.}}
+\newglossaryentry{ethereum}{name={Ethereum},plural={Ethereum},
+description={A decentralized software platform that enables SmartContracts and Distributed Applications (ĐApps).}}
+\newglossaryentry{eth}{name={ETH},plural={eth},
+description={Native token of the Ethereum blockchain.}}
+\newglossaryentry{btc}{name={BTC},plural={BTC},
+description={Native token of the Bitcoin blockchain.}}
+\newglossaryentry{erc20}{name={ERC20},plural={ERC20},
+description={A technical standard used for smart contracts on the Ethereum blockchain for implementing tokens.}}
+\newglossaryentry{smartcontract}{name={SmartContract},plural={SmartContract},
+description={A smart contract is a computer protocol intended to digitally facilitate, verify, or enforce the negotiation or performance of a contract. Smart contracts allow the performance of credible transactions without third parties. These transactions are trackable and irreversible.}}
+\newglossaryentry{account}{name={Account},plural={accounts},
+description={A hash of a public key which can hold values. Hold values can only be accessed by knowing the corresponding private key.}}
+\newglossaryentry{gdpr}{name={GDPR},plural={GDPR},
+description={The General Data Protection Regulation (EU) 2016/679 ("GDPR") is a regulation in EU law on data protection and privacy for all individuals within the European Union (EU).}}
+\newglossaryentry{payg}{name={PAYG},plural={PAYG},
+description={a method of financing social insurance, especially old-age provision, but also health insurance and unemployment insurance. The paid-in contributions are used directly to finance the beneficiaries, ie they are paid back to them.}}
+
 
 \begin{document}
 
@@ -28,6 +49,9 @@
 
 \input{_abstract}
 
+% list all entries
+\printunsrtglossaries
+\newpage
 \tableofcontents
 
 \newpage
@@ -68,8 +92,9 @@
 \newpage
 % Literaturliste endgueltig anzeigen
 \input{_bibliography}
+\bibliographystyle{ieeetr}
+%\bibliography{literatur}
 
-\bibliography{literatur}
 
 
 \vskip 2.2in

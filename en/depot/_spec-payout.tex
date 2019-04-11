@@ -30,6 +30,7 @@ P\_Units_{p} = \sum_{u=0}^{|U|} U\_Units_{u,p}
 The pensions to be paid are determined by the average contribution payment of the 
 period ($avg(P\_Units_{p})$) is capped. If there are more contributors than pensioners in the system, any surpluses are used as a reserve and are not paid out directly. If the contribution payments are not sufficient to pay the average contribution payment for the respective period, the contributions are distributed proportionally to all pensioners and pension payments using the DPT.
 
+\begin{subequations}
 \begin{dmath}
 P\_Dpt\_pensioner_{p} = 
 \sum_{u=0}^{|U|} \begin{cases} 
@@ -38,17 +39,18 @@ U\_Dpt\_total_{u,p} & _{if U\_State_{u} = UP}\\
 \end{cases}
 \end{dmath}
 
-\begin{equation*}
+\begin{equation}
 CPR\_A(p) = \frac{avg(P\_Units_{p})}{P\_Target}
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
 CPR\_B(p) = \frac{P\_Units_{p}} {P\_Dpt\_pensioner_{p} \cdot avg(P\_Units_{p}))}
-\end{equation*}
+\end{equation}
 
 \begin{equation}
 CPR(p) = min(CPR\_A(p), CPR\_B(p))
 \end{equation}
+\end{subequations}
 
 
 \subsubsection{Reserve pension rate ($SPR$)}

@@ -72,7 +72,7 @@ U\_Dpt\_total_{u} & _{otherwise}
 \end{equation}
 
 To calculate the total number of active pension entitlement periods of a pensioner, we have to substract all periods in which a pension was already payed out. The already payed out pension periods are defined as follows:
-
+\begin{subequations}
 \begin{equation}
 IPEP(u) = \sum_{p=0}^{|P|} \begin{cases}
 1 & _{if U\_Pension_{u,p} > 0}\\
@@ -92,10 +92,10 @@ P_{target} & _{if U\_State_{u} = DC}\\
 \end{dmath}
 
 \begin{equation}
-SPR(p, units) = \frac{units} {P\_Active\_dpt_{p} \dot {\frac{P\_Tpep_{p}} {P\_Auc_{p¸}}}
+SPR(p, units) = \frac{units} {P\_Active\_dpt_{p} \dot {\frac{P\_Tpep_{p}} {P\_Auc_{p}}}
 }
 \end{equation}
-
+\end{subequations}
 
 \subsubsection{Laggards pension rate ($LPR$)}
 

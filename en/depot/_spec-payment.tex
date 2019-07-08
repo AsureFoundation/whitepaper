@@ -6,51 +6,51 @@ the higher the pension payments in old age.
 
 \paragraph{Generic currency unit.} The design of the pension system is not tied to a specific currency unit such as ETH or BTC; instead, it uses the generic currency unit "\textbf{unit}". The unit must be replaced by a specific currency for the concrete implementation.
 
-\paragraph{Periods.} The pension system is divided into periods, which are defined as $P$. Each action within the pension system takes place in a period $P[p]$. The duration of a period ($P_{duration}$) is freely selectable. Within the following calculations we consider $P_{duration} = 1 month$.
+\paragraph{Periods.} The pension system is divided into periods, which are defined as $P$. Each action within the pension system takes place in a period $P_{p}$. The duration of a period ($P\_Duration$) is freely selectable. Within the following calculations we consider $P\_Duration = 1 month$.
 
-\paragraph{Users.} All users of the pension system are defined as $U$ and individual users are defined as $U[u]$. Each user has a state $U[u]_{state}$ which can be either \textbf{UC} (Contributor),
+\paragraph{Users.} All users of the pension system are defined as $U$ and individual users are defined as $U_{u}$. Each user has a state $U\_State_{u}$ which can be either \textbf{UC} (Contributor),
 \textbf{UP} (Pensioner), or \textbf{UD} (Done).
-The initial state of all users is $U[u]_{state} = UC$ 
+The initial state of all users is $U\_State_{u} = UC$ 
 
 \paragraph{Accounts.} The decentralized pension has two accounts: Savings ($W_{savings}$) and Laggards  ($W_{laggarts}$). Contributions and pension payments will be charged using these. The savings account contains the total amount of the managed contributions and is used for the monthly processing of deposits and withdrawals. The laggards account manages a reserve, which is paid to the last generation of the pension system.
 
 \subsection{Payment of contributions}
 
-Contributors can contribute in a period $P[p]$. The total amount per period and user is defined as $U[u]_{units[p]}$. The total number of periods in which a contributor has paid is defined as $U[u]_{contrib}$.
+Contributors can contribute in a period $P_{p}$. The total amount per period and user is defined as $U\_Units_{u,p}$. The total number of periods in which a contributor has paid is defined as $U\_Contrib_{u}$.
 
 \begin{equation}
-U[u]_{contrib} = \sum_{p=0}^{|P|} \begin{cases} 
-1 & _{if U[u]_{units[p]} > 0} \\
+U\_Contrib_{u} = \sum_{p=0}^{|P|} \begin{cases} 
+1 & _{if U\_Units_{u,p} > 0} \\
 0 & _{otherwise}
 \end{cases}
 \end{equation}
 
 
-All contribution payments of a period $P[p]$ are credited to the savings account $W_{savings}$.
-Entries from contributors who do not have any pension entitlement periods ($U[u]_{pensionperiods} = 0$) will also be credited to the $W_{laggarts}$ account.
+All contributions of a period $P_{p}$ are credited to the savings account $W_{savings}$.
+Entries from contributors who do not have any pension entitlement periods ($U\_Pensionperiods_{u} = 0$) will also be credited to the $W_{laggarts}$ account. Therefore, the sum of $W_{savings}-W_{laggarts}$ will be payed out in each period $P_{p}$ and only parts of $W_{laggarts}$ are used.
 
 
 \begin{equation}
-W_{savings} = W_{savings} + \sum_{u=0}^{|U|} U[u]_{units[p]}
+W_{savings} = W_{savings} + \sum_{u=0}^{|U|} U\_Units_{u,p}
 \end{equation}
 
 
 \begin{dmath}
 W_{laggarts} = W_{laggarts} + \sum_{u=0}^{|U|} \begin{cases} 
-U[u]_{units[p]} & _{if U[u]_{pensionperiods} = 0} \\
+U\_Units_{u,p} & _{if U\_Pensionperiods_{u} = 0} \\
 0 & _{otherwise}
 \end{cases}
 \end{dmath}
 
 \subsubsection{Pension entitlement periods}
-The pension entitlement periods ($U[u]_{pensionperiods}$) determines the number of periods, in which a pension payment is made. The higher the number of contribution periods
-$U[u]_{contrib}$, the higher the number of pension entitlement periods.
+The pension entitlement periods ($U\_Pensionperiods_{u}$) determines the number of periods, in which a pension payment is made. The higher the number of contribution periods
+$U\_Contrib_{u}$, the higher the number of pension entitlement periods.
 
-To incentivize a large number of contribution periods, a target value ($P_{target}$) is used
+To incentivize a large number of contribution periods, a target value ($P\_Target$) is used
 for the number of contribution periods. 
 
 \begin{equation}
-	P_{target} = 40 years \cdot 12 months
+	P\_Target = 40 years \cdot 12 months
 \end{equation}
 
 If the number of contribution periods corresponds to the target value, the number of pension entitlement periods should correspond exactly to the target value. If the number of contribution periods below or above the target value, the number of pension entitlement periods are correspondingly disproportionately smaller or larger.  
@@ -58,39 +58,39 @@ If the number of contribution periods corresponds to the target value, the numbe
 The number of pension entitlement periods is defined as follows:
 
 \begin{equation}
-U[u]_{pensionperiods} = \frac{U[u]_{contrib}^2}{P_{target}}
+U\_Pensionperiods_{u} = \frac{U\_Contrib_{u}^2}{P\_Target}
 \end{equation}
 
 
 \subsubsection{Decentralized pension points}
 
-For the contributions paid for a period ($U[u]_{units[p]}$), a contributor receives decentralized pension points in the form of decentralized pension tokens ($DPT$). The total number of \gls{dpt} of a contributor at retirement age is used to calculate the amount of the pension payable.
+For the contributions paid for a period ($U\_Units_{u,p}$), a contributor receives decentralized pension points in the form of decentralized pension tokens ($DPT$). The total number of \gls{dpt} of a contributor at retirement age is used to calculate the amount of the pension payable.
 
 \begin{equation}
-U[u]_{dpt[p]} = DPT(u, p)
+U\_Dpt_{u,p} = DPT(u, p)
 \end{equation}
 
 \begin{equation}
-DPT(u, p) = DPT_{base}(u, p) \cdot DPT_{bonus}(p)
+DPT(u, p) = DPT\_Base(u, p) \cdot DPT\_Bonus(p)
 \end{equation}
 
 \paragraph*{Purchasing Power Index:}
 
-The purchasing power index ($PPI$) is calculated at the beginning of each period $P[n]$ and defined as $P[p]_{ppi}$. The $PPI$ is the reference value for a $DPT$ of the corresponding period.
+The purchasing power index ($PPI$) is calculated at the beginning of each period $P_{p}$ and is defined as $P\_Ppi_{p}$. The $PPI$ is the reference value for a $DPT$ of the corresponding period.
 
-To calculate the $PPI$ of the $P[p]$ period, the $PPI$ of the previous period $P[n-1]$ is used.
-If the difference between $PPI$ and the average contribution for the period $P[n-1]$ is greater than 10\%, the $PPI$ of the period $P[n]$ is increased or decreased by 10\% accordingly.
+To calculate the $PPI$ of the $P_{p}$ period, the $PPI$ of the previous period $P_{p-1}$ is used.
+If the difference between $PPI$ and the average contribution for the period $P_{p-1}$ is greater than 10\%, the $PPI$ of the period $P[n]$ is increased or decreased by 10\% accordingly.
 If the average contribution fluctuates sharply, the $PPI$ slowly feeds on the new average and large jumps are avoided.
 
 \begin{equation}
-P[p]_{units} = avg(\sum_{u=0}^{|U|} U[u]_{units[p]})
+P\_Units_{p} = avg(\sum_{u=0}^{|U|} U\_Units_{u,p})
 \end{equation}
 
 \begin{equation}
-P[p]_{ppi} = \begin{cases} 
-P[p]_{ppi} \cdot 1.1 & _{if P[p]_{units} \cdot 1.1 > P[p-1]_{ppi}} \\
-P[p]_{ppi} \cdot 0.9 & _{if P[p]_{units} \cdot 0.9 < P[p-1]_{ppi}} \\
-P[p]_{ppi} & _{otherwise}
+P\_Ppi_{p} = \begin{cases} 
+P\_Ppi_{p} \cdot 1.1 & _{if P\_Units_{p} \cdot 1.1 > P\_Ppi_{p-1}} \\
+P\_Ppi_{p} \cdot 0.9 & _{if P\_Units_{p} \cdot 0.9 < P\_Ppi_{p-1}} \\
+P\_Ppi_{p} & _{otherwise}
 \end{cases}
 \end{equation}
 
@@ -98,22 +98,22 @@ P[p]_{ppi} & _{otherwise}
 The pension points is the ERC20 tokenization of purchasing power in blockchain systems and is an abstraction to purchasing power where the $PPI$ value represents the reference as to how the willingness to pay was present in past periods. For a deposit equal to $PPI$, 1.0 DPT points are credited to the sender. Anything above the $PPI$ value will be credited with a maximum of 2.0 DPT, it is possible to pay more than twice the $PPI$ value. If the $PPI$ value is lower than the $PPI$ value, less DPT will be credited proportionally to the $min$ value.
 
 \begin{dmath}
-DPT_{base}(u, p) = \begin{cases} 
-min(\frac{U[u]_{units[p]}} {P[p]_{ppi}}, 2) 
-  & _{if U[u]_{units[p]} > P[p]_{ppi}} \\
-\frac{U[u]_{units[p]} - min} {P[p]_{ppi} - min} 
-  & _{if U[u]_{units[p]} < P[p]_{ppi}} \\
+DPT\_Base(u, p) = \begin{cases} 
+min(\frac{U\_Units_{u,p}} {P\_Ppi_{p}}, 2) 
+  & _{if U\_Units_{u,p} > P\_Ppi_{p}} \\
+\frac{U\_Units_{u,p} - min} {P\_Ppi_{p} - min} 
+  & _{if U\_Units_{u,p} < P\_Ppi_{p}} \\
 1.0 & _{otherwise}
 \end{cases}
 \end{dmath}
 
 \paragraph*{Decentralized pension points bonus:}
-Up to the period $P_{bonus} = 480$ additional bonus DPT ($DPT_{bonus}$) will be issued to contributors. Bonus DPT are intended to create an incentive for the first users of the pension system and thus reward the users who believed in and invested in the system at an early stage. The concept of Bonus DPT is based on the reduction of mining rewards known from the Bitcoin protocol.
+Up to the period $P\_Bonus = 480$ additional bonus DPT ($DPT\_Bonus$) will be issued to contributors. Bonus DPT are intended to create an incentive for the first users of the pension system and thus reward the users who believed in and invested in the system at an early stage. The concept of Bonus DPT is based on the reduction of mining rewards known from the Bitcoin protocol.
 
 \begin{equation}
-DPT_{bonus}(p) = \begin{cases} 
-1 + \frac{(P_{bonus} - P[p] + 1)^2}
-      {2 \cdot P_{bonus}^2} & _{if P[p] < P_{bonus}} \\
+DPT\_Bonus(p) = \begin{cases} 
+1 + \frac{(P\_Bonus - P_{p} + 1)^2}
+      {2 \cdot P\_Bonus^2} & _{if P_{p} < P\_Bonus} \\
 1 & _{otherwise} 
 \end{cases}
 \end{equation}

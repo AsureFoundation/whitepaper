@@ -1,14 +1,14 @@
 \subsection{Pension payment}
 
-Contributors are free to choose when they retire. If a contributor retires, no more contributions can be made and, depending on the contributions paid, pension payments can be made instead. The transition from contributor to pensioner is marked by the change of state $U[u]_{state} = UP$.
+Contributors are free to choose when they retire. If a contributor retires, no more contributions can be made and, depending on the contributions paid, pension payments can be made instead. The transition from contributor to pensioner is marked by the change of state $U\_State_{u} = UP$.
 
-The pension to be paid is calculated on the basis of the total number of DPTs of a pensioner ($U[u]_{dpt\_total}$).
+The pension to be paid is calculated on the basis of the total number of DPTs of a pensioner ($U\_Dpt\_total_{u}$).
 
 \begin{equation}
-U[u]_{dpt\_total} = \sum_{p=0}^{|P|} U[u]_{dpt[p]}
+U\_Dpt\_total_{u} = \sum_{p=0}^{|P|} U\_Dpt_{u,p}
 \end{equation}
 
-The pension entitlement periods $U[u]_{pensionperiods}$ determine in how many periods a pension is paid out. In which periods a pensioner claims his pension payments is left to the pensioner and can be freely chosen. If all pension payments have been claimed, the state will be replaced by $U[u]_{state} = UD$.
+The pension entitlement periods $U\_Pensionperiods_{u}$ determine in how many periods a pension is paid out. In which periods a pensioner claims his pension payments is left to the pensioner and can be freely chosen. If all pension payments have been claimed, the state will be replaced by $U\_State_{u} = UD$.
 
 If a pensioner has always paid the average contribution into the pension system in his contribution periods, his pension payment should also correspond to the average contribution payments of the current period and thus the purchasing power stored in $DPT$ should be restored.
 
@@ -17,85 +17,87 @@ The amount of a pension payment results from the following three components: Con
 The pension payment is therefore defined as follows:
 
 \begin{dmath}
-U[u]_{pension[p]} = U[u]_{dpt\_total} \cdot (CPR(p) + SPR(p, W_{savings} - W_{laggarts}) + LPR(p, W_{laggarts}))
+U\_Pension_{u,p} = U\_Dpt\_total_{u} \cdot (CPR(p) + SPR(p, W_{savings} - W_{laggarts}) + LPR(p, W_{laggarts}))
 \end{dmath}
 
 \subsubsection{Contribution pension rate ($CPR$)}
-All contributions for a contribution period ($P[p]units$) are collected and paid out proportionately to pensioners. The contribution pension rate $CPR(p)$ defines the conversion rate from DPT to contributions.
+All contributions for a contribution period ($P\_Units_{p}$) are collected and paid out proportionately to pensioners. The contribution pension rate $CPR(p)$ defines the conversion rate from DPT to pension payouts.
 
 \begin{equation}
-P[p]_{units} = \sum_{u=0}^{|U|} U[u]_{units[p]}
+P\_Units_{p} = \sum_{u=0}^{|U|} U\_Units_{u,p}
 \end{equation}
 
 The pensions to be paid are determined by the average contribution payment of the 
-period ($avg(P[p]units)$) is capped. If there are more contributors than pensioners in the system, any surpluses are used as a reserve and are not paid out directly. If the contribution payments are not sufficient to pay the average contribution payment for the respective period, the contributions are distributed proportionally to all pensioners and pension payments using the DPT.
+period ($avg(P\_Units_{p})$) is capped. If there are more contributors than pensioners in the system, any surpluses are used as a reserve and are not paid out directly. If the contribution payments are not sufficient to pay the average contribution payment for the respective period, the contributions are distributed proportionally to all pensioners and pension payments using the DPT.
 
+\begin{subequations}
 \begin{dmath}
-P[p]_{dpt\_pensioner} = 
+P\_Dpt\_pensioner_{p} = 
 \sum_{u=0}^{|U|} \begin{cases} 
-U[u]_{dpt\_total[p]} & _{if U[u]_{state} = UP}\\
+U\_Dpt\_total_{u,p} & _{if U\_State_{u} = UP}\\
 0 & _{otherwise}
 \end{cases}
 \end{dmath}
 
-\begin{equation*}
-CPR_{a}(p) = \frac{avg(P[p]_{units})}{P_{target}}
-\end{equation*}
-
-\begin{equation*}
-CPR_{b}(p) = \frac{P[p]_{units}} {P[p]_{dpt\_pensioner} \cdot avg(P[p]_{units}))}
-\end{equation*}
+\begin{equation}
+CPR\_A(p) = \frac{avg(P\_Units_{p})}{P\_Target}
+\end{equation}
 
 \begin{equation}
-CPR(p) = min(CPR_{a}(p), CPR_{b}(p))
+CPR\_B(p) = \frac{P\_Units_{p}} {P\_Dpt\_pensioner_{p} \cdot avg(P\_Units_{p}))}
 \end{equation}
+
+\begin{equation}
+CPR(p) = min(CPR\_A(p), CPR\_B(p))
+\end{equation}
+\end{subequations}
 
 
 \subsubsection{Reserve pension rate ($SPR$)}
 
-Surplus contributions are reserved as a reserve and $P[p]$ is paid out proportionately in each period. The reserve is paid out in such a way that it is distributed evenly over all active users ($P[p]_{auc}$), their DPT and all active pension entitlement periods of the pension system $(P[p]_{tpep})$. The reserve pension rate $SPR(p, units)$ thus defines the conversion rate from DPT to reserves.
+Surplus contributions are reserved as a reserve and $P_{p}$ is paid out proportionately in each period. The reserve is paid out in such a way that it is distributed evenly over all active users ($P\_Auc_{p}$), their DPT and all active pension entitlement periods of the pension system $(P\_Tpep_{p})$. The reserve pension rate $SPR(p, units)$ thus defines the conversion rate from DPT to reserves.
 
 % auc = active user count
 
 \begin{equation}
-P[p]_{auc} = \sum_{u=0}^{|U|} \begin{cases} 
-0 & _{if U[u]_{state} = DP}\\
+P\_Auc_{p} = \sum_{u=0}^{|U|} \begin{cases} 
+0 & _{if U\_State_{u} = DP}\\
 1 & _{otherwise}
 \end{cases}
 \end{equation}
 
 \begin{equation}
-P[p]_{active\_dpt} = \sum_{u=0}^{|U|} \begin{cases} 
-0 & _{if U[u]_{state} = DP}\\
-U[u]_{dpt\_total} & _{otherwise}
+P\_Active\_dpt_{p} = \sum_{u=0}^{|U|} \begin{cases} 
+0 & _{if U\_State_{u} = DP}\\
+U\_Dpt\_total_{u} & _{otherwise}
 \end{cases}
 \end{equation}
 
-To calculate the total number of a pension entitlement periods of a given user $U[u]$, $TPEP(u)$ is defined as follows:
-
+To calculate the total number of active pension entitlement periods of a pensioner, we have to substract all periods in which a pension was already payed out. The already payed out pension periods are defined as follows:
+\begin{subequations}
 \begin{equation}
-TPEP(u) = \sum_{p=0}^{|P|} \begin{cases}
-1 & _{if U[u]_{pension[p]} > 0}\\
+IPEP(u) = \sum_{p=0}^{|P|} \begin{cases}
+1 & _{if U\_Pension_{u,p} > 0}\\
 0 & _{otherwise}\\
 \end{cases}
 \end{equation}
 
 
-% tpep = total pension entitlement periods
+% ipep = inactive pension entitlement periods
 
-\begin{equation}
-P[p]_{tpep} = \sum_{u=0}^{|U|} \begin{cases}
-P_{target} - TPEP(u)  & _{if U[u]_{state} = DP}\\
-P_{target} & _{if U[u]_{state} = DC}\\
+\begin{dmath}
+P\_Tpep_{p} = \sum_{u=0}^{|U|} \begin{cases}
+P\_Target - IPEP(u)  & _{if U\_State_{u} = DP}\\
+P_{target} & _{if U\_State_{u} = DC}\\
 0 & _{otherwise}
 \end{cases}
-\end{equation}
+\end{dmath}
 
 \begin{equation}
-SPR(p, units) = \frac{units} {P[p]_{active\_dpt} \dot {\frac{P[p]_{tpep}} {P[p]_{auc}}}
+SPR(p, units) = \frac{units} {P\_Active\_dpt_{p} \dot {\frac{P\_Tpep_{p}} {P\_Auc_{p}}}
 }
 \end{equation}
-
+\end{subequations}
 
 \subsubsection{Laggards pension rate ($LPR$)}
 
@@ -105,14 +107,14 @@ In the case that it is the last generation, the calculation of the  Defaulter pe
 
 \begin{equation}
 total\_pensioners =  \sum_{u=0}^{|U|} \begin{cases} 
-1  & _{if U[u]_{state} = DP}\\
+1  & _{if U\_State_{u} = DP}\\
 0 & _{otherwise}
 \end{cases}
 \end{equation}
 
 \begin{equation}
 LPR(p, units) =  \begin{cases} 
-SPR(p, units)  & _{if \frac{total_pensioners} {P[p]_{tpep}} = 1}\\
+SPR(p, units)  & _{if \frac{total\_pensioners} {P\_Tpep_{p}} = 1}\\
 0 & _{otherwise}
 \end{cases}
 \end{equation}$  $

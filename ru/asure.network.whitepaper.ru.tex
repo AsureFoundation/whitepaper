@@ -1,0 +1,110 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{color} 
+\usepackage[sort=use]{glossaries-extra}
+
+%\definecolor{pagecolor}{rgb}{0.8,0.9,0.9}
+
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{standard}
+
+%MVP, EWASM, TPS, ABCI, SDK, WebAssembly, DAO, DEPOT, ZK, PoS, Plasma
+
+\newglossaryentry{evm}{name={EVM},plural={EVMs},
+description={Виртуальная машина Ethereum предназначена для использования в качестве среды выполнения для смарт контрактов на основе Ethereum.}}
+\newglossaryentry{blockchain}{name={Blockchain},plural={Blockchains},
+description={Система, в которой ведется учет транзакций на нескольких компьютерах, которые связаны между собой в одноранговой сети.}}
+\newglossaryentry{ethereum}{name={Ethereum},plural={Ethereum},
+description={Децентрализованная программная платформа, которая включает в себя смарт контакрты и распределенные приложения (ĐApps).}}
+\newglossaryentry{eth}{name={ETH},plural={eth},
+description={Родной токен блокчейна Ethereum.}}
+\newglossaryentry{btc}{name={BTC},plural={BTC},
+description={Родной токен блокчейна Bitcoin.}}
+\newglossaryentry{erc20}{name={ERC20},plural={ERC20},
+description={Технический стандарт, используемый для смарт контрактов в блокчейне Ethereum для реализации токенов.}}
+\newglossaryentry{smartcontract}{name={SmartContract},plural={SmartContract},
+description={Смарт контракт это компьютерный протокол, предназначенный для упрощения, проверки или обеспечения выполнения согласования или исполнения контракта в цифровом виде. Смарт контракты позволяют совершать заслуживающие доверия транзакции без участия третьих лиц. Эти транзакции отслеживаются и необратимы.}}
+\newglossaryentry{account}{name={Account},plural={accounts},
+description={Хеш открытого ключа, который может содержать значения. Доступ возможен только при наличии соответствующего закрытого ключа.}}
+\newglossaryentry{gdpr}{name={GDPR},plural={GDPR},
+description={Общее положение о защите данных (ЕС) 2016/679 ("GDPR") это положение в законодательстве ЕС о защите данных и конфиденциальности для всех лиц в Европейском союзе (ЕС).}}
+\newglossaryentry{payg}{name={PAYG},plural={PAYG},
+description={метод финансирования социального страхования, в особенности пенсионного обеспечения, а также медицинского страхования и страхования по безработице. Уплаченные взносы используются непосредственно для финансирования бенефициаров, то есть они выплачиваются обратно им.}}
+
+
+\begin{document}
+
+%\pagecolor{pagecolor}
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+\clearpage
+
+\input{_head}
+
+\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+\newpage
+
+\input{_abstract}
+
+% list all entries
+\printunsrtglossaries
+\newpage
+\tableofcontents
+
+\newpage
+% NEW SITE ---------------------------------------------------------------------------------
+\input{_introduction}
+
+%\input{_decentralized_social_security}
+%\newpage
+\input{_network}
+
+%\newpage
+\input{_blockchain}
+
+\input{_platform}
+
+%\newpage
+
+%\input{_tge}
+
+\input{_past_work}
+
+\newpage
+
+\input{_future_work}
+
+\input{_organisation}
+
+\input{_acknowledgements}
+
+\input{_conclusion}
+
+\newpage
+
+\listoftables
+
+\listoffigures
+ 
+\newpage
+% Literaturliste endgueltig anzeigen
+\input{_bibliography}
+\bibliographystyle{ieeetr}
+%\bibliography{literatur}
+
+
+
+\vskip 2.2in
+\begin{quote}
+	\centering
+	Сделано в Германии с \ensuremath\heartsuit{ } 
+\end{quote}
+
+\end{document}

@@ -1,0 +1,71 @@
+\section{Gewonnene Erkenntnisse}
+
+
+\subsection{Mathematische Operationen mittels SafeMath}
+Arithmetische Operationen in Solidity werden beim Überlauf umgebrochen. Dies kann leicht zu Fehlern führen, da Programmierer normalerweise davon ausgehen, dass ein Überlauf einen Fehler auslöst, was das Standardverhalten in höheren Programmiersprachen ist. SafeMath stellt diese Intuition wieder her, indem die Transaktion zurückgesetzt wird, wenn ein Vorgang überläuft. %TODO cite
+
+
+\subsection{Gleitkommaoperationen}
+Ethereum und andere Blockchains unterstützen Stand August 2019 keine Gleitkommaoperationen (float, double).
+
+
+\subsection{Zeitkomplexität von Smart Contract Methoden}
+Ausführungszeiten einer Transaktion ist begrenzt (Gaskosten / maximale Gaskosten).
+
+\subsubsection*{Lösungsansatz}
+Zeitkomplexität sollte immer konstant sein O(1). Zeitkomplexität reduzieren, in dem Daten vorberechnet und aggregiert werden.
+
+\subsubsection*{Beispiel} Anstelle über eine Liste aller Beitragszahler iterieren, lieber die Daten z.B. bei der Beitragszahlung aggregieren, sodass die Zeitkomplexität immer O(1) ist.
+
+
+\subsection{Weitere Beschränkungen bzgl. Smart Contract Programmierung}
+
+\begin{compactitem}
+\item Zeichenketten Operationen -  Nur statische Zeichenketten
+\item Die größe von Smart Contract Quellcode, welche mit einer Transaktion veröffentlicht werden kann, ist beschränkt. Ggf. müssen Zusammenhängende Smart Contract Systeme auf mehrerer Transaktionen aufgeteilt und veröffentlicht werden.
+\item Das Hinterlegen von Smart Contract Quellcode in  Blockchain Explorer (Etherscan.io) ist noch nicht in Truffle integriert und muss händisch durchgeführt werden.
+\end{compactitem}
+
+
+\subsection*{Codeänderungen (Bugfixes und Features)}
+Bereitgestellter Smart Contracts Code ist unveränderbar auf der Blockchain gespeichert
+Änderungen müssen im Zuge von Fehlerbehebungen und Anforderungsänderungen durchgeführt werden können.
+
+\subsubsection*{Lösungsansatz: Upgradeability Proxy Muster}
+dawd
+
+\subsection*{Abfragen von Blockchain Daten}
+Ethereum Smart Contracts bieten nur eine primitive Datenhaltung und rudimentäre Datenabfrage durch Drittanwendungen. 
+Benutzer Masken benötigen viele HTTP-Anfragen um die benötigten Daten aus Ethereum in die Anwendung zu laden.
+
+\subsubsection*{Lösungsansatz}
+Trennung von Lese-, und Schreiboperationen (Siehe z.B.: CQRS Entwurfsmuster). Spezialisierte Abfrage Proxies z.B. mittels GraphQL (Siehe EthQL und TheGraph)
+
+
+\subsection*{Batch-Job Verarbeitung}
+Ethereum bietet keine native Unterstützung für “zeitgesteuerte” Transaktionen.
+Ethereum Smart Contracts können nicht direkt auf Smart Contract Ereignisse reagieren
+
+\subsubsection*{Lösungsansatz}
+Externe Systeme können zeitgesteuert und auf Smart Contract Events reagieren - Die Lösung setzt voraus, dass einem externen System “vertraut” wird.
+
+
+\subsection*{Anbindung externer Datenquellen}
+Smart Contracts können nicht auf externe Daten zugreifen (z.B. mittels HTTP)
+
+Als Lösung bieten sich Orakel (Oracles) an. Diese stellen die Daten auf der Blockchain zur Verfügung und stellen auf Anfrage weitere bereit.
+
+Es gibt Oracle-Anbieter, welche die notwendige Infrastruktur bereitstellen und als Dienstleistung genutzt werden können.
+
+Oracle Anbieter: Oraclize, Chainlink, Provable
+
+Entwicklung Projektbezogener Oracles ist eine weitere Option
+
+
+\subsection*{Transaktionszeiten und Ladeanimationen}
+Transaktionen im Ethereum Rinkeby Netzwerk dauer ca. 15 Sekunden. 
+Ladeanimationen wie bei klassischen Webanwendungen (1-3 Sekunden) daher schwierig
+
+
+\subsection*{Wallet Integration}
+Wallet Connect

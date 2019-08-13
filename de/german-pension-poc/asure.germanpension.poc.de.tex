@@ -1,0 +1,56 @@
+%\documentclass[10pt,twocolumn]{article}
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%\usepackage{german}
+%\usepackage{eurosym}
+\usepackage{float}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{breqn}
+\usepackage{cite}
+\usepackage[sort=use]{glossaries-extra}
+\usepackage{titlesec}
+\usepackage{lipsum}% provides filler text
+
+\titlespacing{\paragraph}{%
+  0pt}{%left margin
+  0.1\baselineskip}{% space before (vertical)
+  0.1em}%space after (horizontal)
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1.0em}
+
+\newglossaryentry{blockchain}{name={Blockchain},plural={Blockchains},
+description={A system in which a record of transactions are maintained across several computers that are linked in a peer-to-peer network.}}
+
+\begin{document}  
+	%\renewcommand{\baselinestretch}{0.4}\normalsize
+	
+    \input{_title}
+	\newpage
+	\input{_abstract}	
+	
+	%\tableofcontents
+
+    \input{_introduction}
+	\input{_implementation}
+	\input{_lessonslearned}
+	\input{_summary}
+
+	\bibliography{_bibliography}{} 	% Literaturliste endgueltig anzeigen
+	\bibliographystyle{plain}
+	%\onecolumn
+	
+ 	% list all entries
+	\printunsrtglossaries
+
+	%\vskip 2.2in
+	\begin{quote}
+	%\centering
+		\quad\quad\quad\quad Made with decentralized 		 \ensuremath\heartsuit{ }
+	\end{quote}
+\end{document}

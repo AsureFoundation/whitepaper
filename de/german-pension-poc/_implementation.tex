@@ -34,7 +34,7 @@ Dabei wurde im Rahmen des Prototypen nur die Berechnung der Entgeltpunkte (EP) i
 \\
 Der Wert für den Zugangsfaktor (ZF) als auch für den Rentenartfaktor (RAF) ist immer 1. Hieraus resultiert, das die berechneten Renten immer einer Rente wegen Alters und regulären Rentenbeginn entsprechen.
 \\
-Auch der Wert für den aktuelle Rentenwert (aRW) ist statisch und beträgt immer 29 Euro. Der entsprechende Quellcode für die Ermittlung des aktuellen Rentenwerts (aRW) ist so strukturiert, das dieser pro Jahr im System mittels einer Lookup Tabelle hinterlegt werden kann.
+Auch der Wert für den aktuelle Rentenwert (aRW) ist statisch und beträgt immer \EUR{29}. Der entsprechende Quellcode für die Ermittlung des aktuellen Rentenwerts (aRW) ist so strukturiert, das dieser pro Jahr im System mittels einer Lookup Tabelle hinterlegt werden kann.
 
 \begin{equation*}
 Rente_{mtl} = EP \cdot ZF \cdot RAF \cdot aRW
@@ -56,7 +56,7 @@ Das Backend bildet ein Smart Contract-System, welches auf dem öffentlichen Ethe
 
 \begin{figure}
     \centering
-    \includegraphics[width=4.0in]{images/components.png}
+    \includegraphics[width=6.0in]{images/components.png}
     \caption{Komponenten des Prototyps}
 \end{figure}
 
@@ -80,7 +80,7 @@ Sämtliche Smart Contracts des Prototypen wurden in Solidity programmiert.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=4.0in]{images/classdiagram-smartcontracts.png}
+    \includegraphics[width=6.0in]{images/classdiagram-smartcontracts.png}
     \caption{Smart Contracts Übersicht}
     \label{fig:asure_architecture}
 \end{figure}
@@ -101,7 +101,7 @@ Sämtliche Smart Contracts des Prototypen wurden in Solidity programmiert.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=4.0in]{images/usecase-pay.png}
+    \includegraphics[width=6.0in]{images/usecase-pay.png}
     \caption{Sequenzdiagram: Beitragszahlung}
     \label{fig:asure_architecture}
 \end{figure}
@@ -110,7 +110,7 @@ Sämtliche Smart Contracts des Prototypen wurden in Solidity programmiert.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=4.0in]{images/usecase-payout.png}
+    \includegraphics[width=6.0in]{images/usecase-payout.png}
     \caption{Sequenzdiagram: Rentenzahlung}
     \label{fig:asure_architecture}
 \end{figure}

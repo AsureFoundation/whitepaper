@@ -1,4 +1,4 @@
-\section{Gewonnene Erkenntnisse}
+\section{Gewonnenen Erkenntnisse}
 
 
 \subsection{Mathematische Operationen mittels SafeMath}
@@ -37,25 +37,94 @@ contract Test {
 
 
 \subsection{Gleitkommaoperationen}
-Ethereum und andere Blockchains unterstützen Stand August 2019 keine Gleitkommaoperationen (float, double).
+Die Programiersprache Solidity unterstützt Gleitkommaoperationen noch nicht vollständig. \cite{fixedpointnumbers}
+
+\subsubsection*{Lösungsansätze}
+
+\paragraph*{}
+Anstelle von Gleitkommaoperationen, können alternativ entsprechend große Ganzzahlen verwendet werden. Als Beispiel dient z.B. die native Kryptowährung ETH der Ethereum Blockchain. Ein ETH ist eine 19-stellige Ganzzahl. Die kleinste Einheit ist 1 WEI. Ein ETH ist gleich 1.000.000.000.000.000.000 WEI. Durch diese Darstellung können auch Bruchteile eines ETH transferiert werden.
+
+Der Rentenartfaktor (RAF) der Rentenformel ist als Gleitkommazahl definiert und kann Werte von 0 bis 1 annehmen. \cite{raf}
+
+Gleitkommazahlen können auch in diesem Fall durch entsprechend große Ganzzahlen repräsentiert werden, indem im SmartContract immer mit dem Faktor 1000 multipliziert wird. Externe Systeme wie z.B. eine Webanwendung können die Höhe der monatlichen Rente errechnen, indem der Wert entsprechend durch den Devisor 1000 geteilt wird.
+
+\begin{lstlisting}[caption={Verzicht von Gleitkommazahlen durch Multiplikation},captionpos=b,label=lst:simfloat]
+contract Rentenformel {
+ function rechneBeispiel() returns (uint256) {
+   uint256 ep = 40;
+   uint256 zf = 1;
+   uint256 raf = 250; // kleine Witwenrente = 0.25 * 1000
+   uint256 arw = 30;
+   
+   uint256 mtlRente = ep * zf * raf * arw; // mtlRente = 300000;
+   
+   return mtlRente; 
+   // Extern z.B. in Webanwendung: mtlRente / 1000 = 300
+ }
+}
+\end{lstlisting}
+
+\paragraph*{}
+Alternativ kann auf Bibliotheken wie z.B. DS-Math \footnote{\url{https://github.com/dapphub/ds-math}} zurückgegriffen werden, welche entsprechende Funktionalitäten bieten
 
 
 \subsection{Zeitkomplexität von Smart Contract Methoden}
-Ausführungszeiten einer Transaktion ist begrenzt (Gaskosten / maximale Gaskosten).
+
+Jede Ethereum-Transaktion (somit auch jede Ausführung einer Smart Contract Methode) verbraucht "Gas". Pro Transaktion steht nur eine bestimmte Menge an Gas zur Verfügung. Somit sind die Ausführungszeiten und die Aufgaben, welche inerhalb einer Smart Contract Methode ausgeführt werden können, ebenfalls begrenzt. 
+Verbraucht eine Ethereum-Transaktion zu viel Gas, wird die Transaktion abgewiesen und nicht in die Blockchain mit aufgenommen.
 
 \subsubsection*{Lösungsansatz}
-Zeitkomplexität sollte immer konstant sein O(1). Zeitkomplexität reduzieren, in dem Daten vorberechnet und aggregiert werden.
+Die Zeitkomplexität\footnote{\url{http://www.inf.fu-berlin.de/lehre/SS12/ALP2/slides/V6_Rekursion_vs_Iteration_ALP2.pdf}} von SmartContract Methoden sollte immer konstant sein (O(1)). Zeitkomplexität kann reduziert werden, in dem Daten vorberechnet und aggregiert werden.
 
-\subsubsection*{Beispiel} Anstelle über eine Liste aller Beitragszahler iterieren, lieber die Daten z.B. bei der Beitragszahlung aggregieren, sodass die Zeitkomplexität immer O(1) ist.
+\paragraph*{} 
+Statt wie in Listing \ref{lst:complexitybad} über eine Liste aller Beitragszahlungen zu iterieren, kann die Gesamtsumme aller Beitragszahlungen schon in zahleBeitrag aggregiert werden, sodass die Zeitkomplexität immer O(1) ist.
+
+\begin{lstlisting}[caption={Schlecht - Zeitkomplexität von summeBeitragszahlungen() ist O(n)},captionpos=b,label=lst:complexitybad]
+contract Rente {
+ uint256[] beitragszahlungen;
+
+ function zahleBeitrag(uint256 beitrag) public {
+	beitragszahlungen.push(beitrag);
+ }
+ 
+ function summeBeitragszahlungen() public returns (uint256) {
+	uint256 summe = 0;
+	for (var i = 0; i < beitragszahlungen.length; i++) {
+      summe += beitragszahlungen[i];
+	}
+	return summe;	
+ }
+}
+\end{lstlisting}
+
+
+\begin{lstlisting}[caption={Gut - Zeitkomplexität von summeBeitragszahlungen() ist O(1)},captionpos=b,label=lst:complexitygood]
+contract Rente {
+ uint256[] beitragszahlungen;
+ uint256 summe;
+
+ function zahleBeitrag(uint256 beitrag) public {
+	beitragszahlungen.push(beitrag);
+	summe += beitrag;
+ }
+ 
+ function summeBeitragszahlungen() public returns (uint256) {
+	return summe;	
+ }
+}
+\end{lstlisting}
 
 
 \subsection{Weitere Beschränkungen bzgl. Smart Contract Programmierung}
 
-\begin{compactitem}
-\item Zeichenketten Operationen -  Nur statische Zeichenketten
-\item Die größe von Smart Contract Quellcode, welche mit einer Transaktion veröffentlicht werden kann, ist beschränkt. Ggf. müssen Zusammenhängende Smart Contract Systeme auf mehrerer Transaktionen aufgeteilt und veröffentlicht werden.
-\item Das Hinterlegen von Smart Contract Quellcode in  Blockchain Explorer (Etherscan.io) ist noch nicht in Truffle integriert und muss händisch durchgeführt werden.
-\end{compactitem}
+\paragraph*{}
+Solidity unterstüzt nur statische Zeichenketten. Dynamische Operationen wie das Zusammensetzen von Zeichenketten ist somit ohne weiteres nicht möglich.
+
+\paragraph*{}
+Die größe von Smart Contract Quellcode, welche mit einer Transaktion veröffentlicht werden kann, ist beschränkt. Ggf. müssen Zusammenhängende Smart Contract Systeme auf mehrerer Transaktionen aufgeteilt und veröffentlicht werden.
+
+\paragraph*{}
+Das Hinterlegen von Smart Contract Quellcode in  Blockchain Explorer (Etherscan.io) ist noch nicht in Truffle integriert und muss händisch durchgeführt werden.
 
 
 \subsection*{Codeänderungen (Bugfixes und Features)}
@@ -63,7 +132,13 @@ Bereitgestellter Smart Contracts Code ist unveränderbar auf der Blockchain gesp
 Änderungen müssen im Zuge von Fehlerbehebungen und Anforderungsänderungen durchgeführt werden können.
 
 \subsubsection*{Lösungsansatz: Upgradeability Proxy Muster}
-dawd
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6.0in]{images/pattern-upgrade.png}
+    \caption{Smart Contract Upgrade Pattern}
+    \label{fig:asure_architecture}
+\end{figure}
 
 \subsection*{Abfragen von Blockchain Daten}
 Ethereum Smart Contracts bieten nur eine primitive Datenhaltung und rudimentäre Datenabfrage durch Drittanwendungen. 

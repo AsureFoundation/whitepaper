@@ -10,15 +10,25 @@ Verluste reduzieren\\
 Mit der Entwicklung eines Prototypen zum deutschen gesetzlichen Rentensystems auf Basis der öffentlichen Ethereum Blockchain verfolgt die Asure Stiftung die folgenden Ziele:
 
 \subsection{Abgrenzung}
-
 Der fokus dieser Arbeit liegt darin, das bestehende System und die Machbarkeit und die Grenzen bei der Umsetzung aufzuzeigen, aus diesem Grund werden nicht alle Themen in vollem Umfang behandelt oder direkt ausgeschlossen.
 
-- Datenschutz (zk-Snark + Datensparsamkeit)
-- Sonderregeln
-- Skalierbarkeit
-- Komplexität
-- Statistische Daten
-- Simulationen
+\subsubsection{DSGVO Konformität}
+Datenschutz (zk-Snark + Datensparsamkeit)
 
+\subsubsection{Skalierung}
+Ende 2018 umfasste die deutsche Rentenversicherung ca. 37,5 Millionen aktiv Versicherte. \cite{rente2018} 
 
-adw \cite{noauthor_universal_2017}
+Die öffentliche Ethereum Blockchain kann zwischen 7 bis 15 Transaktionen pro Sekunde (TPS) verarbeiten. Um z.B. das deutsche Rentensystem mit ca.
+
+\subsubsection{Betrachtungen alternativer Blockchain-Projekte}
+Im Rahmen dieses Projektes haben wir uns ausschließlich auf die öffentliche Ethereum Blockchain und die dazugehörige Programmiersprache Solidity fokusiert.
+
+\paragraph*{}
+Neben der öffentlichen Ethereum Blockchain, kann Ethereum auch in privaten oder konsortium basierten Szenarien verwendet werden. Der Einsatz in privaten oder konsortium basierten Szenarien kann sich u.U. stark von dem öffentlichen Szenario hinsichtlich Skalierung, Performance und dem Umgang mit personenbezogenen Daten unterscheiden und wurde explizit nicht betrachtet.
+
+\paragraph*{}
+Auch alternative Blockchain-Projekte wie z.B. 
+Hyperledger Fabric\footnote{\url{https://www.hyperledger.org/projects/fabric}}, 
+Qtum\footnote{\url{https://qtum.org/en}}
+oder EOS\footnote{\url{https://eos.io/}}
+wurden im Rahmen dieser Arbeit nicht betrachtet. 

@@ -3,9 +3,10 @@ Im folgenden Kapitel betrachten wir die Implementierung des Prototypen.
 
 
 \subsection{OpenSource}
-Das Projekt ist unter Github veröffentlicht und kann unter der ISC Lizenz genutzt werden.
-https://github.com/AsureNetwork/asure-dapp
+Der Quellcode des entwickelten Prototypen ist auf GitHub\footnote{\url{https://github.com/AsureNetwork/asure-dapp}} veröffentlicht und kann unter der ISC Lizenz\footnote{\url{https://github.com/AsureNetwork/asure-dapp/blob/master/LICENSE}} im Rahmen weiterer Softwareprojekte genutzt werden.
 
+\paragraph*{}
+Der Prototyp steht unter der Adresse \url{https://dapp.asure.io/} zum testen bereit. 
 
 \subsection{Anwendungsfälle}
 Das deutsche gesetzliche Rentensystem basiert im Kern auf der Rentenformel, durch welche die Höhe der Rentenzahlung jedes Rentenempfänger ermittelt wird. Durch eine Vielzahl von Sonderregelungen gestaltet sich das Rentensystem jedoch sehr komplex, weshalb eine vollumfängliche Abbildung des Systems im Rahmen eines Prototypen nicht sinnvoll ist. Stattdessen wurden einige Anwendungsfälle ausgewählt, und im Umfang an die Anforderungen eines Prototypen angepasst.
@@ -27,21 +28,21 @@ Die Anwendungsfälle sind wie folgt definiert:
 \end{compactenum}
 
 
-\subsection{Rentenformel}
-Für die Berechnung der Höhe der Renten wurde die deutsche Rentenformel verwendet.
-
+\subsection{Deutsche Rentenformel}
+Für die Berechnung der Höhe der Renten wurde die deutsche Rentenformel (Siehe \ref{eq:rentenformel}) verwendet.
+\\
 Dabei wurde im Rahmen des Prototypen nur die Berechnung der Entgeltpunkte (EP) implementiert. 
 \\
 Der Wert für den Zugangsfaktor (ZF) als auch für den Rentenartfaktor (RAF) ist immer 1. Hieraus resultiert, das die berechneten Renten immer einer Rente wegen Alters und regulären Rentenbeginn entsprechen.
 \\
 Auch der Wert für den aktuelle Rentenwert (aRW) ist statisch und beträgt immer \EUR{29}. Der entsprechende Quellcode für die Ermittlung des aktuellen Rentenwerts (aRW) ist so strukturiert, das dieser pro Jahr im System mittels einer Lookup Tabelle hinterlegt werden kann.
 
-\begin{equation*}
+\begin{equation*} \label{eq:rentenformel}
 Rente_{mtl} = EP \cdot ZF \cdot RAF \cdot aRW
 \end{equation*}
 
 \begin{compactitem}
-\item \textbf{Rentemtl} ist die monatliche Bruttorente in Euro
+\item \textbf{Rente\textsubscript{mtl}} ist die monatliche Bruttorente in Euro
 \item \textbf{EP} ist die Summe der Entgeltpunkte aufgrund des Versicherungsverlaufs
 \item \textbf{ZF} ist der Zugangsfaktor
 \item \textbf{RAF} ist der Rentenartfaktor

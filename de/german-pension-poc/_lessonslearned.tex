@@ -2,7 +2,38 @@
 
 
 \subsection{Mathematische Operationen mittels SafeMath}
-Arithmetische Operationen in Solidity werden beim Überlauf umgebrochen. Dies kann leicht zu Fehlern führen, da Programmierer normalerweise davon ausgehen, dass ein Überlauf einen Fehler auslöst, was das Standardverhalten in höheren Programmiersprachen ist. SafeMath stellt diese Intuition wieder her, indem die Transaktion zurückgesetzt wird, wenn ein Vorgang überläuft. %TODO cite
+Arithmetische Operationen in Solidity werden bei einem Überlauf und Unterlauf umgebrochen. Dies kann leicht zu Fehlern führen, da Programmierer normalerweise davon ausgehen, dass ein Überlauf einen Fehler auslöst, was das Standardverhalten in höheren Programmiersprachen ist.
+
+Das folgende Listing \ref{lst:mul} demonstriert das Problem des Überlauf und Unterlauf einer Integer Variable.
+
+\begin{lstlisting}[caption={Beispielhafter Überlauf und Unterlauf},captionpos=b,label=lst:mul]
+contract Test {
+  function overflow() returns (uint8) {
+    uint8 a = 255;
+    a = a + 1;  	
+    return a; // a = 0
+  }
+  
+  function underflow() returns (uint8) {
+    uint8 a = 0;
+    a = a - 1;  	
+    return a; // a = 255
+  }
+}
+\end{lstlisting}
+
+\subsubsection*{Lösungsansatz}
+Durch das explizite prüfen können Überlaufe und Unterläufe erkannt werden und die Transaktion zurückgesetzt werden. Das OpenZeppelin-Framework stellt eine solche Prüfung mittels der SafeMath API zur Verfügung. SafeMath stellt diese Intuition wieder her, indem die Transaktion zurückgesetzt wird, wenn ein Vorgang überläuft. \cite{safemath}
+
+\begin{lstlisting}[caption={Beispielhafte Multiplikation mittels SafeMath zurück},captionpos=b,label=lst:mulsafe]
+contract Test {
+ using SafeMath for uint8;
+
+ function multiplySafe(uint8 a) returns (uint8) {
+   return a.mul(a); // revert() transaction on overflow / underflow
+ }
+}
+\end{lstlisting}
 
 
 \subsection{Gleitkommaoperationen}

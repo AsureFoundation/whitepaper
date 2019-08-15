@@ -10,15 +10,20 @@ Verluste reduzieren\\
 Mit der Entwicklung eines Prototypen zum deutschen gesetzlichen Rentensystems auf Basis der öffentlichen Ethereum Blockchain verfolgt die Asure Stiftung die folgenden Ziele:
 
 \subsection{Abgrenzung}
-Der fokus dieser Arbeit liegt darin, das bestehende System und die Machbarkeit und die Grenzen bei der Umsetzung aufzuzeigen, aus diesem Grund werden nicht alle Themen in vollem Umfang behandelt oder direkt ausgeschlossen.
+Der Fokus dieser Arbeit liegt darin, das bestehende System und die Machbarkeit und die Grenzen bei der Umsetzung aufzuzeigen, aus diesem Grund werden nicht alle Themen in vollem Umfang behandelt oder direkt ausgeschlossen.
 
 \subsubsection{DSGVO Konformität}
 Datenschutz (zk-Snark + Datensparsamkeit)
 
-\subsubsection{Skalierung}
-Ende 2018 umfasste die deutsche Rentenversicherung ca. 37,5 Millionen aktiv Versicherte. \cite{rente2018} 
+\subsubsection{Blockchain-Skalierung}
+Die öffentliche Ethereum Blockchain kann zwischen 7-15 Transaktionen pro Sekunde (TPS) verarbeiten \cite{vitalikscale}. Pro Monat stehen demnach ca. 18-39 Millionen Transaktionen zur Verfügung. Auf der öffentlichen Ethereum Blockchain laufen diverse Anwendungen verschiedener Hersteller die sich dementsprechend auch gegenseitig beeinflußen. Benötigt eine Anwendung besonders viele Transaktionen, stehen diese dementsprechend nicht mehr für andere Anwendungen zur Verfügung \cite{cryptokitty}.  
 
-Die öffentliche Ethereum Blockchain kann zwischen 7 bis 15 Transaktionen pro Sekunde (TPS) verarbeiten. Um z.B. das deutsche Rentensystem mit ca.
+2018 umfasste die deutsche Rentenversicherung ca. 37,5 Millionen aktiv Versicherte und ca. 21,04 Millionen Rentner. \cite{rente2018,rentezahlen2019} Für ein Blockchain-basiertes Rentensystem, welches für jede Ein-, und Auszahlung genau eine Transaktion benötigt, würden so ca. 58,04 Millionen Transaktionen pro Monat erforderlich sein.
+
+Dies ist nur eine simple Betrachtung und je nach Implementierung kann die Anzahl der benötigten Transaktionen für ein Blockchain-basiertes Rentensystem für Deutschland stark reduziert werden. Dennoch wird deutlich, dass insbesondere die öffentliche Ethereum Blockchain nicht die benötigte Anzahl an Transaktionen zur Verfügung stellt.
+
+\paragraph*{}
+Das Problem der Blockchain-Skalierung ist ein bekanntes Problem zu welchem diverse Lösungsvorschläge erforscht und erarbeitet werden \cite{scaling}. Im Rahmen dieser Arbeit findet das Thema Skalierung keinerlei Beachtung.
 
 \subsubsection{Betrachtungen alternativer Blockchain-Projekte}
 Im Rahmen dieses Projektes haben wir uns ausschließlich auf die öffentliche Ethereum Blockchain und die dazugehörige Programmiersprache Solidity fokusiert.

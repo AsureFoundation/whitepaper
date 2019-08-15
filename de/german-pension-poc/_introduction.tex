@@ -12,26 +12,19 @@ Mit der Entwicklung eines Prototypen zum deutschen gesetzlichen Rentensystems au
 \subsection{Abgrenzung}
 Der Fokus dieser Arbeit liegt darin, das bestehende System und die Machbarkeit und die Grenzen bei der Umsetzung aufzuzeigen, aus diesem Grund werden nicht alle Themen in vollem Umfang behandelt oder direkt ausgeschlossen.
 
-\subsubsection{GDPR, DSGVO und der Datenschutz}
+\subsubsection{GDPR und der Datenschutz}
 Anwendungen, welche auf einer Blockchain betrieben werden und personenbezogene Daten verarbeiten, sind aus den folgenden Gründen problematisch:
 
-\quote{
-Die Anonymisierung personenbezogener Daten. Es gibt intensive Debatten und
-Derzeit besteht kein Konsens darüber, was zur Anonymisierung personenbezogener Daten erforderlich ist
-bis zu dem Punkt, an dem die resultierende Ausgabe möglicherweise in a. gespeichert werden kann
-Blockchain-Netzwerk. Zum Beispiel kann das Hashing von Daten nicht
-in vielen Situationen als Anonymisierungstechnik angesehen werden,
-und doch gibt es Fälle, in denen die Verwendung von Hashing einzigartig zu generieren
-Digitale Signaturen von Daten, die außerhalb der Kette gespeichert werden, sind potenziell
-denkbar an einer Blockchain.
+\begin{quote}
+\textbf{Die Anonymisierung personenbezogener Daten.} Es gibt intensive Diskussionen und derzeit keinen Konsens darüber, was es braucht, um personenbezogene Daten zu anonymisieren, bis zu dem Punkt, an dem die resultierenden Ergebnisse möglicherweise in einem Blockchain-Netzwerk gespeichert werden können. Um ein Beispiel zu nennen: Das Hashing von Daten kann in vielen Situationen nicht als Anonymisierungstechnik betrachtet werden, aber es gibt Fälle, in denen die Verwendung von Hashing zur Erzeugung einzigartiger digitaler Signaturen von Daten, die außerhalb der Kette gespeichert sind, auf einer Blockkette denkbar ist.
 
-Die Ausübung einiger Rechte der betroffenen Personen. Wir stellen fest, wenn persönlich
-Da die Daten in einem Blockchain-Netzwerk aufgezeichnet werden, kann es schwierig sein, sie zu korrigieren
-oder entfernen Sie es. Definieren, was im Kontext als Löschen betrachtet werden kann
-von Blockchains wird diskutiert.
-} \cite{gdpr}
+\textbf{Die Ausübung einiger Rechte der betroffenen Personen.} Wir weisen darauf hin, dass es bei der Erfassung personenbezogener Daten in einem Blockchain-Netzwerk schwierig sein kann, diese zu korrigieren oder zu entfernen. Die Definition, was als Löschung im Rahmen von Blockketten angesehen werden kann, wird derzeit diskutiert.\cite{gdpr}
+\end{quote}
 
-Datenschutz (zk-Snark + Datensparsamkeit)
+Die GDPR konforme Implementierung des deutschen Rentensystems auf der öffentlichen Ethereum-Blockchain ist explizit kein Ziel dieser Arbeit.
+
+\paragraph*{}
+Ob und wie die GDPR konforme Implementierungen des deutschen Rentensystems auf der öffentlichen Ethereum-Blockchain implementiert werden können, soll in einem zukünftigen Projekt erforscht werden. Vielversprechend ist die Verwendung von sogenannten Zero-Knowledge-Beweisen\footnote{\url{https://de.wikipedia.org/wiki/Zero-Knowledge-Beweis}} und die Überarbeitung bestehender Regelungen in Hinblick auf die Datensparsamkeit.
 
 \subsubsection{Blockchain-Skalierung}
 Die öffentliche Ethereum Blockchain kann zwischen 7-15 Transaktionen pro Sekunde (TPS) verarbeiten \cite{vitalikscale}. Pro Monat stehen demnach ca. 18-39 Millionen Transaktionen zur Verfügung. Auf der öffentlichen Ethereum Blockchain laufen diverse Anwendungen verschiedener Hersteller die sich dementsprechend auch gegenseitig beeinflußen. Benötigt eine Anwendung besonders viele Transaktionen, stehen diese dementsprechend nicht mehr für andere Anwendungen zur Verfügung \cite{cryptokitty}.  

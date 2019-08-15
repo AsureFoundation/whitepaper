@@ -142,10 +142,22 @@ Bereitgestellter Smart Contracts Code ist unveränderbar auf der Blockchain gesp
 
 \subsection*{Abfragen von Blockchain Daten}
 Ethereum Smart Contracts bieten nur eine primitive Datenhaltung und rudimentäre Datenabfrage durch Drittanwendungen. 
-Benutzer Masken benötigen viele HTTP-Anfragen um die benötigten Daten aus Ethereum in die Anwendung zu laden.
+Benutzer Masken benötigen viele HTTP-Anfragen um die benötigten Daten aus Ethereum in die Anwendung zu laden. 
+
+\paragraph*{}
+Eine weitere Herausforderung hinsichtlich der Benutzerführung sind die langen Ausführungszeiten von Transaktionen. Im Durchschnitt wird alle 15 Sekunden ein neuer Ethereum Block in die Blockkette aufgenommen. Dies hat zur Folge, das Transaktionen ensprechend 15 Sekunden oder länger benötigen bis Sie in die Blockchain aufgenommen werden. Ladeanimationen über einen Zeitraum von  mehreren Sekunden sind aus Benutzerperspektive eher suboptimal.
 
 \subsubsection*{Lösungsansatz}
-Trennung von Lese-, und Schreiboperationen (Siehe z.B.: CQRS Entwurfsmuster). Spezialisierte Abfrage Proxies z.B. mittels GraphQL (Siehe EthQL und TheGraph)
+
+Auf das direkte Abfragen von Blockchain-Daten mittels RPC/HTTP Schnittstelle verzichten. Stattdessen kann z.B. eine besser geeignete Abfragesprache wie z.B. GraphQL\footnote{\url{https://graphql.org/}} verwendet werden. Die Ethereum Software Geth unterstützt die Abfragesprache GraphQL z.B. seit der Version 1.9.0 nativ \cite{geth}.
+
+Alternativ gibt es spezialisierte Abfrage Proxies z.B. mittels GraphQL (Siehe EthQL und TheGraph)
+
+\paragraph*{}
+Durch die Verwendung des Anwendungsmusters Optimistic UI geht die Oberfläche davon aus, dass die entsprechende Schreiboperation erfolgreich war, bevor die Antwort bekannt ist. \cite{optimisticui} Hierdurch entfällt das Anzeigen einer Ladeanimation. Für den Fall, dass die Operation nicht erfolgreich war, muss der Nutzer entsprechend informiert werden.
+
+\paragraph*{}
+Trennung von Lese-, und Schreiboperationen (Siehe z.B.: CQRS Entwurfsmuster). 
 
 
 \subsection*{Batch-Job Verarbeitung}
@@ -163,15 +175,9 @@ Als Lösung bieten sich Orakel (Oracles) an. Diese stellen die Daten auf der Blo
 
 Es gibt Oracle-Anbieter, welche die notwendige Infrastruktur bereitstellen und als Dienstleistung genutzt werden können.
 
-Oracle Anbieter: Oraclize, Chainlink, Provable
+Oracle Anbieter: Chainlink\footnote{\url{https://chain.link/}}, Provable\footnote{\url{http://provable.xyz/}}
 
-Entwicklung Projektbezogener Oracles ist eine weitere Option
-
-
-\subsection*{Transaktionszeiten und Ladeanimationen}
-Transaktionen im Ethereum Rinkeby Netzwerk dauer ca. 15 Sekunden. 
-Ladeanimationen wie bei klassischen Webanwendungen (1-3 Sekunden) daher schwierig
-
+Entwicklung Projektbezogener Oracles ist eine weitere Option.
 
 \subsection*{Wallet Integration}
 Wallet Connect

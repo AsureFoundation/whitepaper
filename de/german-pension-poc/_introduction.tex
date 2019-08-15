@@ -9,15 +9,18 @@ Die Asure Stiftung forscht, wie mit Hilfe der Blockchain-Technologie Sozialversi
 Ziel der Entwicklung des Prototypen zum deutschen Rentensystem ist es, die Blockchain-Technologie als Infrastrukturkomponete zu evaluieren und aufzuzeigen, wie sich diese z.B. von einer IBM Mainframe oder Java-Enterprise basierten Infrastruktur unterscheidet. Des weiteren sollen gewonnene Erkenntnisse in der Umsetzung von komplexen Softwaresystemen als Smart Contract System dokumentiert werden. Hierzu gehören u.a.:
 
 \begin{compactenum}
-\item Das Einspielen von Smart Contract Änderungen (z.B. Fehlerkorekturen, Funkionale Erweiterungen).
+\item Das Einspielen von Smart Contract Änderungen (z.B. Fehlerkorekturen, funktionale Erweiterungen).
 \item Zugriff auf Drittsysteme aus dem Smart Contract System heraus.
 \item Verwendung von Entwicklungswerkzeugen und Bibliotheken.
 \item Umgang mit verschiedenen Infrastruktumgebungen für z.B. die lokale Entwicklung, Test und Produktion.
 \item Entwicklung von modernen Oberflächen, welche Smart Contract Systeme verwenden.
 \end{compactenum}
 
+\paragraph*{}
+Für die Entwicklung des Prototypen wird die Ethereum Blockchain verwendet. Ethereum ist eine der bekanntesten Blockchain-Projekte, welche die Ausführung von Smart Contracts unterstüzt.
+
 \subsection{Abgrenzung}
-Der Fokus dieser Arbeit liegt darin, das bestehende System und die Machbarkeit und die Grenzen bei der Umsetzung aufzuzeigen, aus diesem Grund werden nicht alle Themen in vollem Umfang behandelt oder direkt ausgeschlossen.
+Im folgenden betrachten wir Anforderungen von Rentensystemen, die im Rahmen dieses Projektes nicht weiter analysiert werden.
 
 \subsubsection{GDPR und der Datenschutz}
 Anwendungen, welche auf einer Blockchain betrieben werden und personenbezogene Daten verarbeiten, sind aus den folgenden Gründen problematisch:
@@ -31,7 +34,7 @@ Anwendungen, welche auf einer Blockchain betrieben werden und personenbezogene D
 Die GDPR konforme Implementierung des deutschen Rentensystems auf der öffentlichen Ethereum-Blockchain ist explizit kein Ziel dieser Arbeit.
 
 \paragraph*{}
-Ob und wie die GDPR konforme Implementierungen des deutschen Rentensystems auf der öffentlichen Ethereum-Blockchain implementiert werden können, soll in einem zukünftigen Projekt erforscht werden. Vielversprechend ist die Verwendung von sogenannten Zero-Knowledge-Beweisen\footnote{\url{https://de.wikipedia.org/wiki/Zero-Knowledge-Beweis}} und die Überarbeitung bestehender Regelungen in Hinblick auf die Datensparsamkeit.
+Ob und wie die GDPR konforme Implementierungen des deutschen Rentensystems auf der öffentlichen Ethereum-Blockchain implementiert werden können, soll in einem zukünftigen Projekt erforscht werden. Vielversprechend scheint die Verwendung von sogenannten Zero-Knowledge-Beweisen\footnote{\url{https://de.wikipedia.org/wiki/Zero-Knowledge-Beweis}} und die Überarbeitung bestehender Regelungen in Hinblick auf die Datensparsamkeit.
 
 \subsubsection{Blockchain-Skalierung}
 Die öffentliche Ethereum Blockchain kann zwischen 7-15 Transaktionen pro Sekunde (TPS) verarbeiten \cite{vitalikscale}. Pro Monat stehen demnach ca. 18-39 Millionen Transaktionen zur Verfügung. Auf der öffentlichen Ethereum Blockchain laufen diverse Anwendungen verschiedener Hersteller die sich dementsprechend auch gegenseitig beeinflußen. Benötigt eine Anwendung besonders viele Transaktionen, stehen diese dementsprechend nicht mehr für andere Anwendungen zur Verfügung \cite{cryptokitty}.  

@@ -6,7 +6,7 @@ Im folgenden Kapitel betrachten wir die Implementierung des Prototypen.
 Der Quellcode des entwickelten Prototypen ist auf GitHub\footnote{\url{https://github.com/AsureNetwork/asure-dapp}} veröffentlicht und kann unter der ISC Lizenz\footnote{\url{https://github.com/AsureNetwork/asure-dapp/blob/master/LICENSE}} im Rahmen weiterer Softwareprojekte genutzt werden.
 
 \paragraph*{}
-Der Prototyp steht unter der Adresse \url{https://dapp.asure.io/} zum testen bereit. 
+Der Prototyp steht unter der Adresse \url{https://dapp.asure.io/} zum testen zur Verfügung. 
 
 \subsection{Anwendungsfälle}
 Das deutsche gesetzliche Rentensystem basiert im Kern auf der Rentenformel, durch welche die Höhe der Rentenzahlung jedes Rentenempfänger ermittelt wird. Durch eine Vielzahl von Sonderregelungen gestaltet sich das Rentensystem jedoch sehr komplex, weshalb eine vollumfängliche Abbildung des Systems im Rahmen eines Prototypen nicht sinnvoll ist. Stattdessen wurden einige Anwendungsfälle ausgewählt, und im Umfang an die Anforderungen eines Prototypen angepasst.
@@ -53,7 +53,7 @@ Rente_{mtl} = EP \cdot ZF \cdot RAF \cdot aRW
 \subsection{Anwendungsarchitektur}
 Die Benutzeroberfläche des Prototypen wurde als Progressive Web App (PWA) entwickelt und für die Verwendung auf Mobilgeräten optimiert. Ein Webserver liefert die Webanwendung mittels HTTP/HTTPS an den Browser.
 \\
-Das Backend bildet ein Smart Contract-System, welches auf dem öffentlichen Ethereum Testnetz Rinkeby gehostet wird und mit dem die Benutzeroberfläche mittels HTTP/WebSockets kommuniziert. Für den Zugriff auf ein Ethereum Netz wird ein Ethereum Knoten (ggf. auch ein Ethereum Cluster für Ausfallsicherheit) benötigt. Im Rahmen des Prototypen verwenden wir hierzu Hosting Provider wie Infura und Cloudflare, welche entsprechende Ethereum Knoten hosten und zur Verfügung stellen.
+Das Backend bildet ein Smart Contract-System, welches auf dem öffentlichen Ethereum Testnetz Rinkeby gehostet wird und mit dem die Benutzeroberfläche mittels HTTP/WebSockets kommuniziert. Für den Zugriff auf ein Ethereum Netz wird ein Ethereum Knoten (ggf. auch ein Ethereum Cluster für Ausfallsicherheit) benötigt. Im Rahmen des Prototypen verwenden wir hierzu Hosting Provider wie Infura und Cloudflare, welche entsprechende Ethereum Knoten hosten und zur Verfügung stellen.\footnote{Die Dezentralisierung und somit das Betreiben eigener Ethereum Knoten ist ein entscheidener Vorteil der Blockchain-Technologie. Durch die Verwendung von gehosteten Ethereum Gateways (Infura / Cloudflare) wird dieser Vorteil nicht genutzt.}
 
 \begin{figure}
     \centering
@@ -70,9 +70,9 @@ Sämtliche Smart Contracts des Prototypen wurden in Solidity programmiert.
 
 \paragraph*{OpenZeppelin Contracts} ist ein Framework aus modularen, wiederverwendbaren und sicheren Smart Contracts für das Ethereum-Netzwerk, geschrieben in Solidity.
 
-\paragraph*{Truffle} ist ein Entwicklungsframework für Ethereum. Es bietet u.a. Funktionen für das Erstellen von automatisierten Tests, Deployment und Migration von Smart Contracts und das Verwalten von verschiedenen Ethereum Netzen wie z.B. ein lokales Entwicklungsnetz, oder das öffentliche Ethereum Testnetz Rinkeby.
+\paragraph*{Truffle} ist ein Entwicklungsframework für Ethereum. Es bietet u.a. Funktionen für das Erstellen von automatisierten Tests, Deployments und Migrationen von Smart Contracts. Zudem können mit Truffle verschiedenen Ethereum Netwerke wie z.B. ein lokales Entwicklungsnetz, oder das öffentliche Ethereum Testnetz Rinkeby verwaltet werden.
 
-\paragraph*{Ganache} ist eine Ethereum Software, welche speziell für die Entwicklung von Smart Contracts entwickelt wurde. Ganache bietet Erweiterungen um z.B. innerhalb von Unit Tests die Uhrzeit zu Manipulieren und somit auch Uhrzeitabhängige Funktionalitäten zu testen.
+\paragraph*{Ganache} ist eine Ethereum Software, welche speziell für die Entwicklung von Smart Contracts entwickelt wurde. Ganache bietet Erweiterungen um z.B. innerhalb von Unit Tests die Uhrzeit zu Manipulieren und somit auch uhrzeitabhängige Funktionalitäten zu testen.
 
 \paragraph*{Infura} bietet einen skalierbaren API-Zugriff auf öffentliche Ethereum-Netzwerke.
 

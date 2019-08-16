@@ -148,36 +148,30 @@ Benutzer Masken benötigen viele HTTP-Anfragen um die benötigten Daten aus Ethe
 Eine weitere Herausforderung hinsichtlich der Benutzerführung sind die langen Ausführungszeiten von Transaktionen. Im Durchschnitt wird alle 15 Sekunden ein neuer Ethereum Block in die Blockkette aufgenommen. Dies hat zur Folge, das Transaktionen ensprechend 15 Sekunden oder länger benötigen bis Sie in die Blockchain aufgenommen werden. Ladeanimationen über einen Zeitraum von  mehreren Sekunden sind aus Benutzerperspektive eher suboptimal.
 
 \subsubsection*{Lösungsansatz}
+Auf das direkte Abfragen von Blockchain-Daten mittels RPC/HTTP-Schnittstelle verzichten. Stattdessen kann z.B. eine besser geeignete Abfragesprache wie z.B. GraphQL\footnote{\url{https://graphql.org/}} verwendet werden. Die Ethereum Software Geth unterstützt die Abfragesprache GraphQL z.B. seit der Version 1.9.0 nativ \cite{geth}.
 
-Auf das direkte Abfragen von Blockchain-Daten mittels RPC/HTTP Schnittstelle verzichten. Stattdessen kann z.B. eine besser geeignete Abfragesprache wie z.B. GraphQL\footnote{\url{https://graphql.org/}} verwendet werden. Die Ethereum Software Geth unterstützt die Abfragesprache GraphQL z.B. seit der Version 1.9.0 nativ \cite{geth}.
-
-Alternativ gibt es spezialisierte Abfrage Proxies z.B. mittels GraphQL (Siehe EthQL und TheGraph)
+Alternativ gibt es spezialisierte Abfrage Proxies z.B. mittels GraphQL wie EthQL\footnote{\url{https://github.com/ConsenSys/ethql}} und TheGraph\footnote{\url{https://thegraph.com/}}.
 
 \paragraph*{}
 Durch die Verwendung des Anwendungsmusters Optimistic UI geht die Oberfläche davon aus, dass die entsprechende Schreiboperation erfolgreich war, bevor die Antwort bekannt ist. \cite{optimisticui} Hierdurch entfällt das Anzeigen einer Ladeanimation. Für den Fall, dass die Operation nicht erfolgreich war, muss der Nutzer entsprechend informiert werden.
 
 \paragraph*{}
-Trennung von Lese-, und Schreiboperationen (Siehe z.B.: CQRS Entwurfsmuster). 
+Eine weitere sinnvolle Lösung kann darin bestehen, Daten niemals direkt von der Blockchain zu lesen, sondern stattdessen eine für Lesezugriffe optimierte Datenbasis aufzubauen. Dieses Vorgehen ist auch als Command-Query-Responsibility-Segregation (CQRS) - Entwurfsmuster bekannt \cite{cqrs}. 
 
 
 \subsection*{Batch-Job Verarbeitung}
 Ethereum bietet keine native Unterstützung für “zeitgesteuerte” Transaktionen.
-Ethereum Smart Contracts können nicht direkt auf Smart Contract Ereignisse reagieren
+Ethereum Smart Contracts können nicht direkt auf Smart Contract Ereignisse reagieren.
 
 \subsubsection*{Lösungsansatz}
 Externe Systeme können zeitgesteuert und auf Smart Contract Events reagieren - Die Lösung setzt voraus, dass einem externen System “vertraut” wird.
 
 
 \subsection*{Anbindung externer Datenquellen}
-Smart Contracts können nicht auf externe Daten zugreifen (z.B. mittels HTTP)
+Smart Contracts können nicht direkt auf externe Systeme zugreifen (z.B. mittels HTTP)
 
-Als Lösung bieten sich Orakel (Oracles) an. Diese stellen die Daten auf der Blockchain zur Verfügung und stellen auf Anfrage weitere bereit.
-
-Es gibt Oracle-Anbieter, welche die notwendige Infrastruktur bereitstellen und als Dienstleistung genutzt werden können.
-
-Oracle Anbieter: Chainlink\footnote{\url{https://chain.link/}}, Provable\footnote{\url{http://provable.xyz/}}
-
-Entwicklung Projektbezogener Oracles ist eine weitere Option.
+\subsubsection*{Lösungsansatz}
+Als Lösung bieten sich sogenannte Orakel (Oracles) an. Diese stellen die Daten auf der Blockchain zur Verfügung und stellen auf Anfrage weitere bereit. Es gibt Oracle-Anbieter\footnote{z.B. Chainlink \url{https://chain.link/} und Provable \url{http://provable.xyz/}}, die dies notwendige Infrastruktur bereitstellen und welche als Dienstleistung genutzt werden können. Entwicklung projektbezogener Orakel ist eine weitere Option.
 
 %\subsection*{Wallet Integration}
 %Wallet Connect

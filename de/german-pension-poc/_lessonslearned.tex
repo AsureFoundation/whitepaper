@@ -37,7 +37,7 @@ contract Test {
 
 
 \subsection{Gleitkommaoperationen}
-Die Programiersprache Solidity unterstützt Gleitkommaoperationen nach IEEE 754 nicht. Es gibt jedoch teilunterstützung für Bruchwerte die bestimmten Einschränkungen unterworfen sind.\cite{fixedpointnumbers}
+Die Programmiersprache Solidity unterstützt Gleitkommaoperationen nach IEEE 754 nicht. Es gibt jedoch teilunterstützung für Bruchwerte die bestimmten Einschränkungen unterworfen sind.\cite{fixedpointnumbers}
 
 \subsubsection*{Lösungsansätze}
 
@@ -145,7 +145,7 @@ Ethereum Smart Contracts bieten nur eine primitive Datenhaltung und rudimentäre
 Benutzer Masken benötigen viele HTTP-Anfragen um die benötigten Daten aus Ethereum in die Anwendung zu laden. 
 
 \paragraph*{}
-Eine weitere Herausforderung hinsichtlich der Benutzerführung sind die langen Ausführungszeiten von Transaktionen. Im Durchschnitt wird alle 15 Sekunden ein neuer Ethereum Block in die Blockkette aufgenommen. Dies hat zur Folge, das Transaktionen ensprechend 15 Sekunden oder länger benötigen bis Sie in die Blockchain aufgenommen werden. Ladeanimationen über einen Zeitraum von  mehreren Sekunden sind aus Benutzerperspektive eher suboptimal.
+Eine weitere Herausforderung hinsichtlich der Benutzerführung sind die langen Ausführungszeiten von Transaktionen. Im Durchschnitt wird alle 15 Sekunden ein neuer Ethereum Block in die Blockkette aufgenommen. Dies hat zur Folge, das Transaktionen entsprechend 15 Sekunden oder länger benötigen bis Sie in die Blockchain aufgenommen werden. Ladeanimationen über einen Zeitraum von  mehreren Sekunden sind aus Benutzerperspektive eher suboptimal.
 
 \subsubsection*{Lösungsansatz}
 Auf das direkte Abfragen von Blockchain-Daten mittels RPC/HTTP-Schnittstelle verzichten. Stattdessen kann z.B. eine besser geeignete Abfragesprache wie z.B. GraphQL\footnote{\url{https://graphql.org/}} verwendet werden. Die Ethereum Software Geth unterstützt die Abfragesprache GraphQL z.B. seit der Version 1.9.0 nativ \cite{geth}.
